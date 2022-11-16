@@ -2,7 +2,7 @@
   <div class="columns">
    
     <span>
-      <h2 class="subtitle" >Citas medicas atrasadas </h2>
+      <h2 class="subtitle" >Citas medicas atrasadas otra vez</h2>
       
     </span>
     <section>
