@@ -10,15 +10,16 @@
       :label-position="labelPosition"
       :mobile-mode="mobileMode"
     >
-      <b-step-item step="1" label="Datos Generales" :clickable="isStepsClickable">
-        <h1 class="title has-text-centered">Datos Generales</h1>
+
+      <b-step-item step="1" label="Datos Generales de la embarazada" :clickable="isStepsClickable">
+        <h1 class="title has-text-centered">Datos Generales de la embarazada</h1>
 
         <div class="column">
           
           <b-field label="Nombre" :label-position="labelPosition">
             <b-input
               v-model="detalles.placas"
-              placeholder="Nombre de Embarazada y/o puérpera"
+              placeholder="Nombre de Embarazada"
             ></b-input>
           </b-field>
           <b-field label="CURP">
@@ -127,31 +128,31 @@
 
       <b-step-item
         step="2"
-        label="Profile"
+        label="Datos generales de la embarazada"
         :clickable="isStepsClickable"
         :type="{ 'is-success': isProfileSuccess }"
       >
-        <h1 class="title has-text-centered">Profile</h1>
+        <h1 class="title has-text-centered">Datos generales de la embarazada</h1>
         Lorem ipsum dolor sit amet.
       </b-step-item>
 
       <b-step-item
         step="3"
         :visible="showSocial"
-        label="Social"
+        label="Datos perosnales de la embarazada"
         :clickable="isStepsClickable"
       >
-        <h1 class="title has-text-centered">Social</h1>
+        <h1 class="title has-text-centered">Da</h1>
         Lorem ipsum dolor sit amet.
       </b-step-item>
 
       <b-step-item
-        :step="showSocial ? '4' : '3'"
-        label="Finish"
+        :step="showSocial ? '4' : '4'"
+        label="Trigge"
         :clickable="isStepsClickable"
         disabled
       >
-        <h1 class="title has-text-centered">Finish</h1>
+        <h1 class="title has-text-centered">Trigge</h1>
         Lorem ipsum dolor sit amet.
       </b-step-item>
 

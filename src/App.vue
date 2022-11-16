@@ -9,7 +9,8 @@
       <template #start>
 
         <b-navbar-item tag="router-link" :to="{ name: 'Mujer' }"
-          ><b-icon icon="home" class="mr-1"></b-icon>Inicio</b-navbar-item>
+          ><b-icon icon="home" class="mr-1"></b-icon>Inicio</b-navbar-item
+        >
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link"> Usuario </a>
           <div class="navbar-dropdown">
@@ -20,11 +21,11 @@
 
           </div>
         </div>
-        
+
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link"> Embarazada </a>
           <div class="navbar-dropdown">
-            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarEmbarazada' }">
               Registrar Embarazada</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Acturalizar datos</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Mostrar lista</b-navbar-item>
@@ -40,28 +41,38 @@
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Mostrar lista</b-navbar-item>
           </div>
         </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> Informes </a>
+          <div class="navbar-dropdown">
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Region</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Municipio</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Localidad</b-navbar-item>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> Tarjetas </a>
+          <div class="navbar-dropdown">
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Region</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Municipio</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Localidad</b-navbar-item>
+          </div>
+        </div>
 
-        <b-navbar-item tag="router-link" :to="{ name: 'Informes' }">
-          <b-icon icon="table-check" class="mr-1"></b-icon>
-          Informes
-        </b-navbar-item>
-
-        <b-navbar-item tag="router-link" :to="{ name: 'Ajustes' }">
-          <b-icon icon="cog-outline" class="mr-1"></b-icon>
-          Ajustes
-        </b-navbar-item>
 
       </template>
 
       <template #end>
-        <b-navbar-item tag="div">
-          <div class="buttons">
-            <a href="https://parzibyte.me/#contacto" class="button is-danger">
-              <b-icon icon="help"></b-icon>
-              <strong>Ayuda y soporte</strong>
-            </a>
+        <div class="navbar-item has-dropdown is-hoverable" >
+          <a class="navbar-link"  > Soporte  </a>
+          
+          <div class="navbar-dropdown" >
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Acerca de </b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Ayuda</b-navbar-item>
           </div>
-        </b-navbar-item>
+        </div>
       </template>
     </b-navbar>
     <section class="section">
@@ -69,10 +80,9 @@
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
+       
         <p>
-          <strong>Sistema Integral de Salud Materna</strong>
-          por <a href="https://itsm-tlapa.me/blog">ITSM</a>
-        </p>
+      <a> Sistema integral de salud materna</a> © 2022    </p>
       </div>
     </footer>
   </div>

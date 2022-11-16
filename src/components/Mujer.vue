@@ -2,7 +2,7 @@
   <div class="columns">
    
     <span>
-      <h2 class="subtitle" >Pendietes por asistir a cita medica </h2>
+      <h2 class="subtitle" >Citas medicas atrasadas </h2>
       
     </span>
     <section>
@@ -133,7 +133,7 @@ export default {
       },
       {
         field: "date",
-        label: "Date",
+        label: "Fecha de consulta",
         centered: true,
       },
      
