@@ -131,8 +131,36 @@
         :clickable="isStepsClickable"
         :type="{ 'is-success': isProfileSuccess }"
       >
-        <h1 class="title has-text-centered">Profile</h1>
-        Lorem ipsum dolor sit amet.
+        <h1 class="title has-text-centered">Datos historial</h1>
+        <section>
+        <b-field>
+            <b-checkbox>Basic</b-checkbox>
+        </b-field>
+        <b-field>
+            <b-checkbox v-model="checkbox">
+                {{ checkbox }}
+            </b-checkbox>
+        </b-field>
+        <b-field>
+            <b-checkbox v-model="checkboxCustom"
+                true-value="Yes"
+                false-value="No">
+                {{ checkboxCustom }}
+            </b-checkbox>
+        </b-field>
+        <b-field>
+            <b-checkbox :indeterminate="true">
+                Indeterminate
+            </b-checkbox>
+        </b-field>
+        <b-field>
+            <b-checkbox disabled>Disabled</b-checkbox>
+        </b-field>
+    </section>
+
+
+
+
       </b-step-item>
 
       <b-step-item
