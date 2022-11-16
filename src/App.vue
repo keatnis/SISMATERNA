@@ -7,29 +7,50 @@
         </b-navbar-item>
       </template>
       <template #start>
+
         <b-navbar-item tag="router-link" :to="{ name: 'Mujer' }"
-          ><b-icon icon="home" class="mr-1"></b-icon>Inicio</b-navbar-item
-        >
-        <b-navbar-item tag="router-link" :to="{ name: 'Informes' }"
-          ><b-icon icon="table-check" class="mr-1"></b-icon>
-         Informes</b-navbar-item
-        >
-        
-        <b-navbar-item tag="router-link" :to="{ name: 'Ajustes' }"
-          ><b-icon icon="cog-outline" class="mr-1"></b-icon>
-          Ajustes</b-navbar-item
-        >
+          ><b-icon icon="home" class="mr-1"></b-icon>Inicio</b-navbar-item>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link"> Usuario </a>
           <div class="navbar-dropdown">
-          <b-navbar-item tag="router-link" :to="{ name: 'Login' }"> 
-            Perfil</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'Login' }">
+              Perfil</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'Login' }"> Configurar</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'Login' }">Cerrar sesion </b-navbar-item>
-          
+
           </div>
         </div>
         
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> Embarazada </a>
+          <div class="navbar-dropdown">
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Registrar Embarazada</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Acturalizar datos</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Mostrar lista</b-navbar-item>
+          </div>
+        </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> Puerpera </a>
+          <div class="navbar-dropdown">
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Registrar Puerpera</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Acturalizar datos</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Mostrar lista</b-navbar-item>
+          </div>
+        </div>
+
+        <b-navbar-item tag="router-link" :to="{ name: 'Informes' }">
+          <b-icon icon="table-check" class="mr-1"></b-icon>
+          Informes
+        </b-navbar-item>
+
+        <b-navbar-item tag="router-link" :to="{ name: 'Ajustes' }">
+          <b-icon icon="cog-outline" class="mr-1"></b-icon>
+          Ajustes
+        </b-navbar-item>
+
       </template>
 
       <template #end>
@@ -50,7 +71,7 @@
       <div class="content has-text-centered">
         <p>
           <strong>Sistema Integral de Salud Materna</strong>
-           por <a href="https://itsm-tlapa.me/blog">ITSM</a>
+          por <a href="https://itsm-tlapa.me/blog">ITSM</a>
         </p>
       </div>
     </footer>
