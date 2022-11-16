@@ -10,14 +10,11 @@
         <b-navbar-item tag="router-link" :to="{ name: 'Mujer' }"
           ><b-icon icon="home" class="mr-1"></b-icon>Inicio</b-navbar-item
         >
-        <b-navbar-item tag="router-link" :to="{ name: 'ReporteVehiculos' }"
+        <b-navbar-item tag="router-link" :to="{ name: 'Informes' }"
           ><b-icon icon="table-check" class="mr-1"></b-icon>
-          Reporte</b-navbar-item
+         Informes</b-navbar-item
         >
-        <b-navbar-item tag="router-link" :to="{ name: 'Escritorio' }"
-          ><b-icon icon="monitor-dashboard" class="mr-1"></b-icon>
-          Escritorio</b-navbar-item
-        >
+        
         <b-navbar-item tag="router-link" :to="{ name: 'Ajustes' }"
           ><b-icon icon="cog-outline" class="mr-1"></b-icon>
           Ajustes</b-navbar-item
@@ -50,8 +47,7 @@
       <div class="content has-text-centered">
         <p>
           <strong>Sistema Integral de Salud Materna</strong>
-          <b-icon icon="heart" type="is-danger"></b-icon> por
-          <a href="https://itsm-tlapa.me/blog">ITSM</a>
+           por <a href="https://itsm-tlapa.me/blog">ITSM</a>
         </p>
       </div>
     </footer>
