@@ -2,18 +2,8 @@
   <div class="columns">
    
     <span>
-      <h2 class="subtitle">Próximas citas</h2>
-      <b-field>
-        <b-switch v-model="bars">Bars</b-switch>
-      </b-field>
-      <b-datepicker
-        inline
-        v-model="date"
-        :events="events"
-        :indicators="indicators"
-        :unselectable-dates="unselectableDates"
-      >
-      </b-datepicker>
+      <h2 class="subtitle" >Pendietes por asistir a cita medica </h2>
+      
     </span>
     <section>
       <b-table :data="data" :columns="columns"> </b-table>
