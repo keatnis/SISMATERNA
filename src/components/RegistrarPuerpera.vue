@@ -10,8 +10,8 @@
       :label-position="labelPosition"
       :mobile-mode="mobileMode"
     >
-      <b-step-item step="1" label="Datos Generales" :clickable="isStepsClickable">
-        <h1 class="title has-text-centered">Datos Generales</h1>
+      
+        <h2 class="title has-text-centered">Datos Generales de puerpera</h2>
 
         <div class="column">
           
@@ -123,37 +123,7 @@
             </router-link>
           </b-field>
         </div>
-      </b-step-item>
-
-      <b-step-item
-        step="2"
-        label="Profile"
-        :clickable="isStepsClickable"
-        :type="{ 'is-success': isProfileSuccess }"
-      >
-        <h1 class="title has-text-centered">Profile</h1>
-        Lorem ipsum dolor sit amet.
-      </b-step-item>
-
-      <b-step-item
-        step="3"
-        :visible="showSocial"
-        label="Social"
-        :clickable="isStepsClickable"
-      >
-        <h1 class="title has-text-centered">Social</h1>
-        Lorem ipsum dolor sit amet.
-      </b-step-item>
-
-      <b-step-item
-        :step="showSocial ? '4' : '3'"
-        label="Finish"
-        :clickable="isStepsClickable"
-        disabled
-      >
-        <h1 class="title has-text-centered">Finish</h1>
-        Lorem ipsum dolor sit amet.
-      </b-step-item>
+      
 
       <template v-if="customNavigation" #navigation="{ previous, next }">
         <b-button

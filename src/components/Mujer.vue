@@ -2,7 +2,7 @@
   <div class="columns">
    
     <span>
-      <h2 class="subtitle" >Citas medicas atrasadas </h2>
+      <h2 class="subtitle" >Citas medicas pendientes </h2>
       
     </span>
     <section>
@@ -20,6 +20,7 @@ export default {
   computed: {
     indicators() {
       return this.bars ? "bars" : "dots";
+      
     },
   },
 
@@ -78,35 +79,35 @@ export default {
         first_name: "Jesse",
         last_name: "Simmons",
         date: "2016-10-15 13:43:27",
-        sdg: "Semana 12",
+        sdg: "10",
       },
       {
         id: 2,
         first_name: "John",
         last_name: "Jacobs",
         date: "2016-12-15 06:00:53",
-        sdg: "Semana 12",
+        sdg: "9",
       },
       {
         id: 3,
         first_name: "Tina",
         last_name: "Gilbert",
         date: "2016-04-26 06:26:28",
-        sdg: "Semana 12",
+        sdg: "6",
       },
       {
         id: 4,
         first_name: "Clarence",
         last_name: "Flores",
         date: "2016-04-10 10:28:46",
-        sdg: "Semana 12",
+        sdg: "2",
       },
       {
         id: 5,
         first_name: "Anne",
         last_name: "Lee",
         date: "2016-12-06 14:38:38",
-        sdg: "Semana 12",
+        sdg: "12",
       },
     ],
     columns: [
@@ -116,11 +117,13 @@ export default {
         width: "100",
         numeric: true,
         searchable: true,
+        
       },
       {
         field: "Nombre",
         label: "Nombre",
         searchable: true,
+        
       },
       {
         field: "last_name",

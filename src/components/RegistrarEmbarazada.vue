@@ -11,21 +11,40 @@
       :mobile-mode="mobileMode"
     >
 
-      <b-step-item step="1" label="Datos Generales de la embarazada" :clickable="isStepsClickable">
-        <h1 class="title has-text-centered">Datos Generales de la embarazada</h1>
-
-        <div class="column">
+      <b-step-item step="1" label="Registrar embarazada" :clickable="isStepsClickable">
+        <h1 class="title has-text-centered">Registrar embarazada</h1>
+        <h2 class="subtitle"></h2>
+        <div class></div>
+          <h2 class="subtitle">DATOS PERSONALES</h2>
+        <div class="column"></div>
           
-          <b-field label="Nombre" :label-position="labelPosition">
+          <b-field label="No. Progreso" :label-position="labelPosition">
             <b-input
+             disabled=»disabled» 
               v-model="detalles.placas"
-              placeholder="Nombre de Embarazada"
+              placeholder=""
             ></b-input>
           </b-field>
+
           <b-field label="CURP">
             <b-input
               v-model="detalles.descripcion"
               placeholder="Clave Unica de Registro de Población"
+            ></b-input>
+          </b-field>
+
+          <b-field label="No. Expediente">
+            <b-input
+              v-model="detalles.descripcion"
+              placeholder="No. Expediente clinico"
+              
+            ></b-input>
+          </b-field>
+
+          <b-field label="Nombre" :label-position="labelPosition">
+            <b-input
+              v-model="detalles.placas"
+              placeholder="Nombre completo de paciente"
             ></b-input>
           </b-field>
 
@@ -34,15 +53,25 @@
               placeholder="Fecha de Nacimiento"
               icon="calendar-today"
               :locale="locale"
-              editable
-            >
+              editable>
             </b-datepicker>
           </b-field>
 
-          <b-field label="Número telefónico">
-            <b-input placeholder="Número " type="number" min="10" max="12">
-            </b-input>
+          <b-field label="Edad" :label-position="labelPosition">
+            <b-input
+             disabled=»disabled» 
+              v-model="detalles.placas"
+            ></b-input>
           </b-field>
+
+
+          <b-field label="Número  telefono">
+            <b-input
+              v-model="detalles.descripcion"
+              placeholder="Teléfono fijo"
+            ></b-input>
+          </b-field>
+
           <b-field label="Lengua Indígena">
             <b-select placeholder="Lengua Indígena" expanded>
               <option value="Nahual">Nahual</option>
@@ -52,12 +81,40 @@
               <option value="Ninguno">Ninguno</option>
             </b-select>
           </b-field>
+
+          <b-field label="Derechohabiencia">
+            <b-select placeholder="Derechohabiencia" expanded>
+              <option value="Insabi">INSABI</option>
+              <option value="Imss">IMSS</option>
+              <option value="Issste">ISSSTE</option>
+              <option value="Sedena">SEDENA</option>
+              <option value="Pemex">PEMEX</option>
+              <option value="Marina">MARINA</option>
+              <option value="Otro">OTRO</option>
+            </b-select>
+          </b-field>
+
+          <div class="control"> <b-field label="¿Emigro?"></b-field>
+  <label class="radio"> 
+    <input type="radio" name="answer">
+    Si
+  </label>
+  <label class="radio">
+    <input type="radio" name="answer">
+    No
+  </label>
+  <b-input
+              v-model="detalles.descripcion"
+              placeholder="¿Dónde emigró?"
+            ></b-input>
+</div>
+
           <h2 class="subtitle"></h2>
-          <h2 class="subtitle">--- DOMICILIO ---</h2>
+          <h2 class="subtitle"> DOMICILIO</h2>
           <b-field label="Dirección">
             <b-input
               v-model="detalles.descripcion"
-              placeholder="Dirección"
+              placeholder="Dirección con referencia"
             ></b-input>
           </b-field>
           <b-field label="Localidad">
@@ -74,6 +131,69 @@
             ></b-input>
           </b-field>
 
+          <h2 class="subtitle"></h2>
+          <h2 class="subtitle">DATOS CLÍNICOS</h2>
+
+            <div class="container">
+            <div class="columns">
+                <div class="column">
+                  <b-field label="Comobilidades"></b-field>
+                    <div class="field">
+                        <div class="b-checkbox">
+                            <input id="checkbox1" class="styled" checked type="checkbox">
+                            <label for="checkbox1">
+                                Exploración clínica de mama normal
+                            </label>
+                        </div>
+                        <div class="b-checkbox">
+                            <input id="checkbox2" class="styled" checked type="checkbox">
+                            <label for="checkbox2">
+                                Exploración clínica de mama alterado
+                            </label>
+                            <div class="b-checkbox">
+                            <input id="checkbox1" class="styled" checked type="checkbox">
+                            <label for="checkbox1">
+                                Papanicolau normal 
+                            </label>
+                        </div>
+                        <div class="b-checkbox">
+                            <input id="checkbox1" class="styled" checked type="checkbox">
+                            <label for="checkbox1">
+                              Papanicolau con lesiones
+                            </label>
+                        </div>
+                        <div class="b-checkbox">
+                            <input id="checkbox1" class="styled" checked type="checkbox">
+                            <label for="checkbox1">
+                              Papanicolau cancer IN SITU
+                            </label>
+                        </div>
+                        <div class="item special">
+                <div class="dark">
+                    <div class="ckbx-circle-2">
+                        <input type="checkbox" id="ckbx-circle-2-1" value="0" name="ckbx-circle-2">
+                        <label for="ckbx-circle-2-1"></label>
+                    </div>
+                </div>
+                        </div>
+
+                        <div class="b-checkbox">
+                            <input id="checkbox1" class="styled" checked type="checkbox">
+                            <label for="checkbox1">
+                              Papanicolau cancer
+                            </label>
+                        </div>
+                        <div class="b-checkbox">
+                            <input id="checkbox1" class="styled" checked type="checkbox">
+                            <label for="checkbox1">
+                                Exploración clínica de mama normal
+                            </label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
           <b-field>
             <b-switch v-model="usarFechaYHoraActual"
               >Usar fecha y hora actual ({{ fechaYHoraActual }})</b-switch
@@ -123,26 +243,26 @@
               Volver
             </router-link>
           </b-field>
-        </div>
+        
       </b-step-item>
 
       <b-step-item
         step="2"
-        label="Datos generales de la embarazada"
+        label="Registrar embarazada"
         :clickable="isStepsClickable"
         :type="{ 'is-success': isProfileSuccess }"
       >
-        <h1 class="title has-text-centered">Datos generales de la embarazada</h1>
+        <h1 class="title has-text-centered">Registrar embarazada</h1>
         Lorem ipsum dolor sit amet.
       </b-step-item>
 
       <b-step-item
         step="3"
         :visible="showSocial"
-        label="Datos perosnales de la embarazada"
+        label="Registrar embarazada"
         :clickable="isStepsClickable"
       >
-        <h1 class="title has-text-centered">Da</h1>
+        <h1 class="title has-text-centered">Registrar embarazada</h1>
         Lorem ipsum dolor sit amet.
       </b-step-item>
 
