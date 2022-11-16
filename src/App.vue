@@ -44,7 +44,7 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link"> Informes </a>
           <div class="navbar-dropdown">
-            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+            <b-navbar-item tag="router-link" :to="{ name: 'Informes' }">
               Region</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Municipio</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }"> Localidad</b-navbar-item>
