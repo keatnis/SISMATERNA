@@ -1,12 +1,8 @@
 <template>
   <div class="columns">
-    <router-link
-      :to="{ name: 'RegistrarEmbarazada' }"
-      class="button is-success mb-2"
-    >
-      Registrar nuevo
-    </router-link>
+   
     <span>
+      <h2 class="subtitle">Próximas citas</h2>
       <b-field>
         <b-switch v-model="bars">Bars</b-switch>
       </b-field>
@@ -132,11 +128,12 @@ export default {
         searchable: true,
       },
       {
-        field: "first_name",
+        field: "Nombre",
         label: "Nombre",
         searchable: true,
       },
       {
+<<<<<<< HEAD
         field: "last_name",
         label: "Apellidos",
         searchable: true,
@@ -151,6 +148,21 @@ export default {
         centered: true,
       },
      
+=======
+        field: "Apellido",
+        label: "Apellido",
+        searchable: true,
+      },
+      {
+        field: "Fecha",
+        label: "Fecha",
+        centered: true,
+      },
+      {
+        field: "",
+        label: "",
+      },
+>>>>>>> 4077a76ec9b4effa504dc8c385a2272b8facd761
     ],
   }),
   methods: {},

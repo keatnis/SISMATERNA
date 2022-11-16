@@ -9,8 +9,7 @@ import Informes from '@/components/Informes'
 import Escritorio from '@/components/Escritorio'
 
 import Login from '@/components/Login'
-import Cobrar from '@/components/Cobrar'
-
+import RegistrarPuerpera from '@/components/RegistrarPuerpera'
 
 Vue.use(Router);
 
@@ -48,9 +47,9 @@ export default new Router({
             component: Login
         },
         {
-            path: '/Cobrar',
-            name: 'Cobrar',
-            component: Cobrar
+            path: '/RegistrarPuerpera',
+            name: 'RegistrarPuerpera',
+            component: RegistrarPuerpera
         }
 
     ]
