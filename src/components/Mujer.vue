@@ -133,7 +133,6 @@ export default {
         searchable: true,
       },
       {
-<<<<<<< HEAD
         field: "last_name",
         label: "Apellidos",
         searchable: true,
@@ -148,21 +147,6 @@ export default {
         centered: true,
       },
      
-=======
-        field: "Apellido",
-        label: "Apellido",
-        searchable: true,
-      },
-      {
-        field: "Fecha",
-        label: "Fecha",
-        centered: true,
-      },
-      {
-        field: "",
-        label: "",
-      },
->>>>>>> 4077a76ec9b4effa504dc8c385a2272b8facd761
     ],
   }),
   methods: {},
