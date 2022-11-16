@@ -2,18 +2,8 @@
   <div class="columns">
    
     <span>
-      <h2 class="subtitle">Próximas citas</h2>
-      <b-field>
-        <b-switch v-model="bars">Bars</b-switch>
-      </b-field>
-      <b-datepicker
-        inline
-        v-model="date"
-        :events="events"
-        :indicators="indicators"
-        :unselectable-dates="unselectableDates"
-      >
-      </b-datepicker>
+      <h2 class="subtitle" >Citas medicas atrasadas </h2>
+      
     </span>
     <section>
       <b-table :data="data" :columns="columns"> </b-table>
@@ -88,35 +78,35 @@ export default {
         first_name: "Jesse",
         last_name: "Simmons",
         date: "2016-10-15 13:43:27",
-        gender: "Male",
+        sdg: "Semana 12",
       },
       {
         id: 2,
         first_name: "John",
         last_name: "Jacobs",
         date: "2016-12-15 06:00:53",
-        gender: "Male",
+        sdg: "Semana 12",
       },
       {
         id: 3,
         first_name: "Tina",
         last_name: "Gilbert",
         date: "2016-04-26 06:26:28",
-        gender: "Female",
+        sdg: "Semana 12",
       },
       {
         id: 4,
         first_name: "Clarence",
         last_name: "Flores",
         date: "2016-04-10 10:28:46",
-        gender: "Male",
+        sdg: "Semana 12",
       },
       {
         id: 5,
         first_name: "Anne",
         last_name: "Lee",
         date: "2016-12-06 14:38:38",
-        gender: "Female",
+        sdg: "Semana 12",
       },
     ],
     columns: [
@@ -133,19 +123,20 @@ export default {
         searchable: true,
       },
       {
-        field: "Apellido",
-        label: "Apellido",
+        field: "last_name",
+        label: "Apellidos",
         searchable: true,
       },
       {
-        field: "Fecha",
-        label: "Fecha",
-        centered: true,
+        field: "sdg",
+        label: "SDG",
       },
       {
-        field: "",
-        label: "",
+        field: "date",
+        label: "Fecha de consulta",
+        centered: true,
       },
+     
     ],
   }),
   methods: {},
