@@ -1,7 +1,7 @@
 <template>
   <div class="columns" id="tabla">
   <section >
-    <h2 class="title" >Citas medicas atrasadas</h2>
+    <h2 class="title" >Citas medicas pendientes</h2>
     <b-table :data="data" :columns="columns"> </b-table>
       
     </section>
