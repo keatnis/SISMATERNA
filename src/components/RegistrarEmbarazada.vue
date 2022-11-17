@@ -94,7 +94,7 @@
 
       <div class="columns">
         <div class="column">
-          <b-field label="Comobilidades"></b-field>
+          <b-field label="Detenciones"></b-field>
           <div class="field">
             <div class="b-checkbox">
               <input id="checkbox1" class="styled" checked type="checkbox">
