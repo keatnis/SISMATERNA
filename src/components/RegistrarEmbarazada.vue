@@ -36,7 +36,7 @@
       </b-field>
 
 
-      <b-field label="Número  telefono">
+      <b-field label="Número  teléfono">
         <b-input v-model="detalles.descripcion" placeholder="Teléfono fijo"></b-input>
       </b-field>
 
@@ -94,7 +94,7 @@
 
       <div class="columns">
         <div class="column">
-          <b-field label="Comobilidades"></b-field>
+          <b-field label="Detenciones"></b-field>
           <div class="field">
             <div class="b-checkbox">
               <input id="checkbox1" class="styled" checked type="checkbox">
@@ -159,40 +159,145 @@
               </b-datepicker>
             </b-field>
           </div>
+          <div class="columns">
+
+            <div class="column">
+              <b-field label="Comorbilidades"></b-field>
+              <div class="field">
+                <div class="b-checkbox">
+
+                  <input id="checkbox1" class="styled" checked type="checkbox">
+                  <label for="checkbox1">
+                    SOBRE PESO
+
+                    <input id="checkbox2" class="styled" checked type="checkbox">
+                    <label for="checkbox2">
+                      OBESIDAD
+                    </label>
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  DIABETES MELLITUS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  HIPERTENSIÓN ARTERIAL
+                </label>
+                </div>
+              
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  CARDIOPATÍA
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  EPILEPSIA
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  SÍFILITIS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  VIH
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  HEPATITIS
+                </label>
+                <div>
+                </div>
+                <div>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  ARTRITIS REUMATOIDE
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  LUPUS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  CANCER
+
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  TUBERCULOSIS
+                </label>
+                </div>
+              <div>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                COVID-19
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  INFECCIÓN DE VIAS URINARIAS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  CERVICO VAGINITIS
+                </label>
+              </div>
+              <div>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  ANEMIA
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  OTRO
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  NINGUNO
+                </label>
+              </div>
+              </div>
+            </div>
+          </div>
+          <b-field label="Gestas">
+        <b-input v-model="detalles.descripcion" placeholder="Numero de gestas"></b-input>
+      </b-field>
+
+      <b-field label="Paras">
+        <b-input v-model="detalles.descripcion" placeholder="Numero de paras"></b-input>
+      </b-field>
         </div>
       </div>
-
-      <b-field>
-        <b-switch v-model="usarFechaYHoraActual">Usar fecha y hora actual ({{ fechaYHoraActual }})</b-switch>
+      <b-field label="Abortos">
+        <b-input v-model="detalles.descripcion" placeholder="Numero de abortos"></b-input>
+      </b-field>
+      <b-field label="Cesareas">
+        <b-input v-model="detalles.descripcion" placeholder="Numero de cesareas"></b-input>
       </b-field>
 
-      <b-field label="Selecciona manualmente" v-show="!usarFechaYHoraActual">
-        <b-datetimepicker v-model="detalles.fechaEntrada" rounded placeholder="Clic aquí para seleccionar"
-          icon="calendar-today" locale="es-MX" :datetime-formatter="formatearFecha"
-          :timepicker="{ enableSeconds: false, hourFormat: '24' }" inline>
-          <template #left>
-            <b-button label="Ahora" type="is-primary" icon-left="clock" @click="detalles.fechaEntrada = new Date()" />
-          </template>
+      <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
+        <b-datepicker placeholder="Fecha de Nacimiento" icon="calendar-today" :locale="locale" editable>
+        </b-datepicker>
+      </b-field>
 
-          <template #right>
-            <b-button label="Limpiar" type="is-danger" icon-left="close" outlined
-              @click="detalles.fechaEntrada = null" />
-          </template>
-        </b-datetimepicker>
-      </b-field>
-      <b-field>
-        <b-button @click="guardar()" type="is-success">Guardar</b-button>
-        <router-link :to="{ name: 'Vehiculos' }" class="button is-info ml-2">
-          Volver
-        </router-link>
-      </b-field>
+      
 
     </b-step-item>
 
     <b-step-item step="2" label="Registrar embarazada" :clickable="isStepsClickable"
       :type="{ 'is-success': isProfileSuccess }">
       <h1 class="title has-text-centered">Registrar embarazada</h1>
-      Lorem ipsum dolor sit amet.
+      <div class="column"> </div>
+      <div class="control">
+        <b-field label="¿Emigro?"></b-field>
+        <label class="radio">
+          <input type="radio" name="answer">
+          Si
+        </label>
+        <label class="radio">
+          <input type="radio" name="answer">
+          No
+        </label>
+        <b-input v-model="detalles.descripcion" placeholder="¿Dónde emigró?"></b-input>
+      </div>
     </b-step-item>
 
     <b-step-item step="3" :visible="showSocial" label="Registrar embarazada" :clickable="isStepsClickable">
@@ -203,6 +308,12 @@
     <b-step-item :step="showSocial ? '4' : '4'" label="Trigge" :clickable="isStepsClickable" disabled>
       <h1 class="title has-text-centered">Trigge</h1>
       Lorem ipsum dolor sit amet.
+      <b-field>
+        <b-button @click="guardar()" type="is-success">Guardar</b-button>
+        <router-link :to="{ name: 'Vehiculos' }" class="button is-info ml-2">
+          Volver
+        </router-link>
+      </b-field>
     </b-step-item>
 
     <template v-if="customNavigation" #navigation="{ previous, next }">
