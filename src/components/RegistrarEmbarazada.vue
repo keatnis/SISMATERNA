@@ -176,15 +176,15 @@
                     </label>
                   </label>
                   <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  DIABETES MELLITUS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  HIPERTENSIÓN ARTERIAL
-                </label>
+                  <label for="checkbox2">
+                    DIABETES MELLITUS
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    HIPERTENSIÓN ARTERIAL
+                  </label>
                 </div>
-              
+
                 <input id="checkbox2" class="styled" checked type="checkbox">
                 <label for="checkbox2">
                   CARDIOPATÍA
@@ -209,61 +209,61 @@
                 </div>
                 <div>
                   <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  ARTRITIS REUMATOIDE
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  LUPUS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  CANCER
+                  <label for="checkbox2">
+                    ARTRITIS REUMATOIDE
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    LUPUS
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    CANCER
 
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  TUBERCULOSIS
-                </label>
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    TUBERCULOSIS
+                  </label>
                 </div>
-              <div>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                COVID-19
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  INFECCIÓN DE VIAS URINARIAS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  CERVICO VAGINITIS
-                </label>
-              </div>
-              <div>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  ANEMIA
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  OTRO
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  NINGUNO
-                </label>
-              </div>
+                <div>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    COVID-19
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    INFECCIÓN DE VIAS URINARIAS
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    CERVICO VAGINITIS
+                  </label>
+                </div>
+                <div>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    ANEMIA
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    OTRO
+                  </label>
+                  <input id="checkbox2" class="styled" checked type="checkbox">
+                  <label for="checkbox2">
+                    NINGUNO
+                  </label>
+                </div>
               </div>
             </div>
           </div>
           <b-field label="Gestas">
-        <b-input v-model="detalles.descripcion" placeholder="Numero de gestas"></b-input>
-      </b-field>
+            <b-input v-model="detalles.descripcion" placeholder="Numero de gestas"></b-input>
+          </b-field>
 
-      <b-field label="Paras">
-        <b-input v-model="detalles.descripcion" placeholder="Numero de paras"></b-input>
-      </b-field>
+          <b-field label="Paras">
+            <b-input v-model="detalles.descripcion" placeholder="Numero de paras"></b-input>
+          </b-field>
         </div>
       </div>
       <b-field label="Abortos">
@@ -278,16 +278,17 @@
         </b-datepicker>
       </b-field>
 
-      
+
 
     </b-step-item>
 
     <b-step-item step="2" label="Registrar embarazada" :clickable="isStepsClickable"
       :type="{ 'is-success': isProfileSuccess }">
       <h1 class="title has-text-centered">Registrar embarazada</h1>
+
       <div class="column"> </div>
       <div class="control">
-        <b-field label="¿Emigro?"></b-field>
+        <b-field label="¿Presentó complicaciones en el embarazo previo?"></b-field>
         <label class="radio">
           <input type="radio" name="answer">
           Si
@@ -296,8 +297,64 @@
           <input type="radio" name="answer">
           No
         </label>
-        <b-input v-model="detalles.descripcion" placeholder="¿Dónde emigró?"></b-input>
+
+
+        <b-select placeholder="¿Qué complicaciones presento?" expanded>
+          <option value="Nahual">Hemorragia
+          </option>
+          <option value="Retencion Placenta">Retención de placenta</option>
+          <option value="Placenta previa">Placenta previa</option>
+          <option value="Diabetes">Diabetes gestacional</option>
+          <option value="Preclamsia">Preeclampsia </option>
+          <option value="Eclampsia">Eclampsia </option>
+          <option value="Covid">Covid + embarazo</option>
+          <option value="Otro">Otra</option>
+        </b-select>
       </div>
+
+      <div>
+        <b-field label="Fecha de ultima menstruación">
+          <b-datepicker placeholder="Fecha de ultima menstruación" icon="calendar-today" :locale="locale" editable>
+          </b-datepicker>
+        </b-field>
+      </div>
+
+      <div class="control">
+        <b-field label="Fecha probable de parto">
+          <b-datepicker placeholder="Fecha probable de parto " disabled=»disabled» icon="calendar-today"
+            :locale="locale" editable>
+          </b-datepicker>
+        </b-field></div>
+
+      <div>
+        <b-field label="Trimestre actual"></b-field>
+        <b-select placeholder="Trimestre actual" expanded>
+          <option value="1er">1ER Trimestre</option>
+          <option value="2do">2DO Trimestre</option>
+          <option value="3er">3ER Trimestre</option>
+        </b-select>
+      </div>
+
+      <div>
+        <b-field label="Semana de gestación" :label-position="labelPosition">
+          <b-input disabled=»disabled» v-model="detalles.placas" placeholder="Semanan de gestación actual"></b-input>
+        </b-field></div>
+
+        <div class="control">
+        <b-field label="Fecha de consutal">
+          <b-datepicker placeholder="Fecha de consulta " icon="calendar-today"
+            :locale="locale" editable>
+          </b-datepicker>
+        </b-field></div>
+        <div>
+        <b-field label="No. Total de consulta durante el embarazo" :label-position="labelPosition">
+          <b-input disabled=»disabled» v-model="detalles.placas" placeholder="No. Total de consulta durante el embarazo"></b-input>
+        </b-field></div>
+        <div>
+        <b-field label="No. Total de consulta en el mes" :label-position="labelPosition">
+          <b-input disabled=»disabled» v-model="detalles.placas" placeholder="No. Total de consulta en el mes "></b-input>
+        </b-field></div>
+
     </b-step-item>
 
     <b-step-item step="3" :visible="showSocial" label="Registrar embarazada" :clickable="isStepsClickable">
