@@ -1,43 +1,69 @@
 <template>
   <!-- <div class="columns"> -->
-  <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
-    :icon-prev="prevIcon" :icon-next="nextIcon" :label-position="labelPosition" :mobile-mode="mobileMode">
-
-    <b-step-item step="1" label="Registrar embarazada" :clickable="isStepsClickable">
-      <h1 class="title has-text-centered">Registrar embarazada</h1>
-
-      <div class></div>
-      <h2 class="subtitle">DATOS PERSONALES</h2>
-      <div class="column"></div>
-
+  <b-steps
+    v-model="activeStep"
+    :animated="isAnimated"
+    :rounded="isRounded"
+    :has-navigation="hasNavigation"
+    :icon-prev="prevIcon"
+    :icon-next="nextIcon"
+    :label-position="labelPosition"
+    :mobile-mode="mobileMode"
+  >
+    <b-step-item
+      step="1"
+      label="Datos Generales"
+      :clickable="isStepsClickable"
+    >
+      <h1 class="title has-text-centered">Datos Generales</h1>
       <b-field label="No. Progreso" :label-position="labelPosition">
-        <b-input disabled=»disabled» v-model="detalles.placas" placeholder=""></b-input>
+        <b-input
+          disabled="»disabled»"
+          v-model="detalles.placas"
+          placeholder=""
+        ></b-input>
       </b-field>
 
       <b-field label="CURP">
-        <b-input v-model="detalles.descripcion" placeholder="Clave Unica de Registro de Población"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Clave Unica de Registro de Población"
+        ></b-input>
       </b-field>
 
       <b-field label="No. Expediente">
-        <b-input v-model="detalles.descripcion" placeholder="No. Expediente clinico"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="No. Expediente clinico"
+        ></b-input>
       </b-field>
 
       <b-field label="Nombre" :label-position="labelPosition">
-        <b-input v-model="detalles.placas" placeholder="Nombre completo de paciente"></b-input>
+        <b-input
+          v-model="detalles.placas"
+          placeholder="Nombre completo de paciente"
+        ></b-input>
       </b-field>
 
       <b-field label="Fecha de Nacimiento">
-        <b-datepicker placeholder="Fecha de Nacimiento" icon="calendar-today" :locale="locale" editable>
+        <b-datepicker
+          placeholder="Fecha de Nacimiento"
+          icon="calendar-today"
+          :locale="locale"
+          editable
+        >
         </b-datepicker>
       </b-field>
 
       <b-field label="Edad" :label-position="labelPosition">
-        <b-input disabled=»disabled» v-model="detalles.placas"></b-input>
+        <b-input disabled="»disabled»" v-model="detalles.placas"></b-input>
       </b-field>
 
-
       <b-field label="Número  teléfono">
-        <b-input v-model="detalles.descripcion" placeholder="Teléfono fijo"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Teléfono fijo"
+        ></b-input>
       </b-field>
 
       <b-field label="Lengua Indígena">
@@ -65,97 +91,110 @@
       <div class="control">
         <b-field label="¿Emigro?"></b-field>
         <label class="radio">
-          <input type="radio" name="answer">
+          <input type="radio" name="answer" />
           Si
         </label>
         <label class="radio">
-          <input type="radio" name="answer">
+          <input type="radio" name="answer" />
           No
         </label>
-        <b-input v-model="detalles.descripcion" placeholder="¿Dónde emigró?"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="¿Dónde emigró?"
+        ></b-input>
       </div>
 
       <h2 class="subtitle"></h2>
-      <h2 class="subtitle"> DOMICILIO</h2>
+      <h2 class="subtitle">DOMICILIO</h2>
       <b-field label="Dirección">
-        <b-input v-model="detalles.descripcion" placeholder="Dirección con referencia"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Dirección con referencia"
+        ></b-input>
       </b-field>
       <b-field label="Localidad">
-        <b-input v-model="detalles.descripcion" placeholder="Localidad"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Localidad"
+        ></b-input>
       </b-field>
 
       <b-field label="Municipio">
-        <b-input v-model="detalles.descripcion" placeholder="Municipio"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Municipio"
+        ></b-input>
       </b-field>
 
-      <h2 class="subtitle"></h2>
-      <h2 class="subtitle">DATOS CLÍNICOS</h2>
+     
+      
+    </b-step-item>
 
-
+    <b-step-item
+      step="2"
+      label="Datos Clínicos"
+      :clickable="isStepsClickable"
+      :type="{ 'is-success': isProfileSuccess }"
+    >
+      <h1 class="title has-text-centered">Datos Clínicos</h1>
+      
       <div class="columns">
         <div class="column">
           <b-field label="Detenciones"></b-field>
           <div class="field">
             <div class="b-checkbox">
-              <input id="checkbox1" class="styled" checked type="checkbox">
+              <input id="checkbox1" class="styled" checked type="checkbox" />
               <label for="checkbox1">
                 Exploración clínica de mama normal
               </label>
             </div>
             <div class="b-checkbox">
-              <input id="checkbox2" class="styled" checked type="checkbox">
+              <input id="checkbox2" class="styled" checked type="checkbox" />
               <label for="checkbox2">
                 Exploración clínica de mama alterado
               </label>
               <div class="b-checkbox">
-                <input id="checkbox1" class="styled" checked type="checkbox">
-                <label for="checkbox1">
-                  Papanicolau normal
-                </label>
+                <input id="checkbox1" class="styled" checked type="checkbox" />
+                <label for="checkbox1"> Papanicolau normal </label>
               </div>
               <div class="b-checkbox">
-                <input id="checkbox1" class="styled" checked type="checkbox">
-                <label for="checkbox1">
-                  Papanicolau con lesiones
-                </label>
+                <input id="checkbox1" class="styled" checked type="checkbox" />
+                <label for="checkbox1"> Papanicolau con lesiones </label>
               </div>
               <div class="b-checkbox">
-                <input id="checkbox1" class="styled" checked type="checkbox">
-                <label for="checkbox1">
-                  Papanicolau cancer IN SITU
-                </label>
+                <input id="checkbox1" class="styled" checked type="checkbox" />
+                <label for="checkbox1"> Papanicolau cancer IN SITU </label>
               </div>
 
-
               <div class="b-checkbox">
-                <input id="checkbox1" class="styled" checked type="checkbox">
-                <label for="checkbox1">
-                  Papanicolau invasor
-                </label>
+                <input id="checkbox1" class="styled" checked type="checkbox" />
+                <label for="checkbox1"> Papanicolau invasor </label>
               </div>
               <div class="b-checkbox">
-                <input id="checkbox1" class="styled" checked type="checkbox">
-                <label for="checkbox1">
-                  No se realizo
-                </label>
+                <input id="checkbox1" class="styled" checked type="checkbox" />
+                <label for="checkbox1"> No se realizo </label>
               </div>
-
             </div>
 
             <div class="column"></div>
             <div class="control">
               <b-field label="¿Asistió a consulta pregestacional?"></b-field>
               <label class="radio">
-                <input type="radio" name="answer">
+                <input type="radio" name="answer" />
                 Si
               </label>
               <label class="radio">
-                <input type="radio" name="answer">
+                <input type="radio" name="answer" />
                 No
               </label>
             </div>
             <b-field label="">
-              <b-datepicker placeholder="Fecha de consulta" icon="calendar-today" :locale="locale" editable>
+              <b-datepicker
+                placeholder="Fecha de consulta"
+                icon="calendar-today"
+                :locale="locale"
+                editable
+              >
               </b-datepicker>
             </b-field>
           </div>
@@ -176,15 +215,15 @@
                     </label>
                   </label>
                   <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    DIABETES MELLITUS
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    HIPERTENSIÓN ARTERIAL
-                  </label>
+                <label for="checkbox2">
+                  DIABETES MELLITUS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  HIPERTENSIÓN ARTERIAL
+                </label>
                 </div>
-
+              
                 <input id="checkbox2" class="styled" checked type="checkbox">
                 <label for="checkbox2">
                   CARDIOPATÍA
@@ -209,130 +248,105 @@
                 </div>
                 <div>
                   <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    ARTRITIS REUMATOIDE
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    LUPUS
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    CANCER
+                <label for="checkbox2">
+                  ARTRITIS REUMATOIDE
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  LUPUS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  CANCER
 
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    TUBERCULOSIS
-                  </label>
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  TUBERCULOSIS
+                </label>
                 </div>
-                <div>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    COVID-19
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    INFECCIÓN DE VIAS URINARIAS
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    CERVICO VAGINITIS
-                  </label>
-                </div>
-                <div>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    ANEMIA
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    OTRO
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                  <label for="checkbox2">
-                    NINGUNO
-                  </label>
-                </div>
+              <div>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                COVID-19
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  INFECCIÓN DE VIAS URINARIAS
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  CERVICO VAGINITIS
+                </label>
+              </div>
+              <div>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  ANEMIA
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  OTRO
+                </label>
+                <input id="checkbox2" class="styled" checked type="checkbox">
+                <label for="checkbox2">
+                  NINGUNO
+                </label>
+              </div>
               </div>
             </div>
           </div>
           <b-field label="Gestas">
-            <b-input v-model="detalles.descripcion" placeholder="Numero de gestas"></b-input>
-          </b-field>
+        <b-input v-model="detalles.descripcion" placeholder="Numero de gestas"></b-input>
+      </b-field>
 
-          <b-field label="Paras">
-            <b-input v-model="detalles.descripcion" placeholder="Numero de paras"></b-input>
-          </b-field>
+      <b-field label="Paras">
+        <b-input v-model="detalles.descripcion" placeholder="Numero de paras"></b-input>
+      </b-field>
         </div>
       </div>
       <b-field label="Abortos">
-        <b-input v-model="detalles.descripcion" placeholder="Numero de abortos"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Numero de abortos"
+        ></b-input>
       </b-field>
       <b-field label="Cesareas">
-        <b-input v-model="detalles.descripcion" placeholder="Numero de cesareas"></b-input>
+        <b-input
+          v-model="detalles.descripcion"
+          placeholder="Numero de cesareas"
+        ></b-input>
       </b-field>
 
       <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
-        <b-datepicker placeholder="Fecha de Nacimiento" icon="calendar-today" :locale="locale" editable>
+        <b-datepicker
+          placeholder="Fecha de Nacimiento"
+          icon="calendar-today"
+          :locale="locale"
+          editable
+        >
         </b-datepicker>
       </b-field>
 
-
+      
 
     </b-step-item>
 
     <b-step-item step="2" label="Registrar embarazada" :clickable="isStepsClickable"
       :type="{ 'is-success': isProfileSuccess }">
       <h1 class="title has-text-centered">Registrar embarazada</h1>
-
       <div class="column"> </div>
       <div class="control">
         <b-field label="¿Presentó complicaciones en el embarazo previo?"></b-field>
         <label class="radio">
-          <input type="radio" name="answer">
+          <input type="radio" name="answer" />
           Si
         </label>
         <label class="radio">
-          <input type="radio" name="answer">
+          <input type="radio" name="answer" />
           No
         </label>
-
-
-        <b-select placeholder="¿Qué complicaciones presento?" expanded>
-          <option value="Nahual">Hemorragia
-          </option>
-          <option value="Retencion Placenta">Retención de placenta</option>
-          <option value="Placenta previa">Placenta previa</option>
-          <option value="Diabetes">Diabetes gestacional</option>
-          <option value="Preclamsia">Preeclampsia </option>
-          <option value="Eclampsia">Eclampsia </option>
-          <option value="Covid">Covid + embarazo</option>
-          <option value="Otro">Otra</option>
-        </b-select>
-      </div>
-
-      <div>
-        <b-field label="Fecha de ultima menstruación">
-          <b-datepicker placeholder="Fecha de ultima menstruación" icon="calendar-today" :locale="locale" editable>
-          </b-datepicker>
-        </b-field>
-      </div>
-
-      <div class="control">
-        <b-field label="Fecha probable de parto">
-          <b-datepicker placeholder="Fecha probable de parto " disabled=»disabled» icon="calendar-today"
-            :locale="locale" editable>
-          </b-datepicker>
-        </b-field></div>
-
-      <div>
-        <b-field label="Trimestre actual"></b-field>
-        <b-select placeholder="Trimestre actual" expanded>
-          <option value="1er">1ER Trimestre</option>
-          <option value="2do">2DO Trimestre</option>
-          <option value="3er">3ER Trimestre</option>
-        </b-select>
+        <b-input v-model="detalles.descripcion" placeholder="¿Dónde emigró?"></b-input>
       </div>
 
       <div>
@@ -357,12 +371,22 @@
 
     </b-step-item>
 
-    <b-step-item step="3" :visible="showSocial" label="Registrar embarazada" :clickable="isStepsClickable">
+    <b-step-item
+      step="3"
+      :visible="showSocial"
+      label="Registrar embarazada"
+      :clickable="isStepsClickable"
+    >
       <h1 class="title has-text-centered">Registrar embarazada</h1>
       Lorem ipsum dolor sit amet.
     </b-step-item>
 
-    <b-step-item :step="showSocial ? '4' : '4'" label="Trigge" :clickable="isStepsClickable" disabled>
+    <b-step-item
+      :step="showSocial ? '4' : '4'"
+      label="Trigge"
+      :clickable="isStepsClickable"
+      disabled
+    >
       <h1 class="title has-text-centered">Trigge</h1>
       Lorem ipsum dolor sit amet.
       <b-field>
@@ -374,18 +398,28 @@
     </b-step-item>
 
     <template v-if="customNavigation" #navigation="{ previous, next }">
-      <b-button outlined type="is-danger" icon-pack="fas" icon-left="backward" :disabled="previous.disabled"
-        @click.prevent="previous.action">
+      <b-button
+        outlined
+        type="is-danger"
+        icon-pack="fas"
+        icon-left="backward"
+        :disabled="previous.disabled"
+        @click.prevent="previous.action"
+      >
         Previous
       </b-button>
-      <b-button outlined type="is-success" icon-pack="fas" icon-right="forward" :disabled="next.disabled"
-        @click.prevent="next.action">
+      <b-button
+        outlined
+        type="is-success"
+        icon-pack="fas"
+        icon-right="forward"
+        :disabled="next.disabled"
+        @click.prevent="next.action"
+      >
         Next
       </b-button>
     </template>
   </b-steps>
-
-
 </template>
 <script>
 //labelPosition: 'on-border',
@@ -397,10 +431,12 @@ export default {
     selected: null,
     fechaYHoraActual: null,
     usarFechaYHoraActual: true,
+    checkboxGroup: [],
     detalles: {
       placas: "",
       descripcion: "",
       fechaEntrada: null,
+      
     },
   }),
   computed: {
@@ -447,3 +483,6 @@ export default {
   },
 };
 </script>
+<style>
+
+</style>
