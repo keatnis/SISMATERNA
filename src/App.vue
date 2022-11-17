@@ -140,21 +140,19 @@
     <section class="section">
       <router-view> </router-view>
     </section>
-    <footer class="footer" size="3rem">
-      <div class="wrapper">
-        <div>
-          <img :src="secre"/>
-        </div>
-        <div>
-          <img :src="materno"/>
-        </div>
-        <div>
-          <img :src="tec"/>
-        </div>
-      
-      </div>
+    <footer class="footer">
       <div class="content has-text-centered">
-       
+        <div class="wrapper">
+          <div>
+            <img :src="secre" />
+          </div>
+          <div>
+            <img :src="materno" />
+          </div>
+          <div>
+            <img :src="tec" />
+          </div>
+        </div>
         <p><a> Sistema integral de salud materna</a> © 2022</p>
       </div>
     </footer>
@@ -188,20 +186,23 @@ export default {
 }
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr .5fr .5fr;
 }
 img {
-  width: 30%;
-  height: auto;
+  display: block;
+  margin: auto;
+  min-height: 5vh;
+  width: 45%;
+  height: 30;
 }
-/*
+
 #building {
   background-color: #fafffe;
   background-size: initial;
-  background-position: left left; 
+  background-position: left left;
   background-repeat: no-repeat;
   min-height: 5vh;
   width: 10%;
   height: 8%;
-*/
+}
 </style>
