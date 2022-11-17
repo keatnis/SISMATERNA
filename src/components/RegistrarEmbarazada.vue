@@ -198,104 +198,51 @@
               </b-datepicker>
             </b-field>
           </div>
-          <div class="columns">
-
-            <div class="column">
-              <b-field label="Comorbilidades"></b-field>
-              <div class="field">
-                <div class="b-checkbox">
-
-                  <input id="checkbox1" class="styled" checked type="checkbox">
-                  <label for="checkbox1">
-                    SOBRE PESO
-
-                    <input id="checkbox2" class="styled" checked type="checkbox">
-                    <label for="checkbox2">
-                      OBESIDAD
-                    </label>
-                  </label>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  DIABETES MELLITUS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  HIPERTENSIÓN ARTERIAL
-                </label>
-                </div>
-              
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  CARDIOPATÍA
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  EPILEPSIA
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  SÍFILITIS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  VIH
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  HEPATITIS
-                </label>
-                <div>
-                </div>
-                <div>
-                  <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  ARTRITIS REUMATOIDE
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  LUPUS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  CANCER
-
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  TUBERCULOSIS
-                </label>
-                </div>
-              <div>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                COVID-19
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  INFECCIÓN DE VIAS URINARIAS
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  CERVICO VAGINITIS
-                </label>
-              </div>
-              <div>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  ANEMIA
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  OTRO
-                </label>
-                <input id="checkbox2" class="styled" checked type="checkbox">
-                <label for="checkbox2">
-                  NINGUNO
-                </label>
-              </div>
-              </div>
-            </div>
-          </div>
+          <section>
+        <div class="block">
+          <h2 class="subtitle" >Comorbilidades </h2>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="sobrepeso">
+                Sobre peso 
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="Obesidad">
+                Obesidad
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="Diabetes Mellitus">
+                Diabetes Mellitus
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="Hipertensión arterial" >
+                Hipertensión arterial
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="Cardiopatía" >
+                Cardiopatía
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="Epilepsia " >
+                Epilepsia
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="Sifilis " >
+                Sifilis
+            </b-checkbox>
+             <b-checkbox v-model="checkboxGroup"
+                native-value="VIH " >
+                VIH
+            </b-checkbox>
+            <b-checkbox v-model="checkboxGroup"
+                native-value="eHepatitis" >
+                Hepatitis
+            </b-checkbox>
+        </div>
+        <p class="content">
+            <b>Selección:</b>
+            {{ checkboxGroup }}
+        </p>
+    </section>
           <b-field label="Gestas">
         <b-input v-model="detalles.descripcion" placeholder="Numero de gestas"></b-input>
       </b-field>
