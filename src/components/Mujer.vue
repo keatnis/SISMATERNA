@@ -1,14 +1,8 @@
 <template>
-  <div class="columns">
-   
-    <span>
-      <h2 class="subtitle" >Citas medicas atrasadas MAIN </h2>
-      
-    </span>
-    <section>
-      <b-table :data="data" :columns="columns"> </b-table>
-      <hr />
-
+  <div class="columns" id="tabla">
+  <section >
+    <h2 class="title" >Citas medicas atrasadas</h2>
+    <b-table :data="data" :columns="columns"> </b-table>
       
     </section>
   </div>
@@ -145,3 +139,8 @@ export default {
   methods: {},
 };
 </script>
+<style>
+#tabla{
+  justify-content: center;
+}
+</style>
