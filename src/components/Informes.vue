@@ -35,7 +35,7 @@
             </b-datepicker>
           </b-field>
         </b-field>
-        <h3 class="is-size-3">Total: {{ total() | dinero }}</h3>
+        <h3 class="is-size-3">Total de puerperas: {{ total() | dinero }}</h3>
         <b-table
           :data="vehiculos"
           :loading="cargando"
