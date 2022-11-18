@@ -10,6 +10,10 @@ import Escritorio from '@/components/Escritorio'
 
 import Login from '@/components/Login'
 import RegistrarPuerpera from '@/components/RegistrarPuerpera'
+import ActualizarEmbarazada from '@/components/ActualizarEmbarazada'
+import ActualizarPuerperia from '@/components/ActualizarPuerperia'
+import ListaPuerpera from '@/components/ListaPuerpera'
+import ListaEmbarazada from '@/components/ListaEmbarazada'
 
 Vue.use(Router);
 
@@ -40,7 +44,7 @@ export default new Router({
             name: 'Escritorio',
             component: Escritorio,
         },
-        
+
         {
             path: '/Login',
             name: 'Login',
@@ -50,7 +54,26 @@ export default new Router({
             path: '/RegistrarPuerpera',
             name: 'RegistrarPuerpera',
             component: RegistrarPuerpera
-        }
-
+        },
+        {
+            path: '/ActualizarEmbarazada',
+            name: 'ActualizarEmbarazada',
+            component: ActualizarEmbarazada,
+        },
+        {
+            path: '/ActualizarPuerperia',
+            name: 'ActualizarPuerperia',
+            component: ActualizarPuerperia,
+        },
+        {
+            path: '/ListaEmbarazada',
+            name: 'ListaEmbarazada',
+            component: ListaEmbarazada,
+        },
+        {
+            path: '/ListaPuerpera',
+            name: 'ListaPuerpera',
+            component: ListaPuerpera,
+        },
     ]
 });

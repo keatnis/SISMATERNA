@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <b-navbar type="is-info">
+    <b-navbar type="is-primary">
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }"> </b-navbar-item>
       </template>
@@ -35,13 +35,13 @@
             >
             <b-navbar-item
               tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
+              :to="{ name: 'ActualizarEmbarazada' }"
             >
               Acturalizar datos</b-navbar-item
             >
             <b-navbar-item
               tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
+              :to="{ name: 'ListaEmbarazada' }"
             >
               Mostrar lista</b-navbar-item
             >
@@ -59,13 +59,13 @@
             >
             <b-navbar-item
               tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
+              :to="{ name: 'ActualizarPuerperia' }"
             >
               Acturalizar datos</b-navbar-item
             >
             <b-navbar-item
               tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
+              :to="{ name: 'ListaPuerpera' }"
             >
               Mostrar lista</b-navbar-item
             >
@@ -118,7 +118,7 @@
 
       <template #end>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Soporte </a>
+          <a class="navbar-link is-primary"> Soporte </a>
 
           <div class="navbar-dropdown">
             <b-navbar-item

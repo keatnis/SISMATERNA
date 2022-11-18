@@ -1,28 +1,34 @@
 <template>
   <!-- <div class="columns"> -->
+
   <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
     :icon-prev="prevIcon" :icon-next="nextIcon" :label-position="labelPosition" :mobile-mode="mobileMode">
-    <div class="has-text-centered">
+    <div class="column has-text-centered">
       <article class="panel is-primary centered">
         <p class="panel-heading">
-          Registrar puerpera
+          Actualizar puerpera
         </p>
       </article>
-                <h3 class="is-size-3">Datos generales de puerpera</h3>            
+      <h3 class="is-size-3">Datos generales de puerpera</h3>
+      
     </div>
+
     <div class="column">
+      <b-field label="CURP"></b-field>
+      <div class="control">
+        <p class="control has-icons-left">
+          <input class="input" type="text" placeholder="Buscar por CURP">
+          <span class="icon is-left">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </span>
+        </p>
+      </div>
+      <div class="column">
+        <b-field label="No. Progreso" :label-position="labelPosition">
+          <b-input disabled="»disabled»" v-model="detalles.placas" placeholder=""></b-input>
+        </b-field>
 
-      <b-field label="No. Progreso" :label-position="labelPosition">
-        <b-input disabled="»disabled»" v-model="detalles.placas" placeholder=""></b-input>
-      </b-field>
-
-      <div></div>
-      <b-field label="CURP">
-        <b-input v-model="detalles.descripcion" placeholder="Clave Unica de Registro de Población"></b-input>
-      </b-field>
-      <b-field label="Nombre de puerpera" :label-position="labelPosition">
-        <b-input v-model="detalles.placas" placeholder="Nombre completo"></b-input>
-      </b-field>
+      </div>
 
 
       <b-field label="Edad">
@@ -114,14 +120,14 @@
         </b-select>
       </b-field>
       <b-field label="Consulta pregestacional"></b-field>
-        <label class="radio">
-          <input type="radio" name="answer" />
-          Si
-        </label>
-        <label class="radio">
-          <input type="radio" name="answer" />
-          No
-        </label>
+      <label class="radio">
+        <input type="radio" name="answer" />
+        Si
+      </label>
+      <label class="radio">
+        <input type="radio" name="answer" />
+        No
+      </label>
       <b-field label="Fecha de parto">
         <b-datepicker placeholder="Fecha del evento" icon="calendar-today" :locale="locale" editable>
         </b-datepicker>

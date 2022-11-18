@@ -70,63 +70,65 @@ export default {
     data: [
       {
         id: 1,
-        first_name: "Jesse",
-        last_name: "Simmons",
+        Nombre: "Jesse",
+        Apellidos: "Simmons",
         date: "2016-10-15 13:43:27",
         sdg: "10",
       },
       {
         id: 2,
-        first_name: "John",
-        last_name: "Jacobs",
+        Nombre: "John",
+        Apellidos: "Jacobs",
         date: "2016-12-15 06:00:53",
         sdg: "9",
       },
       {
         id: 3,
-        first_name: "Tina",
-        last_name: "Gilbert",
+        Nombre: "Tina",
+        Apellidos: "Gilbert",
         date: "2016-04-26 06:26:28",
         sdg: "6",
       },
       {
         id: 4,
-        first_name: "Clarence",
-        last_name: "Flores",
+        Nombre: "Clarence",
+        Apellidos: "Flores",
         date: "2016-04-10 10:28:46",
         sdg: "2",
       },
-      {
-        id: 5,
-        first_name: "Anne",
-        last_name: "Lee",
-        date: "2016-12-06 14:38:38",
-        sdg: "12",
-      },
+      
     ],
     columns: [
       {
         field: "id",
         label: "No. Progreso",
         width: "100",
+        placeholder:"Search",
         numeric: true,
         searchable: true,
+        centered: true,
+        
         
       },
       {
         field: "Nombre",
         label: "Nombre",
-        searchable: true,
+        placeholder:"Search",
+        searchable: true ,
+        centered: true,
         
       },
       {
-        field: "last_name",
+        field: "Apellidos",
         label: "Apellidos",
+        placeholder:"Search",
         searchable: true,
+        centered:true,
       },
       {
         field: "sdg",
         label: "SDG",
+        centered: true,
       },
       {
         field: "date",
