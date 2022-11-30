@@ -1,138 +1,88 @@
 
 <template>
   <div>
-    <b-navbar type="is-primary">
+    <b-navbar type="is-info">
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }"> </b-navbar-item>
       </template>
       <template #start>
-        <b-navbar-item tag="router-link" :to="{ name: 'Mujer' }"
-          ><b-icon icon="home" class="mr-1"></b-icon>Inicio</b-navbar-item
-        >
+        <b-navbar-item tag="router-link" :to="{ name: 'Mujer' }">
+          <b-icon icon="home" class="mr-1"></b-icon>Inicio
+        </b-navbar-item>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Usuario </a>
+          <a class="navbar-link">  <b-icon icon="account" class="mr-1"></b-icon>Usuario </a>
           <div class="navbar-dropdown">
             <b-navbar-item tag="router-link" :to="{ name: 'Login' }">
-              Perfil</b-navbar-item
-            >
+             
+              Perfil</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'Login' }">
-              Configurar</b-navbar-item
-            >
-            <b-navbar-item tag="router-link" :to="{ name: 'Login' }"
-              >Cerrar sesion
+              Configurar</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'Login' }">Cerrar sesion
             </b-navbar-item>
           </div>
         </div>
 
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Embarazada </a>
+          <a class="navbar-link"> <b-icon icon="human-pregnant" class="mr-1"></b-icon>Embarazada </a>
           <div class="navbar-dropdown">
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarEmbarazada' }"
-            >
-              Registrar Embarazada</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'ActualizarEmbarazada' }"
-            >
-              Acturalizar datos</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'ListaEmbarazada' }"
-            >
-              Mostrar lista</b-navbar-item
-            >
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarEmbarazada' }">
+              Registrar Embarazada</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'ActualizarEmbarazada' }">
+              Acturalizar datos</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'ListaEmbarazada' }">
+              Mostrar lista</b-navbar-item>
           </div>
         </div>
 
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Puerpera </a>
+          <a class="navbar-link"> <b-icon icon="human-female-girl" class="mr-1"></b-icon> Puerpera </a>
           <div class="navbar-dropdown">
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Registrar Puerpera</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'ActualizarPuerperia' }"
-            >
-              Acturalizar datos</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'ListaPuerpera' }"
-            >
-              Mostrar lista</b-navbar-item
-            >
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Registrar Puerpera</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'ActualizarPuerperia' }">
+              Acturalizar datos</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'ListaPuerpera' }">
+              Mostrar lista</b-navbar-item>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Informes </a>
+          <a class="navbar-link"> <b-icon icon="file-find" class="mr-1"></b-icon> Informes </a>
+
           <div class="navbar-dropdown">
-            <b-navbar-item tag="router-link" :to="{ name: 'Informes' }">
-              Region</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Municipio</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Localidad</b-navbar-item
-            >
+            <b-navbar-item tag="router-link" :to="{ name: 'InformesRegional' }">
+              Region</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'InformesMunicipio' }">
+              Municipio</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'InformesLocalidad' }">
+              Localidad</b-navbar-item>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Tarjetas </a>
+          <a class="navbar-link">  <b-icon icon="chart-bar" class="mr-1"></b-icon>Tarjetas </a>
           <div class="navbar-dropdown">
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Region</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Municipio</b-navbar-item
-            >
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Localidad</b-navbar-item
-            >
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Region</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Municipio</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Localidad</b-navbar-item>
           </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> <b-icon icon="map-marker-radius" class="mr-1"></b-icon>Mapeo</a>
         </div>
       </template>
 
       <template #end>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link is-primary"> Soporte </a>
+          <a class="navbar-link is-primary"><b-icon icon="wrench" class="mr-1"></b-icon>  Soporte </a>
 
           <div class="navbar-dropdown">
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
               Acerca de
             </b-navbar-item>
-            <b-navbar-item
-              tag="router-link"
-              :to="{ name: 'RegistrarPuerpera' }"
-            >
-              Ayuda</b-navbar-item
-            >
+            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+              Ayuda</b-navbar-item>
           </div>
         </div>
       </template>
@@ -184,15 +134,17 @@ export default {
   background-color: #182a3f;
   min-height: 100vh;
 }
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr .5fr .5fr;
 }
+
 img {
   display: block;
   margin: auto;
   min-height: 5vh;
-  width: 45%;
+  width: 15%;
   height: 30;
 }
 

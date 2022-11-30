@@ -14,6 +14,9 @@ import ActualizarEmbarazada from '@/components/ActualizarEmbarazada'
 import ActualizarPuerperia from '@/components/ActualizarPuerperia'
 import ListaPuerpera from '@/components/ListaPuerpera'
 import ListaEmbarazada from '@/components/ListaEmbarazada'
+import InformesRegional from '@/components/InformesRegional'
+import InformesMunicipio from '@/components/InformesMunicipio'
+import InformesLocalidad from '@/components/InformesLocalidad'
 
 Vue.use(Router);
 
@@ -74,6 +77,21 @@ export default new Router({
             path: '/ListaPuerpera',
             name: 'ListaPuerpera',
             component: ListaPuerpera,
+        },
+        {
+            path: '/InformesRegional',
+            name: 'InformesRegional',
+            component: InformesRegional,
+        },
+        {
+            path: '/InformesMunicipio',
+            name: 'InformesMunicipio',
+            component: InformesMunicipio,
+        },
+        {
+            path: '/InformesLocalidad',
+            name: 'InformesLocalidad',
+            component: InformesLocalidad,
         },
     ]
 });
