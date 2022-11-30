@@ -101,48 +101,5 @@
   </div>
 </template>
 <script>
-import PagosService from "../services/PagosService";
-import Utiles from "../services/Utiles";
-export default {
-  data: () => ({
-    formateadorFecha: Utiles.formatearFechaSegunLocale,
-    fechaFin: new Date(),
-    fechaInicio: new Date(),
-    vehiculos: [],
-    cargando: false,
-  }),
-  async mounted() {
-    await this.obtenerReporteConFechasSeleccionadas();
-  },
-  methods: {
-    total() {
-      let total = 0;
-      for (const vehiculo of this.vehiculos) {
-        total += vehiculo.pagoDeVehiculo.pago;
-      }
-      return total;
-    },
-    onFechaFinCambiada() {
-      this.$refs.seleccionadorFechaFin.toggle();
-      this.onFechasCambiadas();
-    },
-    onFechaInicioCambiada() {
-      this.$refs.seleccionadorFechaInicio.toggle();
-      this.onFechasCambiadas();
-    },
-    onFechasCambiadas() {
-      this.obtenerReporteConFechasSeleccionadas();
-    },
-    async obtenerReporteConFechasSeleccionadas() {
-      this.cargando = true;
-      const fechaInicio = Utiles.formatearFechaAInicioDeDia(
-        this.fechaInicio,
-        "T"
-      );
-      const fechaFin = Utiles.formatearFechaAFinDeDia(this.fechaFin, "T");
-      this.vehiculos = await PagosService.obtenerPagos(fechaInicio, fechaFin);
-      this.cargando = false;
-    },
-  },
-};
+
 </script>
