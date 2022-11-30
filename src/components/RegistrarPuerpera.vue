@@ -18,7 +18,7 @@
             <b-input disabled="»disabled»" v-model="detalles.placas" placeholder=""></b-input>
           </b-field>
 
-          <div></div>
+          
           <b-field label="CURP">
             <b-input v-model="detalles.descripcion" placeholder="Clave Unica de Registro de Población"></b-input>
           </b-field>
