@@ -225,12 +225,7 @@
     </b-step-item>
 
 
-    <b-step-item step="2" label="" :clickable="isStepsClickable" :type="{ 'is-success': isProfileSuccess }">
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Antecedentes gineco obstétricos</h3>
-        <p>Registrar embarazada</p>
-
-      </div>
+    <b-step-item step="" label="" :clickable="isStepsClickable" :type="{ 'is-success': isProfileSuccess }">
       <div>
         <div class="columns">
           <div class="column is-one-third">
@@ -267,7 +262,7 @@
             </div>
           </div>
 
-          <div class="column is-two-fifths">
+          <div class="column is-one-third">
             <div class="control">
               <b-field label="Fecha probable de parto">
                 <b-datepicker placeholder="Fecha probable de parto " icon="calendar-today" :locale="locale" editable>
@@ -302,7 +297,7 @@
               </label>
             </b-field>
           </div>
-          <div class="column is-two-fifths">
+          <div class="column is-one-third">
 
             <b-field label="Semana de gestación actual" :label-position="labelPosition">
               <b-input disabled=»disabled» v-model="detalles.placas" placeholder="Semanan de gestación actual">
@@ -332,7 +327,7 @@
       </div>
     </b-step-item>
 
-    <b-step-item step="3" label="Embarazo actual" :clickable="isStepsClickable"
+    <b-step-item step="" label="" :clickable="isStepsClickable"
       :type="{ 'is-success': isProfileSuccess }">
       <div class="column has-text-centered">
         <h3 class="is-size-3">Embarazo actual</h3>
@@ -345,43 +340,14 @@
 
     </b-step-item>
 
-    <b-step-item step="4" :visible="showSocial" label="Esquema de vacunación" :clickable="isStepsClickable">
+    <b-step-item step="" :visible="showSocial" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
         <h3 class="is-size-3">Esquema de vacunación</h3>
         <p>Registrar embarazada</p>
 
       </div>
-
-
-
-
-
-
-
     </b-step-item>
-
-    <b-step-item step="5" :visible="showSocial" label="Laboratorio" :clickable="isStepsClickable">
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Laboratorio</h3>
-        <p>Registrar embarazada</p>
-
-      </div>
-    </b-step-item>
-    <b-step-item step="6" :visible="showSocial" label="Trabajo social" :clickable="isStepsClickable">
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Trabajo social</h3>
-        <p>Registrar embarazada</p>
-
-      </div>
-    </b-step-item>
-    <b-step-item step="7" :visible="showSocial" label="Componente comunitario" :clickable="isStepsClickable">
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Componente comunitario</h3>
-        <p>Registrar embarazada</p>
-
-      </div>
-    </b-step-item>
-    <b-step-item :step="showSocial ? '8' : '8'" label="Trigge" :clickable="isStepsClickable" disabled>
+    <b-step-item :step="showSocial ? '' : ''" label="" :clickable="isStepsClickable" disabled>
       <div class="column has-text-centered">
         <h3 class="is-size-3">Triagge</h3>
         <p>Registrar embarazada</p>

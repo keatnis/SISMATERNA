@@ -3,12 +3,11 @@
   <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
     :icon-prev="prevIcon" :icon-next="nextIcon" :label-position="labelPosition" :mobile-mode="mobileMode">
     <div class="has-text-centered">
-      <article class="panel is-primary centered">
+      <article class="panel is-info centered">
         <div class="panel-heading">
           Registrar puerpera
         </div>
       </article>
-      <h3 class="is-size-3">Datos generales de puerpera</h3>
     </div>
     <div>
       <div class="columns">
