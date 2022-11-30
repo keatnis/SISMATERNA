@@ -69,8 +69,11 @@
                   <b-checkbox v-model="checkboxGroup" native-value="VIH ">
                     VIH
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="eHepatitis">
+                  <b-checkbox v-model="checkboxGroup" native-value="Hepatitis">
                     Hepatitis
+                  </b-checkbox>
+                  <b-checkbox v-model="checkboxGroup" native-value="Ninguno">
+                    Ninguno
                   </b-checkbox>
                 </div>
                 <p class="content">
@@ -192,7 +195,7 @@
             </b-field>
 
             <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
-              <b-datepicker placeholder="Fecha de Nacimiento" icon="calendar-today" :locale="locale" editable>
+              <b-datepicker placeholder="Fecha de ultimo evento" icon="calendar-today" :locale="locale" editable>
               </b-datepicker>
             </b-field>
 
@@ -257,8 +260,46 @@
                   <b-datepicker placeholder="Fecha de vacunación TD refuerzo" icon="calendar-today" :locale="locale"
                     editable>
                   </b-datepicker>
+
                 </b-field>
+
               </div>
+              <b-field label="Vacuna COVID-19">
+                <label class="radio">
+                  <input type="radio" name="answer" />
+                  Se aplico
+                </label>
+                <label class="radio">
+                  <input type="radio" name="answer" />
+                  No se aplico
+                </label>
+              </b-field>
+              <b-field label="BIOMETRIA EMATICA">
+                <b-select placeholder="BIOMETRIA" expanded>
+                  <option value="HB12">HB >=12</option>
+                  <option value="HBMAY9">HB >=9</option>
+                  <option value="HBMEN9">HB MENOR A 9 </option>
+                  <option value="Ninguno">NINGUNO</option>
+                </b-select>
+              </b-field>
+
+              <b-field label="VIH">
+                <b-select placeholder="VIH" expanded>
+                  <option value="ReactivoVIH">REACTIVO</option>
+                  <option value="NoReactivoVIH">NO REACTIVO</option>
+                  <option value="NoRealizoVIH">NO SE REALIZO</option>
+                </b-select>
+              </b-field>
+              <b-field label="CARACTERÍSTICAS FETALES ">
+                <b-select placeholder="CARACTERÍSTICAS" expanded>
+                  <option value="UnicoVivo">UNICO VIVO</option>
+                  <option value="UnicObito">UNICO OBITO</option>
+                  <option value="Molar">MOLAR</option>
+                  <option value="Monocorial">MONOCORIAL</option>
+                  <option value="Bicorionicos">BICORIONICOS</option>
+                  <option value="Gemelar1Obitado">GMELAR 1 OBITADO</option>
+                </b-select>
+              </b-field>
             </div>
           </div>
 
@@ -286,16 +327,50 @@
                 </b-datepicker>
               </b-field>
             </div>
-            <b-field label="Vacuna COVID-19">
-              <label class="radio">
-                <input type="radio" name="answer" />
-                Se aplico
-              </label>
-              <label class="radio">
-                <input type="radio" name="answer" />
-                No se aplico
-              </label>
+
+            <b-field label="Grupo RH">
+              <b-select placeholder="Grupo RH" expanded>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="NingunoRH">NINGUNO</option>
+              </b-select>
             </b-field>
+            <b-field label="LEUCOCITOS">
+              <b-select placeholder="LEUCOCITOS" expanded>
+                <option value="Normales">NORMALES</option>
+                <option value="DisminuidosLinfocitos">DISMINUIDOS LINFOCITOS</option>
+                <option value="AumentadosNeutrofilos">AUMENTADOS NEUTROFILOS</option>
+                <option value="AumentadosLinfocitos">AUMENTADOS LOS LINFOCITOS</option>
+                <option value="NingunoLEUCO">NINGUNO</option>
+              </b-select>
+            </b-field>
+
+            <b-field label="ESTADO TIRAS GLUCOSA">
+              <b-select placeholder="ESTADO EN EL QUE SE REALIZO" expanded>
+                <option value="Ayuno">AYUNO</option>
+                <option value="Posprandial1">POSPRANDIAL 1 HORA</option>
+                <option value="Posprandial2">POSPRANDIAL 2 HORAS</option>
+                <option value="NingunoLEUCO">NINGUNO</option>
+              </b-select>
+            </b-field>
+
+            <b-field label=" MALFORMACIONES CONGENITAS">
+              <b-select placeholder="MALFORMACIONES" expanded>
+                <option value="EspinaBifida">ESPINA BIFIDA</option>
+                <option value="Meningocele">MENINGOCELE</option>
+                <option value="Mielomeningocele">MIELOMENINGOCELE</option>
+                <option value="Anencefalia">ANENCEFALIA</option>
+                <option value="OtrasMalform">OTRAS</option>
+                <option value="NingunaMalform">NINGUNA</option>
+              </b-select>
+            </b-field>
+
           </div>
           <div class="column is-one-third">
 
@@ -321,30 +396,163 @@
                 </b-datepicker>
               </b-field>
             </div>
+            <b-field label="EGO Y/O TIRAS URIANALISIS">
+              <b-select placeholder="EGO" expanded>
+                <option value="Trazas">PROT. TRAZAS</option>
+                <option value="Mayor300">PROT. >300 MG/L</option>
+                <option value="Leucitos">LEUCITOS >5</option>
+                <option value="Nitratos">NITRATOS +</option>
+                <option value="Negativo">NEGATIVO</option>
+              </b-select>
+            </b-field>
 
+            <b-field label="VDRL">
+              <b-select placeholder="VDRL" expanded>
+                <option value="Reactivo">REACTIVO</option>
+                <option value="NoReactivo">NO REACTIVO</option>
+                <option value="NoRealizo">NO SE REALIZO</option>
+              </b-select>
+            </b-field>
+            <b-field label="RESULTADO TIRAS GLUCOSA">
+              <b-select placeholder="RESULTADO TIRAS GLUCOSA" expanded>
+                <option value="Mayor60">>60 Y MENOR A110</option>
+                <option value="Mayor110">>=110 Y MENOR O IGUAL A 126</option>
+                <option value="Mayor126">>126 Y MENOR A160</option>
+                <option value="NingunoGlucosa">NINGUNO</option>
+              </b-select>
+            </b-field>
+
+            <b-field label="LIQUIDO AMNIOTICO">
+              <b-select placeholder="LIQUIDO AMNIOTICO" expanded>
+                <option value="Normal">NORMAL</option>
+                <option value="Oligohidramnios">OLIGOHIDRAMNIOS</option>
+                <option value="Polihidramnios">POLIHIDRAMNIOS</option>
+                <option value="Anhidramnios">ANHIDRAMNIOS</option>
+              </b-select>
+            </b-field>
           </div>
         </div>
       </div>
     </b-step-item>
 
-    <b-step-item step="" label="" :clickable="isStepsClickable"
-      :type="{ 'is-success': isProfileSuccess }">
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Embarazo actual</h3>
-        <p>Registrar embarazada</p>
+    <b-step-item step="" label="" :clickable="isStepsClickable" :type="{ 'is-success': isProfileSuccess }">
+      <div>
+        <div class="columns">
+          <div class="column is-one-third">
+            <b-field label="PLACENTA">
+              <b-select placeholder="PLACENTA" expanded>
+                <option value="NormalPlacen">NORMAL</option>
+                <option value="Previa">PREVIA</option>
+                <option value="AcretismoPlacentario">ACRETISMO PLACENTARIO</option>
+                <option value="Calcificada">CALCIFICADA</option>
+              </b-select>
+            </b-field>
 
 
+            <b-field label="¿ACUDIÓ A REFERENCIA?"></b-field>
+            <b-select placeholder="REFERENCIAS" expanded>
+              <option value="Hemorragia ">H.G. TLAPA</option>
+              <option value="Retención de placenta">HMNIG</option>
+              <option value="Placenta previa">H.C. ACATEPEC</option>
+              <option value="Diabetes gestacional">H.C. ALCOZAUCA</option>
+              <option value="Preeclampsia">H.C. MALINALTEPEC </option>
+              <option value="Preeclampsia">H.C. OLINALÁ</option>
+              <option value="Preeclampsia">H.C. TLACOAPA</option>
+              <option value="Preeclampsia">H.C. XOCHIHUEHUETLÁN</option>
+              <option value="Preeclampsia">H.C. ZAPOTITLÁN TABLAS</option>
+              <option value="Preeclampsia">CENTRO DE SALUD</option>
+              <option value="Preeclampsia">H.C. XOCHIHUEHUETLÁN</option>
+              <option value="Preeclampsia">HOGAR</option>
+              <option value="Preeclampsia">H.C. SAN SLUIS</option>
+              <option value="Preeclampsia">H.G. AYUTLA</option>
+              <option value="Preeclampsia">H.G. OMETEPEC</option>
+              <option value="Preeclampsia">H.G CHUAUTLA</option>
+              <option value="Preeclampsia">OTROS HOSPITALES</option>
+              <option value="Preeclampsia">H.G. AYUTLA</option>
+              <option value="Preeclampsia">H.G. OMETEPEC</option>
+              <option value="Preeclampsia">NO ACUDIÓ</option>
+            </b-select>
+
+
+            <b-field label="¿SE ORIENTO EN SEÑALES DE PELIGRO DURANTE EL EMBARAZO, PARTO, PUERPERIO, RN?"></b-field>
+            <b-select placeholder="¿SE ORIENTO EN SEÑALES DE PELIGRO DURANTE EL EMBARAZO?" expanded>
+              <option value="Hemorragia ">SI</option>
+              <option value="Retención de placenta">NO</option>
+            </b-select>
+
+            <b-field label="¿SE ORIENTO EN SEÑALES DE PELIGRO DURANTE EL EMBARAZO, PARTO, PUERPERIO, RN?"></b-field>
+            <b-select placeholder="¿SE ORIENTO EN SEÑALES DE PELIGRO DURANTE EL EMBARAZO?" expanded>
+              <option value="Hemorragia ">SI</option>
+              <option value="Retención de placenta">NO</option>
+            </b-select>
+          </div>
+        
+        <div class="column is-one-third">
+          <div class="control">
+            <b-field label="Fecha probable de parto por USG">
+              <b-datepicker placeholder="Fecha probable de parto por USG (1Er Trimestre)" icon="calendar-today"
+                :locale="locale">
+              </b-datepicker>
+            </b-field>
+          </div>
+          <b-field label="CONTRAREFERENCIA RECIBIDA">
+            <b-select placeholder="REFERENCIA" expanded>
+              <option value="SiConrefe">SI</option>
+              <option value="NoCorefe">NO</option>
+            </b-select>
+          </b-field>
+          <b-field label="¿DONDE ATENDERÁN SU PARTO?">
+            <b-select placeholder="¿DONDE ATENDERÁN SU PARTO?" expanded>
+              <option value="SiConrefe">HOSPIAL</option>
+              <option value="NoCorefe">C. SALUD</option>
+              <option value="SiConrefe">HOGAR</option>
+              <option value="NoCorefe">PARTICULAR
+              </option>
+            </b-select>
+          </b-field>
+
+          <b-field label="¿CUENTA CON TRANSPORTE AME EN CASO DE EMERGENCIA?">
+            <b-select placeholder="¿CUENTA CON TRANSPORTE AME?" expanded>
+              <option value="SiAME">SI</option>
+              <option value="NoAME">NO</option>
+            </b-select>
+          </b-field>
+        </div>
+        <div class="column is-one-third">
+          <b-field label="REFERENCIA">
+            <b-select placeholder="REFERENCIA" expanded>
+              <option value="SiRefe">SI</option>
+              <option value="NoRefe">NO</option>
+            </b-select>
+          </b-field>
+
+          <b-field label="SE LE REALIZÓ EL PLAN DE SEGURIDAD">
+            <b-select placeholder="PLAN DE SEGURIDAD" expanded>
+              <option value="SiRefe">SI</option>
+              <option value="NoRefe">REFORZAMIENTO</option>
+              <option value="NoRefe">NO</option>
+            </b-select>
+          </b-field>
+
+          <b-field label="¿QUIEN ATENDERA SU PARTO?">
+            <b-select placeholder="¿QUIEN ATENDERA SU PARTO?" expanded>
+              <option value="SiRefe">MEDICO</option>
+              <option value="NoRefe">ENFRA</option>
+              <option value="NoRefe">PARTERA PROFES.</option>
+              <option value="NoRefe">PARTERA TRADIC.</option>
+              <option value="NoRefe">FAMILIAR</option>
+              <option value="NoRefe">OTRO</option>
+            </b-select>
+          </b-field>
+          <div class="control">
+              <b-field label="Fecha de EVENTO">
+                <b-datepicker placeholder="FECHA DE EVENTO" icon="calendar-today" :locale="locale"
+                  editable>
+                </b-datepicker>
+              </b-field>
+            </div>
+        </div>
       </div>
-
-
-
-    </b-step-item>
-
-    <b-step-item step="" :visible="showSocial" label="" :clickable="isStepsClickable">
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Esquema de vacunación</h3>
-        <p>Registrar embarazada</p>
-
       </div>
     </b-step-item>
     <b-step-item :step="showSocial ? '' : ''" label="" :clickable="isStepsClickable" disabled>
