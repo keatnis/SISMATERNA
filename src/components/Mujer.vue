@@ -1,148 +1,74 @@
 <template>
-  <div class="columns" id="tabla">
-  <section >
-    <h2 class="title" >Citas medicas pendientes</h2>
-    <b-table :data="data" :columns="columns"> </b-table>
-      
-    </section>
-  </div>
-  
+  <section>
+
+
+    <b-table :data="data">
+      <template v-for="column in columns">
+        <b-table-column  v-bind="column">
+          <template v-if="column.searchable && !column.numeric" #searchable="props">
+            <b-input v-model="props.filters[props.column.field]"  placeholder="Buscar" icon="magnify" size="is-small"  />
+          </template>
+          <template v-slot="props">
+            {{ props.row[column.field] }}
+          </template>
+        </b-table-column>
+      </template>
+    </b-table>
+  </section>
+
 </template>
+
 <script>
-const thisMonth = new Date().getMonth();
+
 export default {
-  computed: {
-    indicators() {
-      return this.bars ? "bars" : "dots";
-      
-    },
-  },
-
-  data: () => ({
-    vehiculos: [],
-
-    date: new Date(2022, thisMonth, 1),
-    events: [
-      new Date(2022, thisMonth, 2),
-      new Date(2022, thisMonth, 6),
-      {
-        date: new Date(2022, thisMonth, 6),
-        type: "is-info",
-      },
-      {
-        date: new Date(2022, thisMonth, 8),
-        type: "is-danger",
-      },
-      {
-        date: new Date(2022, thisMonth, 10),
-        type: "is-success",
-      },
-      {
-        date: new Date(2022, thisMonth, 10),
-        type: "is-link",
-      },
-      new Date(2022, thisMonth, 12),
-      {
-        date: new Date(2022, thisMonth, 12),
-        type: "is-warning",
-      },
-      {
-        date: new Date(2022, thisMonth, 16),
-        type: "is-danger",
-      },
-      new Date(2022, thisMonth, 20),
-      {
-        date: new Date(2022, thisMonth, 29),
-        type: "is-success",
-      },
-      {
-        date: new Date(2022, thisMonth, 29),
-        type: "is-warning",
-      },
-      {
-        date: new Date(2022, thisMonth, 29),
-        type: "is-info",
-      },
-    ],
-    unselectableDates: [new Date(2022, thisMonth, 29)],
-    bars: false,
-
-    data: [
-      {
-        id: 1,
-        Nombre: "Jesse",
-        Apellidos: "Simmons",
-        date: "2016-10-15 13:43:27",
-        sdg: "10",
-      },
-      {
-        id: 2,
-        Nombre: "John",
-        Apellidos: "Jacobs",
-        date: "2016-12-15 06:00:53",
-        sdg: "9",
-      },
-      {
-        id: 3,
-        Nombre: "Tina",
-        Apellidos: "Gilbert",
-        date: "2016-04-26 06:26:28",
-        sdg: "6",
-      },
-      {
-        id: 4,
-        Nombre: "Clarence",
-        Apellidos: "Flores",
-        date: "2016-04-10 10:28:46",
-        sdg: "2",
-      },
-      
-    ],
-    columns: [
-      {
-        field: "id",
-        label: "No. Progreso",
-        width: "100",
-        placeholder:"Search",
-        numeric: true,
-        searchable: true,
-        centered: true,
-        
-        
-      },
-      {
-        field: "Nombre",
-        label: "Nombre",
-        placeholder:"Search",
-        searchable: true ,
-        centered: true,
-        
-      },
-      {
-        field: "Apellidos",
-        label: "Apellidos",
-        placeholder:"Search",
-        searchable: true,
-        centered:true,
-      },
-      {
-        field: "sdg",
-        label: "SDG",
-        centered: true,
-      },
-      {
-        field: "date",
-        label: "Fecha de consulta",
-        centered: true,
-      },
+  data() {
+    return {
+      data: [
+        { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
+        { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
+        { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
+        { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
+        { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' },
+        { 'id': 6, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
+        { 'id': 7, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
+        { 'id': 8, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
+        { 'id': 9, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
+        { 'id': 10, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
      
-    ],
-  }),
-  methods: {},
-};
+      ],
+      columns: [
+        {
+          field: 'id',
+          label: 'No. Progreso',
+          width: '100',
+          numeric: true,
+          searchable: true,
+          centered: true
+        },
+        {
+          field: 'first_name',
+          label: 'Nombre completo',
+          searchable: true,
+          centered: true
+        },
+        {
+          field: 'last_name',
+          label: 'SDG',
+          searchable: true,
+          centered: true
+        },
+        {
+          field: 'date',
+          label: 'Fecha de consutal',
+          centered: true
+        }
+      ]
+    }
+  }
+}
 </script>
 <style>
-#tabla{
+#tabla {
   justify-content: center;
 }
-</style>
+</style> 

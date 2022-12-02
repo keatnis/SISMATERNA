@@ -17,7 +17,7 @@ import ListaEmbarazada from '@/components/ListaEmbarazada'
 import InformesRegional from '@/components/InformesRegional'
 import InformesMunicipio from '@/components/InformesMunicipio'
 import InformesLocalidad from '@/components/InformesLocalidad'
-
+import Tarjetas from '@/components/Tarjetas'
 Vue.use(Router);
 
 export default new Router({
@@ -92,6 +92,11 @@ export default new Router({
             path: '/InformesLocalidad',
             name: 'InformesLocalidad',
             component: InformesLocalidad,
+        },
+        {
+            path: '/Tarjetas',
+            name: 'Tarjetas',
+            component: Tarjetas,
         },
     ]
 });

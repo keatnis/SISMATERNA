@@ -60,7 +60,7 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">  <b-icon icon="chart-bar" class="mr-1"></b-icon>Tarjetas </a>
           <div class="navbar-dropdown">
-            <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
+            <b-navbar-item tag="router-link" :to="{ name: 'Tarjetas' }">
               Region</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">
               Municipio</b-navbar-item>
