@@ -1,42 +1,30 @@
 <template>
 
 
-  <article class="panel is-primary">
+  <article class="panel is-info">
     <p class="panel-heading">
       Bucar puerpera:
     </p>
 
 
- 
+
     <section>
-      
+
       <b-field>
         <div class="control">
-        <b-button label="Eliminar paciente seleccionado" 
-        type="is-danger" 
-        icon-left="close" 
-        :disabled="!selected"
-          @click="selected = null" />
+          <b-button label="Eliminar paciente seleccionado" type="is-danger" icon-left="delete-forever"
+            :disabled="!selected" @click="selected = null" />
         </div>
 
-        
-        <b-button label="Modificar paciente seleccionado" 
-        type="is-success" 
-        icon-left="border-color" 
-        :disabled="!selected"
-          @click="selected = null" />
-        
 
-        <div class="control">
-        <b-button label="Eliminar paciente seleccionado" 
-        type="is-danger" 
-        icon-left="close" 
-        :disabled="!selected"
-          @click="selected = null" />
-        </div>
+        <b-button label="Modificar paciente seleccionado" type="is-success" icon-left="border-color"
+          :disabled="!selected" @click="selected = null" />
+
+
+
       </b-field>
-      
-   
+
+
       <b-field grouped group-multiline>
         <div class="control">
           <b-switch v-model="stickyHeaders">Encabezado fijo</b-switch>
@@ -55,7 +43,7 @@
       </b-field>
       <b-table :data="data" :columns="columns" :sticky-header="stickyHeaders"></b-table>
       <br />
-      
+
     </section>
   </article>
 
@@ -134,10 +122,12 @@ export default {
       dateSearchable: false
 
     };
+
   },
   computed: {
     columns() {
       return [
+
         {
           field: "id",
           label: "No. Progreso",
@@ -355,18 +345,19 @@ export default {
         }
       ];
     },
+
   }
 };
 </script>
 
 <style>
 .is-sticky-column-one {
-  background: #172831 !important;
+  background: #7cc4eb !important;
   color: white !important;
 }
 
 .is-sticky-column-two {
-  background: #167df0 !important;
+  background: #6ca8ee !important;
   color: white !important;
 }
 </style>

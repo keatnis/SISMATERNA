@@ -4,7 +4,7 @@
 
     <b-table :data="data">
       <template v-for="column in columns">
-        <b-table-column  v-bind="column">
+        <b-table-column :key="column.id" v-bind="column">
           <template v-if="column.searchable && !column.numeric" #searchable="props">
             <b-input v-model="props.filters[props.column.field]"  placeholder="Buscar" icon="magnify" size="is-small"  />
           </template>
