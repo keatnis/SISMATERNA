@@ -10,13 +10,11 @@
           <b-icon icon="home" class="mr-1"></b-icon>Inicio
         </b-navbar-item>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">  <b-icon icon="account" class="mr-1"></b-icon>Usuario </a>
+          <a class="navbar-link"> <b-icon icon="account" class="mr-1"></b-icon>Usuario </a>
           <div class="navbar-dropdown">
             <b-navbar-item tag="router-link" :to="{ name: 'Login' }">
-             
+
               Perfil</b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{ name: 'Login' }">
-              Configurar</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ name: 'Login' }">Cerrar sesion
             </b-navbar-item>
           </div>
@@ -45,20 +43,11 @@
               Mostrar lista</b-navbar-item>
           </div>
         </div>
+        <b-navbar-item tag="router-link" :to="{ name: 'InformesLocalidad' }">
+          <b-icon icon="file-find" class="mr-1"></b-icon>Informes
+        </b-navbar-item>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> <b-icon icon="file-find" class="mr-1"></b-icon> Informes </a>
-
-          <div class="navbar-dropdown">
-            <b-navbar-item tag="router-link" :to="{ name: 'InformesRegional' }">
-              Region</b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{ name: 'InformesMunicipio' }">
-              Municipio</b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{ name: 'InformesLocalidad' }">
-              Localidad</b-navbar-item>
-          </div>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">  <b-icon icon="chart-bar" class="mr-1"></b-icon>Tarjetas </a>
+          <a class="navbar-link"> <b-icon icon="chart-bar" class="mr-1"></b-icon>Tarjetas </a>
           <div class="navbar-dropdown">
             <b-navbar-item tag="router-link" :to="{ name: 'Tarjetas' }">
               Region</b-navbar-item>
@@ -75,7 +64,7 @@
 
       <template #end>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link is-primary"><b-icon icon="wrench" class="mr-1"></b-icon>  Soporte </a>
+          <a class="navbar-link is-primary"><b-icon icon="wrench" class="mr-1"></b-icon> Soporte </a>
 
           <div class="navbar-dropdown">
             <b-navbar-item tag="router-link" :to="{ name: 'RegistrarPuerpera' }">

@@ -7,10 +7,10 @@
         <div class="column has-text-centered">
             <article class="panel is-info centered">
                 <p class="panel-heading">
-                    Informe de localidad
+                    Informes
                 </p>
             </article>
-            <h2 class="is-size-3">Busca embarazadas por:</h2>
+            <h3 class="is-size-3">Busca embarazadas por:</h3>
         </div>
         <div>
             <div class="columns">
