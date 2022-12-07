@@ -5,18 +5,17 @@
     <div class="has-text-centered">
       <article class="panel is-info centered">
         <div class="panel-heading">
-          Registrar puerpera
+          Actualizar datos de puerpera
         </div>
       </article>
     </div>
     <div>
       <div class="columns">
         <div class="column is-half">
-
-          <b-field label="No. Progreso" :label-position="labelPosition">
-            <b-input disabled="»disabled»" v-model="detalles.id" placeholder=""></b-input>
+          <b-field label="CURP">
+            <b-input v-model="detalles.descripcion" placeholder="Clave Unica de Registro de Población" icon="magnify"></b-input>
           </b-field>
-          <b-field label="Nombre de puerpera" :label-position="labelPosition">
+           <b-field label="Nombre de puerpera" :label-position="labelPosition">
             <b-input v-model="detalles.NombrePuerpera" placeholder="Nombre completo"></b-input>
           </b-field>
 
@@ -82,8 +81,8 @@
           </b-field>
         </div>
         <div class="column is-half">
-          <b-field label="CURP">
-            <b-input v-model="detalles.descripcion" placeholder="Clave Unica de Registro de Población" icon="magnify"></b-input>
+          <b-field label="No. Progreso" :label-position="labelPosition">
+            <b-input disabled="»disabled»" v-model="detalles.id" placeholder=""></b-input>
           </b-field>
           <b-field label="Edad">
             <b-input disabled="»disabled»" v-model="detalles.Edad"></b-input>

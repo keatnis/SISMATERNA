@@ -7,7 +7,7 @@
       <div class="column has-text-centered">
         <article class="panel is-info centered">
           <p class="panel-heading">
-            Registrar embarazada
+            Actualizar datos de embarazada
           </p>
         </article>
 
@@ -15,11 +15,9 @@
       <div>
         <div class="columns">
           <div class="column is-one-third">
-
-            <b-field label="No. Progreso" :label-position="labelPosition">
-              <b-input disabled v-model="detalles.id"></b-input>
+            <b-field label="CURP">
+              <b-input v-model="detalles.Curp" placeholder="Clave Unica de Registro de Población" icon="magnify"></b-input>
             </b-field>
-
             <b-field label="Nombre" :label-position="labelPosition">
               <b-input v-model="detalles.NombreEmbarazada" placeholder="Nombre completo de paciente"></b-input>
             </b-field>
@@ -96,8 +94,8 @@
           </div>
 
           <div class="column is-one-third">
-            <b-field label="CURP">
-              <b-input v-model="detalles.Curp" placeholder="Clave Unica de Registro de Población"></b-input>
+            <b-field label="No. Progreso" :label-position="labelPosition">
+              <b-input disabled v-model="detalles.id"></b-input>
             </b-field>
             <b-field label="Fecha de nacimiento">
               <b-datepicker placeholder="Fecha de nacimiento" icon="calendar-today" :locale="locale" editable>
@@ -709,7 +707,8 @@
                 <b-checkbox v-model="checkbox" native-value="ExposicionBajo" type="is-success">1 a 3</b-checkbox>
               </b-field></td>
             <td class="is-warning"><b-field>
-                <b-checkbox v-model="checkbox" native-value="ExposicionAlto" type="is-danger">Mayor o igual a4</b-checkbox>
+                <b-checkbox v-model="checkbox" native-value="ExposicionAlto" type="is-danger">Mayor o igual
+                  a4</b-checkbox>
               </b-field></td>
             <td class="is-warning"></td>
           </tr>
@@ -726,7 +725,8 @@
           <tr>
             <td>Parto anterior complicado (Hemorragia obstétrica, Retencion placentaria, TDPP)</td>
             <td class="is-success"><b-field>
-                <b-checkbox v-model="checkbox" native-value="ExposicionBajo" type="is-success">Sin complicaciones</b-checkbox>
+                <b-checkbox v-model="checkbox" native-value="ExposicionBajo" type="is-success">Sin
+                  complicaciones</b-checkbox>
               </b-field></td>
             <td class="is-warning"><b-field>
                 <b-checkbox v-model="checkbox" native-value="ExposicionAlto" type="is-danger">Complicado</b-checkbox>
@@ -1087,7 +1087,7 @@
             <td class="is-warning"><b-field>
                 <b-checkbox v-model="checkbox" native-value="ExposicionAlto" type="is-danger">≥ 18 HORAS</b-checkbox>
               </b-field></td>
-              <td class="is-warning"></td>
+            <td class="is-warning"></td>
           </tr>
           <tr>
             <td>Embarazo pos-termino 41 SDG sin trabajo de parto</td>
@@ -1097,7 +1097,7 @@
             <td class="is-warning"><b-field>
                 <b-checkbox v-model="checkbox" native-value="ExposicionAlto" type="is-danger">Si</b-checkbox>
               </b-field></td>
-              <td class="is-warning"></td>
+            <td class="is-warning"></td>
           </tr>
           <tr>
             <td>Fiebre > 38 ºC</td>
@@ -1107,7 +1107,7 @@
             <td class="is-warning"><b-field>
                 <b-checkbox v-model="checkbox" native-value="ExposicionAlto" type="is-danger">Si</b-checkbox>
               </b-field></td>
-              <td class="is-warning"></td>
+            <td class="is-warning"></td>
           </tr>
           <tr>
             <td>Síntomas Respiratorios (Tos seca, cefalea, anosmia, rinorrea, faringitis, etc.)</td>

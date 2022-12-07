@@ -31,7 +31,7 @@
                             <v-text-field v-if="isRegister"
                                v-model="confirmPassword"
                                name="confirmPassword"
-                               label="Confirm Password"
+                               label="cONFIRMAR"
                                type="password"
                                placeholder="cocnfirm password"
                                required
