@@ -54,6 +54,7 @@
 export default {
   data() {
     return {
+      selected: false,
       data: [
         {
           id: 1,

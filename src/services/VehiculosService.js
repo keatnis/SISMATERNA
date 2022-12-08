@@ -1,10 +1,10 @@
 import HttpService from "./HttpService";
 const VehiculosService = {
     async agregarVehiculo(vehiculo) {
-        return await HttpService.post("/vehiculo", vehiculo);
+        return await HttpService.post("/agregar-embarazada", vehiculo);
     },
-    async obtenerVehiculos(fechaInicio, fechaFin) {
-        return await HttpService.get(`/vehiculos?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`);
+    async obtenerVehiculos() {
+        return await HttpService.get(`/ListaEmbarazada`);
     },
 };
 export default VehiculosService;

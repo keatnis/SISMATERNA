@@ -25,17 +25,13 @@
 </template>
 
 <script>
+import VehiculosService from "../services/VehiculosService";
 
 export default {
   data() {
     return {
-      data: [
-        { 'id': 1, 'first_name': 'Jesse', 'last_name': '12', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
-        { 'id': 2, 'first_name': 'John', 'last_name': '9', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
-        { 'id': 3, 'first_name': 'Tina', 'last_name': '31', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
-        { 'id': 4, 'first_name': 'Clarence', 'last_name': '20', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
-        { 'id': 5, 'first_name': 'Anne', 'last_name': '4', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
-      ],
+      data: [],
+      cargando: false,
       columns: [
         {
           field: 'id',
@@ -46,23 +42,41 @@ export default {
           centered: true
         },
         {
-          field: 'first_name',
+          field: 'noExpediente',
           label: 'Nombre completo',
           searchable: true,
           centered: true
         },
         {
-          field: 'last_name',
+          field: 'nombre',
           label: 'SDG',
           centered: true
         },
         {
-          field: 'date',
+          field: 'curp',
           label: 'Fecha de consutal',
           searchable: true,
           centered: true
+        },
+        {
+          field: 'telefono',
+          label: 'telefono',
+          searchable: true,
+          centered: true
         }
-      ]
+      
+      ],
+  
+      methods:{
+        async obtenerEmbarazadas() {
+      this.cargando = true;
+    
+      this.data = await VehiculosService.obtenerVehiculos();
+      this.cargando = false;
+      }
+      
+    },
+      
     }
   }
 }

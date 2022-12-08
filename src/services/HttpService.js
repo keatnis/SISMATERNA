@@ -1,4 +1,6 @@
 const RUTA_SERVIDOR = process.env.VUE_APP_RUTA_API;
+
+
 const manejarRespuesta = async (respuesta) => {
     const respuestaDecodificada = await respuesta.json();
     if (respuestaDecodificada.error) {
@@ -11,6 +13,7 @@ const HttpService = {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
             credentials: 'include',
             method: "POST",
+            mode: 'no-cors',
             body: JSON.stringify(datos)
         });
         return await manejarRespuesta(respuestaRaw);
@@ -26,6 +29,8 @@ const HttpService = {
     "get": async (ruta) => {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
             credentials: 'include',
+            method: "GET",
+            mode: 'no-cors',
         });
         return await manejarRespuesta(respuestaRaw);
     },
