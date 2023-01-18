@@ -44,57 +44,59 @@
             </b-field>
 
             <b-field label="Derechohabiencia">
-              <b-select placeholder="Derechohabiencia" expanded>
-                <option value="Insabi">INSABI</option>
+              <b-select v-model="detalles.Derechohabiencia" expanded>
+                <option value="">Seleccionar</option>
+                <option value="Insabi">INSABIi</option>
                 <option value="Imss">IMSS</option>
                 <option value="Issste">ISSSTE</option>
                 <option value="Sedena">SEDENA</option>
                 <option value="Pemex">PEMEX</option>
                 <option value="Marina">MARINA</option>
                 <option value="Otro">Otro</option>
+                
               </b-select>
             </b-field>
 
             <b-field label="Comorbilidades">
               <section>
                 <div class="block">
-                  <b-checkbox v-model="checkboxGroup" native-value="sobrepeso">
+                  <b-checkbox v-model="detalles.sobrepeso" native-value="sobrepeso">
                     Sobre peso
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="Obesidad">
+                  <b-checkbox v-model="detalles.obesidad" native-value="Obesidad">
                     Obesidad
                   </b-checkbox>
                   <b-checkbox
-                    v-model="checkboxGroup"
+                    v-model="detalles.diabetesMellitus"
                     native-value="Diabetes Mellitus"
                   >
                     Diabetes Mellitus
                   </b-checkbox>
                   <b-checkbox
-                    v-model="checkboxGroup"
+                    v-model="detalles.hipertensionArterial"
                     native-value="Hipertensión arterial"
                   >
                     Hipertensión arterial
                   </b-checkbox>
                   <b-checkbox
-                    v-model="checkboxGroup"
+                    v-model="detalles.cardeopatia"
                     native-value="Cardiopatía"
                   >
                     Cardiopatía
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="Epilepsia ">
+                  <b-checkbox v-model="detalles.Epilepsia" native-value="Epilepsia ">
                     Epilepsia
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="Sifilis ">
+                  <b-checkbox v-model="detalles.Sifilis" native-value="Sifilis ">
                     Sifilis
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="VIH ">
+                  <b-checkbox v-model="detalles.vih" native-value="VIH ">
                     VIH
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="Hepatitis">
+                  <b-checkbox v-model="detalles.hepatitis" native-value="Hepatitis">
                     Hepatitis
                   </b-checkbox>
-                  <b-checkbox v-model="checkboxGroup" native-value="Ninguno">
+                  <b-checkbox v-model="detalles.ninguno" native-value="Ninguno">
                     Ninguno
                   </b-checkbox>
                 </div>
@@ -137,7 +139,7 @@
               </b-datepicker>
             </b-field>
             <b-field label="Lengua Indígena">
-              <b-select placeholder="Lengua Indígena" expanded>
+              <b-select name="LenguaIndigena" id="LenguaIndigena"  onchange="actualizar()" placeholder="Lengua Indígena" expanded>
                 <option value="Nahual">Nahual</option>
                 <option value="Mixteco">Tu´un Savi (Mixteco)</option>
                 <option value="Mephaa">Meephaa (Tlapaneco)</option>
@@ -151,10 +153,11 @@
               </b-select>
             </b-field>
 
-            <b-field label="Detenciones"></b-field>
+            <b-field label="De tenciones"></b-field>
             <div class="field">
               <div class="b-checkbox">
-                <input id="MamaNormal" class="styled" checked type="checkbox" />
+                <input type="checkbox" name="Mamanormal" value="verde" id="MamaNormal"/>
+
                 <label for="MamaNormal">
                   Exploración clínica de mama normal
                 </label>
@@ -279,8 +282,10 @@
 
             <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
               <b-datepicker
+              v-model="detalles.fechaUltimoEvento"
                 placeholder="Fecha de ultimo evento"
                 icon="calendar-today"
+                :datetime-formatter="formatearFecha"  
                 :locale="locale"
                 editable
               >
@@ -327,8 +332,10 @@
           <div class="column is-one-third">
             <b-field label="Fecha de ultima menstruación">
               <b-datepicker
+              v-model="detalles.fechaUlmaMenstruacion"
                 placeholder="Fecha de ultima menstruación"
                 icon="calendar-today"
+                :datetime-formatter="formatearFecha"
                 :locale="locale"
                 editable
               >
@@ -338,8 +345,10 @@
             <div class="control">
               <b-field label="Fecha de consutal">
                 <b-datepicker
+                v-model="detalles.fechaConsulta"
                   placeholder="Fecha de consulta "
                   icon="calendar-today"
+                  :datetime-formatter="formatearFecha"
                   :locale="locale"
                   editable
                 >
@@ -359,8 +368,10 @@
 
               <b-field label="Fecha de vacunación TD refuerzo">
                 <b-datepicker
+                v-model="detalles.fechaVacunaTD"
                   placeholder="Fecha de vacunación TD refuerzo"
                   icon="calendar-today"
+                  :datetime-formatter="formatearFecha"
                   :locale="locale"
                   editable
                 >
@@ -501,7 +512,7 @@
             <b-field label="Semana de gestación actual">
               <b-input
                 disabled="»disabled»"
-                v-model="detalles.placas"
+                v-model="detalles.semanaGestacion"
                 placeholder="Semanan de gestación actual"
               >
               </b-input>
@@ -517,8 +528,10 @@
             <div class="control">
               <b-field label="Fecha de vacunación TD segunda">
                 <b-datepicker
+                v-model="detalles.fechaFechaVacunaTD"
                   placeholder="Fecha de vacunación TD segunda "
                   icon="calendar-today"
+                  :datetime-formatter="formatearFecha"
                   :locale="locale"
                   editable
                 >
@@ -528,8 +541,10 @@
             <div class="control">
               <b-field label="Fecha de vacunación Influenza estacional">
                 <b-datepicker
+                v-model="detalles.fechaVacunaInfluenza"
                   placeholder="Fecha de vacunación Influenza estacional "
                   icon="calendar-today"
+                  :datetime-formatter="formatearFecha"
                   :locale="locale"
                   editable
                 >
@@ -607,7 +622,7 @@
               <option value="HcXochi">H.C. Xochihuehuetlán</option>
               <option value="HcZapo">H.C. Zapotitlán tablas</option>
               <option value="CentroSalud">Centro de salud</option>
-              <option value="Hogara">HOGAR</option>
+              <option value="Hogar">HOGAR</option>
               <option value="HcSaLuis">H.C. San sluis</option>
               <option value="HgAyutla">H.G. Ayutla</option>
               <option value="HgOme">H.G. Ometepec</option>
@@ -623,8 +638,8 @@
               placeholder="¿Se oriento en señales de peligro durante el embarazo?"
               expanded
             >
-              <option value="Hemorragia ">Si</option>
-              <option value="Retención de placenta">No</option>
+              <option value="SIOriento">Si</option>
+              <option value="NoOriento">No</option>
             </b-select>
             <b-field label="¿cuenta con transporte ame en caso de emergencia?">
               <b-select placeholder="¿Cuenta con transporte AME?" expanded>
@@ -638,14 +653,17 @@
             <div class="control">
               <b-field label="Fecha probable de parto por USG">
                 <b-datepicker
+                v-model="detalles.fechaProbableUSG"
                   placeholder="Fecha probable de parto por USG (1Er Trimestre)"
                   icon="calendar-today"
+                  :datetime-formatter="formatearFecha"
                   :locale="locale"
+                  editable
                 >
                 </b-datepicker>
               </b-field>
             </div>
-            <b-field label="Cntrareferencia recibida">
+            <b-field label="Contrareferencia recibida">
               <b-select placeholder="Referencia" expanded>
                 <option value="SiConrefe">Si</option>
                 <option value="NoCorefe">No</option>
@@ -662,8 +680,10 @@
             <div class="control">
               <b-field label="Fecha de evento">
                 <b-datepicker
+                v-model="detalles.fechaEvento"
                   placeholder="Fecha de evento"
                   icon="calendar-today"
+                  :datetime-formatter="formatearFecha"
                   :locale="locale"
                   editable
                 >
@@ -2069,9 +2089,9 @@ import VehiculosService from "../services/VehiculosService";
 export default {
   data: () => ({
     selected: null,
-    edad: 1,
+    edad: null,
     activeStep: 0,
-  
+
     isProfileSuccess: false,
     checkbox: false,
     mobileMode: 'minimalist',
@@ -2088,9 +2108,14 @@ export default {
       noExpediente: "",
       NombreEmbarazada: "",
       curp: "",
+     
+      Direccion: "",
+      Derechohabiencia:"",
       TelefonoEmbarazada: null,
-      fechaNacimiento: new Date(),
+      fechaNacimiento: null,
+       
     },
+    
   }),
   computed: {
     selectedString() {
@@ -2098,8 +2123,9 @@ export default {
     },
   },
   mounted() {
-    this.detalles.fechaNacimiento = new Date();
+    this.detalles.fechaNacimiento = null;
   },
+
 
   methods: {
     calcularEdad() {
@@ -2118,6 +2144,7 @@ export default {
     formatearFecha(fecha) {
       return Utiles.obtenerCadenaFecha(fecha);
     },
+    
 
     async guardar() {
       if (!this.detalles.nombre == null) {
@@ -2127,10 +2154,17 @@ export default {
         noExpediente: this.detalles.noExpediente,
         nombre: this.detalles.NombreEmbarazada,
         curp: this.detalles.curp,
+        domicilioReferencia: this.detalles.Direccion,
+        Derechohabiencia: this.detalles.Derechohabiencia,
         telefono: this.detalles.TelefonoEmbarazada,
         fechaNacimiento: this.detalles.fechaNacimiento,
-      };
+       
 
+
+
+
+      };
+      
       const respuesta = await VehiculosService.agregarVehiculo(cargaUtil);
       if (respuesta) {
         DialogosService.mostrarNotificacionExito("Vehículo registrado");
@@ -2138,8 +2172,11 @@ export default {
           noExpediente: "",
           NombreEmbarazada: "",
           curp: "",
+          Direccion: "",
           TelefonoEmbarazada: null,
-          fechaNacimiento: new Date(),
+          fechaNacimiento: null,
+          
+         
         };
       }
     },

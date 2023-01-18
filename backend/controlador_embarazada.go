@@ -5,6 +5,7 @@ type Embarazada struct {
 	NoExpediente    string `json:"noExpediente"`
 	Nombre          string `json:"nombre"`
 	Curp            string `json:"curp"`
+	Direccion       string `json:"domicilioReferencia"`
 	Telefono        int64  `json:"telefono,string,omitempty"`
 	FechaNacimiento string `json:"FechaNacimiento,omitempty"`
 }
@@ -17,13 +18,13 @@ func insertarEmbarazada(c Embarazada) (e error) {
 	defer db.Close()
 
 	// Preparamos para prevenir inyecciones SQL
-	sentenciaPreparada, err := db.Prepare("INSERT INTO mujer (No_Expediente, Nombre,FechaNacimiento, curp,Telefono) VALUES(?,?,?,?,?)")
+	sentenciaPreparada, err := db.Prepare("INSERT INTO mujer (No_Expediente, Nombre,FechaNacimiento, curp, Telefono, Domicilio_Referencia) VALUES(?,?,?,?,?,?)")
 	if err != nil {
 		return err
 	}
 	defer sentenciaPreparada.Close()
 	// Ejecutar sentencia, un valor por cada '?'
-	_, err = sentenciaPreparada.Exec(c.NoExpediente, c.Nombre, c.FechaNacimiento, c.Curp, c.Telefono)
+	_, err = sentenciaPreparada.Exec(c.NoExpediente, c.Nombre, c.FechaNacimiento, c.Curp, c.Telefono, c.Direccion)
 	if err != nil {
 		return err
 	}
@@ -51,14 +52,14 @@ func obtenerVehiculos() ([]Embarazada, error) {
 	}
 
 	defer bd.Close()
-	filas, err := bd.Query(`SELECT id_mujer,No_Expediente, nombre,curp,telefono, COALESCE(FechaNacimiento, '') FROM mujer`)
+	filas, err := bd.Query(`SELECT id_mujer,No_Expediente, nombre,curp,telefono,  COALESCE(FechaNacimiento, ''), domicilio_referencia FROM mujer`)
 	if err != nil {
 		return vehiculos, err
 	}
 	defer filas.Close()
 	var vehiculo Embarazada
 	for filas.Next() {
-		err := filas.Scan(&vehiculo.Id, &vehiculo.NoExpediente, &vehiculo.Nombre, &vehiculo.Curp, &vehiculo.Telefono, &vehiculo.FechaNacimiento)
+		err := filas.Scan(&vehiculo.Id, &vehiculo.NoExpediente, &vehiculo.Nombre, &vehiculo.Curp, &vehiculo.Telefono, &vehiculo.FechaNacimiento, &vehiculo.Direccion)
 
 		if err != nil {
 			return vehiculos, err
