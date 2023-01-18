@@ -2121,6 +2121,7 @@ export default {
       Abortos: "",
       Cesareas: "",
       consultaPregestacional: null,
+      fechaUltimoEvento: null,
     },
     
   }),
@@ -2170,7 +2171,8 @@ export default {
         paras: this.detalles.Paras,
         abortos: this.detalles.Abortos,
         cesareas: this.detalles.Cesareas,
-        consultaPregestacional: this.detalles.consultaPregestacional
+        consultaPregestacional: this.detalles.consultaPregestacional,
+        fechaUltimoEvento: this.detalles.fechaUltimoEvento,
        
 
 
@@ -2194,6 +2196,7 @@ export default {
           Cesareas: "",
           DondeMigro: "",
           consultaPregestacional: null,
+          fechaUltimoEvento: null,
 
           
          
