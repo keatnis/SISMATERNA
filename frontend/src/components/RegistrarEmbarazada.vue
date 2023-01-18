@@ -273,8 +273,10 @@
             </div>
 
             <b-datepicker
+            v-model="detalles.consultaPregestacional"
               placeholder="Fecha de consulta"
               icon="calendar-today"
+              :datetime-formatter="formatearFecha"
               :locale="locale"
               editable
             >
@@ -2108,12 +2110,17 @@ export default {
       noExpediente: "",
       NombreEmbarazada: "",
       curp: "",
-     
+
       Direccion: "",
       Derechohabiencia:"",
       TelefonoEmbarazada: null,
+      DondeMigro: "",
       fechaNacimiento: null,
-       
+      Gestas: "",
+      Paras: "",
+      Abortos: "",
+      Cesareas: "",
+      consultaPregestacional: null,
     },
     
   }),
@@ -2157,7 +2164,13 @@ export default {
         domicilioReferencia: this.detalles.Direccion,
         Derechohabiencia: this.detalles.Derechohabiencia,
         telefono: this.detalles.TelefonoEmbarazada,
+        dondeEmigro: this.detalles.DondeMigro,
         fechaNacimiento: this.detalles.fechaNacimiento,
+        gestas: this.detalles.Gestas,
+        paras: this.detalles.Paras,
+        abortos: this.detalles.Abortos,
+        cesareas: this.detalles.Cesareas,
+        consultaPregestacional: this.detalles.consultaPregestacional
        
 
 
@@ -2175,6 +2188,13 @@ export default {
           Direccion: "",
           TelefonoEmbarazada: null,
           fechaNacimiento: null,
+          Gestas: "",
+          Paras: "",
+          Abortos: "",
+          Cesareas: "",
+          DondeMigro: "",
+          consultaPregestacional: null,
+
           
          
         };
