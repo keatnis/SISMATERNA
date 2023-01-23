@@ -18,7 +18,7 @@ const (
 )
 
 func main() {
-	db, err := obtenerBaseDeDatos()
+	db, err := db.obtenerBaseDeDatos()
 	if err != nil {
 		fmt.Printf("Error obteniendo base de datos: %v", err)
 		return

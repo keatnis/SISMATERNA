@@ -1,4 +1,4 @@
-module github.com/0
+module github.com/Rociog87/SISMATERNA/backed
 
 go 1.17
 
