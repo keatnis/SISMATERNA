@@ -1,4 +1,4 @@
-package controlador_embarazada
+package main
 
 type Embarazada struct {
 	Id                     int    `json:"id"`
