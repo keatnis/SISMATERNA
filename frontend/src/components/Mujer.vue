@@ -1,88 +1,110 @@
 <template>
   <section>
 
+        <b-table
+          :data="vehiculos"
+        
+          
+          hoverable
+        >
+          <b-table-column
+            searchable
+            field="descripcion"
+            label="Descripción"
+            v-slot="props"
+            sortable
+          >
+            {{ props.row.id}}
+          </b-table-column>
+          <b-table-column
+            searchable
+            field="placas"
+            label="Placas"
+            sortable
+            v-slot="props"
+          >
+            {{ props.row.nombre }}
+          </b-table-column>
+          <b-table-column
+            searchable
+            field="propietario"
+            label="Propietario"
+            sortable
+            v-slot="props"
+          >
+            {{ props.row.curp}}
+          </b-table-column>
 
-    <b-table  class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" :data="data" >
-      <template v-for="column in columns">
-        <b-table-column .key="column.id" v-bind="column">
-          <template 
-          v-if="column.searchable && !column.numeric" 
-          #searchable="props" >
-            <b-input 
-            v-model="props.filters[props.column.field.nombre]"
-              placeholder="Buscar" 
-              icon="magnify"
-               size="is-small" />
+
+          <b-table-column
+            field="fechaEntrada"
+            label="Entrada"
+            v-slot="props"
+            sortable
+          >
+            {{ props.row.curp }}
+          </b-table-column>
+      
+          <template #empty>
+            <div class="has-text-centered">No hay registros</div>
           </template>
-          <template v-slot="props">
-            {{ props.row[column.field.id] }}
-          </template>
-        </b-table-column>
-      </template>
-    </b-table>
+        </b-table>
+   <div>
+    {{vehiculos}}
+   </div>
+    
   </section>
-
 </template>
 
 <script>
-import VehiculosService from "../services/VehiculosService";
 
+import axios from "axios";
 export default {
   data() {
     return {
-      data: [],
-      cargando: false,
+      vehiculos: [],
       columns: [
-        {
-          field: 'id',
-          label: 'No. Progreso',
-          width: '100',
+      {
+          field: "id",
+          label: "No. Progreso",
+          width: "100",
           numeric: true,
           searchable: true,
-          centered: true
+          centered: true,
         },
         {
-          field: 'noExpediente',
-          label: 'Nombre completo',
+          field: "noExpediente",
+          label: "Nombre completo",
           searchable: true,
-          centered: true
+          centered: true,
         },
         {
-          field: 'nombre',
-          label: 'SDG',
-          centered: true
+          field: "nombre",
+          label: "SDG",
+          centered: true,
         },
         {
-          field: 'curp',
-          label: 'Fecha de consutal',
+          field: "curp",
+          label: "Fecha de consutal",
           searchable: true,
-          centered: true
+          centered: true,
         },
         {
-          field: 'telefono',
-          label: 'telefono',
+          field: "telefono",
+          label: "telefono",
           searchable: true,
-          centered: true
-        }
-      
-      ],
-      async mounted() {
-  
-    await this.obtenerVehiculos();
-  },
-      methods:{
-        async obtenerEmbarazadas() {
-      this.cargando = true;
-          this.embarazada = await VehiculosService.obtenerVehiculos();
-          console.log(this.embarazada);
-      this.cargando = false;
-      }
-      
-    },
-      
-    }
+          centered: true,
+        },
+    ]
   }
-}
+},
+   mounted() {
+    axios
+      .get("http://localhost:8080/ListaEmbarazada")
+      .then((response) => (this.vehiculos = Object.entries(response.data)));
+
+  },
+};
 </script>
 <style>
 #tabla {

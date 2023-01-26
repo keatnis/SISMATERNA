@@ -66,7 +66,9 @@
     </b-table>
 </template>
   </article>
-
+  <li v-else-if="item in vehiculos">
+  {{ item.id }}
+</li>
 </template>
 
 

@@ -13,9 +13,13 @@ const HttpService = {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
             credentials: 'include',
             method: "POST",
+          
+            body: JSON.stringify(datos),
+            
             mode: 'no-cors',
-            body: JSON.stringify(datos)
+            
         });
+        console.log(datos);
         return await manejarRespuesta(respuestaRaw);
     },
     "put": async (ruta, datos) => {
