@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	db "sismat/db"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -18,7 +19,7 @@ const (
 )
 
 func main() {
-	db, err := db.obtenerBaseDeDatos()
+	db, err := db.ObtenerBaseDeDatos()
 	if err != nil {
 		fmt.Printf("Error obteniendo base de datos: %v", err)
 		return
@@ -36,7 +37,7 @@ func main() {
 	fmt.Printf("Conectado correctamente")
 
 	enrutador := mux.NewRouter()
-	configurarRutas(enrutador)
+	ConfigurarRutas(enrutador)
 
 	servidor := &http.Server{
 		Handler: enrutador,

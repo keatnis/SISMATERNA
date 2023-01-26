@@ -5,8 +5,10 @@ const DialogosService = {
     mostrarNotificacionExito(mensaje) {
         Notification.open({
             message: mensaje,
-            type: 'is-info',
+            type: 'is-danger',
+            
             position: "is-top-left"
+            
         });
     },
     mostrarNotificacionError(mensaje) {

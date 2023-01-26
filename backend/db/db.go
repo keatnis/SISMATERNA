@@ -7,7 +7,7 @@ import (
 	_ "github.com/go-sql-driver/mysql" // La librería que nos permite conectar a MySQL
 )
 
-func obtenerBaseDeDatos() (db *sql.DB, e error) {
+func ObtenerBaseDeDatos() (db *sql.DB, e error) {
 	usuario := "root"
 	pass := "root"
 	host := "tcp(127.0.0.1:3306)"

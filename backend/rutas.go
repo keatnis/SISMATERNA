@@ -2,12 +2,13 @@ package main
 
 import (
 	"net/http"
+	"sismat/rutas"
 
 	"github.com/gorilla/mux"
 )
 
-func configurarRutas(enrutador *mux.Router) {
-	configurarRutasEmbarazadas(enrutador)
+func ConfigurarRutas(enrutador *mux.Router) {
+	rutas.ConfigurarRutasEmbarazadas(enrutador)
 	/*
 		configurarRutasAjustes(enrutador)
 		configurarRutasPagos(enrutador)

@@ -52,7 +52,7 @@
             v-slot="props"
             sortable
           >
-            {{ props.row.id}}
+            {{ props.row.nombre}}
           
           </b-table-column>
       </b-table>
@@ -150,10 +150,7 @@ export default {
     };
 
   },
-  async mounted() {
-   
-    await this.obtenerVehiculos2();
-  },
+
   computed: {
     columnss() {
       return [
@@ -203,81 +200,81 @@ export default {
           width: "50"
         },
         {
-          field: "id",
+          field: "id2",
           label: "Consulta de 7 días",
           centered: true,
           width: "120",
           height: "60"
         },
         {
-          field: "id",
+          field: "id3",
           label: "Consulta de 28 días",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id4",
           label: "Consulta de 40 días",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id5",
           label: "Signos de alarma",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id6",
           label: "Atención de parto",
           centered: true,
           width: "50"
 
         },
         {
-          field: "id",
+          field: "id7",
           label: "Lugar del parto",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id8",
           label: "Resolución del embarazo",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id9",
           label: "No. de producto",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id11",
           label: "APEO",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id12",
           label: "Puerpera aceptante",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id13",
           label: "Consulta pregestacional",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id14",
           label: "Fecha de parto",
           centered: true,
           width: "50"
         },
         {
-          field: "id",
+          field: "id15",
           label: "Derechohabiencia",
           centered: true,
           width: "50",
@@ -377,12 +374,17 @@ export default {
     },
 
   },
+  async mounted() {
+ 
+    await this.obtenerVehiculos();
+  },
   methods:
   {
-    async obtenerVehiculos2() {
+    async obtenerVehiculos() {
       this.cargando = true;
       
       this.vehiculos = await VehiculosService.obtenerVehiculos();
+       console.log(this.vehiculos);
       this.cargando = false;
     },
   }

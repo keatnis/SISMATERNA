@@ -1,4 +1,8 @@
-package main
+package controlador_embarazada
+
+import (
+	a "sismat/db"
+)
 
 type Embarazada struct {
 	Id                     int    `json:"id"`
@@ -17,8 +21,8 @@ type Embarazada struct {
 	FechaUltimoEvento      string `json:"FechaUltimoEvento,omitempty"`
 }
 
-func insertarEmbarazada(c Embarazada) (e error) {
-	db, err := obtenerBaseDeDatos()
+func InsertarEmbarazada(c Embarazada) (e error) {
+	db, err := a.ObtenerBaseDeDatos()
 	if err != nil {
 		return err
 	}
@@ -38,8 +42,12 @@ func insertarEmbarazada(c Embarazada) (e error) {
 	return nil
 }
 
+func obtenerBaseDeDatos() {
+	panic("unimplemented")
+}
+
 func establecerFechaSalida(IdVehiculo int64, FechaSalida string) error {
-	bd, err := obtenerBaseDeDatos()
+	bd, err := a.ObtenerBaseDeDatos()
 	if err != nil {
 		return err
 	}
@@ -50,9 +58,9 @@ func establecerFechaSalida(IdVehiculo int64, FechaSalida string) error {
 	return nil
 }
 
-func obtenerVehiculos() ([]Embarazada, error) {
+func ObtenerVehiculos() ([]Embarazada, error) {
 	vehiculos := []Embarazada{}
-	bd, err := obtenerBaseDeDatos()
+	bd, err := a.ObtenerBaseDeDatos()
 
 	if err != nil {
 		return vehiculos, err
