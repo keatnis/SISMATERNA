@@ -5,7 +5,7 @@ const DialogosService = {
     mostrarNotificacionExito(mensaje) {
         Notification.open({
             message: mensaje,
-            type: 'is-danger',
+            type: 'is-info',
             
             position: "is-top-left"
             

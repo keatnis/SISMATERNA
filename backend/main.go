@@ -1,52 +1,50 @@
 package main
 
 import (
+	db "backendmod/database"
+	"backendmod/routes"
 	"fmt"
 	"log"
 	"net/http"
-	db "sismat/db"
 	"time"
 
 	"github.com/gorilla/mux"
 )
 
-const (
-	PuertoHttp                         = ":5000"
-	NombreBaseDeDatos                  = "censo.db"
-	DominioPermitidoCORS               = "http://192.168.1.74:8080"
-	PrefijoRutaServirContenidoEstatico = "/static/"
-	DirectorioContenidoEstatico        = "../frontend/dist"
-)
-
+//FOLIO DE SE
+//4eUqeNLm68d
 func main() {
-	db, err := db.ObtenerBaseDeDatos()
+	// Ping database
+	bd, err := db.GetDB()
 	if err != nil {
-		fmt.Printf("Error obteniendo base de datos: %v", err)
+		log.Printf("Error with database" + err.Error())
 		return
+	} else {
+		err = bd.Ping()
+		if err != nil {
+			log.Printf("Error making connection to DB. Please check credentials. The error is: " + err.Error())
+			return
+		}
 	}
-	// Terminar conexión al terminar función
-	defer db.Close()
+	fmt.Printf("conectado correctamente ")
+	// Define routes
+	router := mux.NewRouter()
+	routes.SetupRoutesForEmbarazada(router)
+	// .. here you can define more routes
+	// ...
+	// for example setupRoutesForGenres(router)
 
-	// Ahora vemos si tenemos conexión
-	err = db.Ping()
-	if err != nil {
-		fmt.Printf("Error conectando: %v", err)
-		return
-	}
-	// Listo, aquí ya podemos usar a db!
-	fmt.Printf("Conectado correctamente")
+	// Setup and start server
+	port := ":5000"
 
-	enrutador := mux.NewRouter()
-	ConfigurarRutas(enrutador)
-
-	servidor := &http.Server{
-		Handler: enrutador,
-		Addr:    PuertoHttp,
-		// Timeouts para evitar que el servidor se quede "colgado" por siempre
+	server := &http.Server{
+		Handler: router,
+		Addr:    port,
+		// timeouts so the server never waits forever...
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	ruta := "http://localhost" + PuertoHttp
-	fmt.Printf("Escuchando en %s\n", ruta)
-	log.Fatal(servidor.ListenAndServe())
+	log.Printf("Server started at %s", port)
+
+	log.Fatal(server.ListenAndServe())
 }

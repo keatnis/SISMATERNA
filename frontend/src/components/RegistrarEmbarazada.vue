@@ -9,6 +9,7 @@
     :icon-next="nextIcon"
     :mobile-mode="mobileMode"
   >
+
     <b-step-item step="" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
         <article class="panel is-info centered">
@@ -36,10 +37,14 @@
               ></b-input>
             </b-field>
             <b-field label="Municipio">
-              <b-select placeholder="Municipio" expanded>
-                <option value="Acatepec">Acatepec</option>
-                <option value="Alcozauca">Alcozauca de Guerrero</option>
-                <option value="Alpoyeca">Alpoyeca</option>
+              <b-select placeholder="Municipio" v-model="vehiculos" expanded>
+                <option
+                v-for="(impresora, i) in municipios"
+                :value="impresora"
+                :key="i"
+              >
+                {{ impresora }}
+              </option>
               </b-select>
             </b-field>
 
@@ -2093,7 +2098,7 @@ export default {
     selected: null,
     edad: null,
     activeStep: 0,
-
+    municipios: [],
     isProfileSuccess: false,
     checkbox: false,
     mobileMode: 'minimalist',
@@ -2130,11 +2135,11 @@ export default {
       return this.selected ? this.selected.toDateString() : "";
     },
   },
-  mounted() {
-    this.detalles.fechaNacimiento = null;
+  async mounted() {
+  
+    await this.obtenerMunicipio();
+ 
   },
-
-
   methods: {
     calcularEdad() {
       var hoy = new Date();
@@ -2152,8 +2157,18 @@ export default {
     formatearFecha(fecha) {
       return Utiles.obtenerCadenaFecha(fecha);
     },
-    
-
+    async obtenerMunicipio() {
+     
+      try {
+        this.municipios = await VehiculosService.obtenerMunicipios();
+      } catch (e) {
+        DialogosService.mostrarNotificacionError(
+          "No se pudo obtener la lista de municipios..."
+        );
+      } 
+      
+    },
+   
     async guardar() {
       if (!this.detalles.nombre == null) {
         return DialogosService.mostrarNotificacionError("Campos vacios");
@@ -2173,13 +2188,9 @@ export default {
         cesareas: this.detalles.Cesareas,
         consultaPregestacional: this.detalles.consultaPregestacional,
         fechaUltimoEvento: this.detalles.fechaUltimoEvento,
-       
-
-
-
-
+     
       };
-      
+     
       const respuesta = await VehiculosService.agregarVehiculo(cargaUtil);
       if (respuesta) {
         DialogosService.mostrarNotificacionExito("Vehículo registrado");
@@ -2199,7 +2210,6 @@ export default {
           fechaUltimoEvento: null,
 
           
-         
         };
       }
     },

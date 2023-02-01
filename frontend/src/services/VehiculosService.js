@@ -6,5 +6,9 @@ const VehiculosService = {
     async obtenerVehiculos() {
         return await HttpService.get("/ListaEmbarazada");
     },
+    async obtenerMunicipios(){
+        return await HttpService.get("/agregar-embarazada");
+       
+    }
 };
 export default VehiculosService;
