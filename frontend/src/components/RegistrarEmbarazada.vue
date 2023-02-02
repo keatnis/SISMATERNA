@@ -375,7 +375,7 @@
 
               <b-field label="Fecha de vacunación TD refuerzo">
                 <b-datepicker
-                v-model="detalles.fechaVacunaTD"
+                v-model="detalles.fechaVacunaTDRefuerzo"
                   placeholder="Fecha de vacunación TD refuerzo"
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -428,7 +428,8 @@
             <div class="control">
               <b-field label="Fecha probable de parto">
                 <b-datepicker
-                  placeholder="Fecha probable de parto "
+                v-model="detalles.fechaProbableParto"
+                  placeholder="Fecha probable de parto"
                   icon="calendar-today"
                   :locale="locale"
                   editable
@@ -446,6 +447,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación TD primera">
                 <b-datepicker
+                v-model="detalles.fechaVacunaTDPrimera"
                   placeholder="Fecha de vacunación TD primera "
                   icon="calendar-today"
                   :locale="locale"
@@ -457,6 +459,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación TDPA">
                 <b-datepicker
+                v-model="detalles.fechaVacunaTDPA"
                   placeholder="Fecha de vacunación TDPA "
                   icon="calendar-today"
                   :locale="locale"
@@ -535,7 +538,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación TD segunda">
                 <b-datepicker
-                v-model="detalles.fechaFechaVacunaTD"
+                v-model="detalles.fechaVacunaTDSegunda"
                   placeholder="Fecha de vacunación TD segunda "
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -2127,6 +2130,18 @@ export default {
       Cesareas: "",
       consultaPregestacional: null,
       fechaUltimoEvento: null,
+      fechaUlmaMenstruacion: null,
+      fechaProbableParto: null,
+      fechaConsulta: null,
+      fechaVacunaTDPrimera: null,
+      fechaVacunaTDSegunda: null,
+      fechaVacunaTDRefuerzo: null,
+      fechaVacunaTDPA: null,
+      fechaVacunaInfluenza: null,
+      fechaProbableUSG: null,
+      fechaEvento: null,
+
+
     },
     
   }),
@@ -2188,6 +2203,16 @@ export default {
         cesareas: this.detalles.Cesareas,
         consultaPregestacional: this.detalles.consultaPregestacional,
         fechaUltimoEvento: this.detalles.fechaUltimoEvento,
+        fechaUlmaMenstruacion: this.detalles.fechaUlmaMenstruacion,
+        fechaProbableParto: this.detalles.fechaProbableParto,
+        fechaConsulta: this.detalles.fechaConsulta,
+        fechaVacunaTDPrimera: this.detalles.fechaVacunaTDPrimera,
+        fechaVacunaTDSegunda: this.detalles.fechaVacunaTDSegunda,
+        fechaVacunaTDRefuerzo: this.detalles.fechaVacunaTDRefuerzo,
+        fechaVacunaTDPA: this.detalles.fechaVacunaTDPA,
+        fechaVacunaInfluenza: this.detalles.fechaVacunaInfluenza,
+        fechaProbableUSG: this.detalles.fechaProbableUSG,
+        fechaEvento: this.detalles.fechaEvento
      
       };
      
@@ -2208,6 +2233,16 @@ export default {
           DondeMigro: "",
           consultaPregestacional: null,
           fechaUltimoEvento: null,
+          fechaUlmaMenstruacion: null,
+          fechaProbableParto: null,
+          fechaConsulta: null,
+          fechaVacunaTDPrimera: null,
+          fechaVacunaTDSegunda: null,
+          fechaVacunaTDRefuerzo: null,
+          fechaVacunaTDPA: null,
+          fechaVacunaInfluenza: null,
+          fechaProbableUSG: null,
+          fechaEvento: null
 
           
         };

@@ -58,7 +58,6 @@
 
 <script>
 
-import axios from "axios";
 export default {
   data() {
     return {
@@ -98,12 +97,7 @@ export default {
     ]
   }
 },
-   mounted() {
-    axios
-      .get("http://localhost:8080/ListaEmbarazada")
-      .then((response) => (this.vehiculos = Object.entries(response.data)));
 
-  },
 };
 </script>
 <style>

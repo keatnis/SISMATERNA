@@ -6,15 +6,25 @@ type Embarazada struct {
 	NombreCompleto         string `json:"nombre"`
 	Curp                   string `json:"curp"`
 	Direccion              string `json:"domicilioReferencia"`
-	Telefono               int64  `json:"telefono,string,omitempty"`
+	Telefono               int64  `json:"telefono,omitempty"`
 	FechaNacimiento        string `json:"FechaNacimiento,omitempty"`
 	Gestas                 string `json:"gestas"`
 	Paras                  string `json:"paras"`
 	Abortos                string `json:"abortos"`
 	Cesareas               string `json:"cesareas"`
-	DondeMigro             string `json:"dondeEmigro"`
+	Emigro                 string `json:"emigro"`
 	ConsultaPregestacional string `json:"ConsultaPregestacional,omitempty"`
 	FechaUltimoEvento      string `json:"FechaUltimoEvento,omitempty"`
+	FechaUlmaMenstruacion  string `json:"FechaUlmaMenstruacion,omitempty"`
+	FechaProbableParto     string `json:"FechaProbableParto,omitempty"`
+	FechaConsulta          string `json:"FechaConsulta,omitempty"`
+	FechaVacunaTDPrimera   string `json:"FechaVacunaTDPrimera,omitempty"`
+	FechaVacunaTDSegunda   string `json:"FechaVacunaTDSegunda,omitempty"`
+	FechaVacunaTDRefuerzo  string `json:"FechaVacunaTDRefuerzo,omitempty"`
+	FechaVacunaTDPA        string `json:"FechaVacunaTDPA,omitempty"`
+	FechaVacunaInfluenza   string `json:"FechaVacunaInfluenza,omitempty"`
+	FechaProbableUSG       string `json:"FechaProbableUSG,omitempty"`
+	FechaEvento            string `json:"FechaEvento,omitempty"`
 }
 type Municipio struct {
 	Id_municipio    int    `json:"id_municipio"`
