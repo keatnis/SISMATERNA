@@ -2140,6 +2140,7 @@ export default {
       fechaVacunaInfluenza: null,
       fechaProbableUSG: null,
       fechaEvento: null,
+      edad:"",
 
 
     },
@@ -2212,7 +2213,8 @@ export default {
         fechaVacunaTDPA: this.detalles.fechaVacunaTDPA,
         fechaVacunaInfluenza: this.detalles.fechaVacunaInfluenza,
         fechaProbableUSG: this.detalles.fechaProbableUSG,
-        fechaEvento: this.detalles.fechaEvento
+        fechaEvento: this.detalles.fechaEvento,
+        edad: this.detalles.edad
      
       };
      
@@ -2242,7 +2244,8 @@ export default {
           fechaVacunaTDPA: null,
           fechaVacunaInfluenza: null,
           fechaProbableUSG: null,
-          fechaEvento: null
+          fechaEvento: null,
+          edad:"",
 
           
         };

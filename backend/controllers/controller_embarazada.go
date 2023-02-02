@@ -54,7 +54,7 @@ func GetEmbarazada() ([]types.Embarazada, error) {
 		return embarazadas, err
 	}
 	// Get rows so we can iterate them
-	rows, err := bd.Query(`SELECT idMujer,Nuevo_Ingreso,Numero_Expediente, Nombre,curp,telefono,Edad, COALESCE(FechaNac, ''), domicilio_referencia, gestas, paras, abortos, cesareas, emigro, COALESCE(ConsultaPregestacional, ''), COALESCE(FechaUltimoEvento, '')  FROM mujer`)
+	rows, err := bd.Query(`SELECT idMujer, noExpediente, Nombre, curp, telefono, COALESCE(Edad,''), COALESCE(FechaNacimiento, ''), domicilio_referencia, gestas, paras, aborto, cesareas, emigro, COALESCE(Consulta_RiesgoPreg, ''), COALESCE(Fecha_UltimoParto, ''), COALESCE(Fecha_Ult_Mestruacion,''), COALESCE(PFP,''), COALESCE(Fecha_Consulta,''), COALESCE(Fecha_Influenza,''), COALESCE(Fecha_Td,''), COALESCE(Fecha_TdSegunda,''), COALESCE(Fecha_TdRefuerzo,''), COALESCE(Fecha_TDPA,''), COALESCE(FPP_USG,''), COALESCE(FechaEvento,'')  FROM mujer`)
 	if err != nil {
 		return embarazadas, err
 	}
@@ -62,7 +62,7 @@ func GetEmbarazada() ([]types.Embarazada, error) {
 	for rows.Next() {
 		// In each step, scan one row
 		var embarazada types.Embarazada
-		err := rows.Scan(&embarazada.Id, &embarazada.NoExpediente, &embarazada.NombreCompleto, &embarazada.Curp, &embarazada.Telefono, &embarazada.FechaNacimiento, &embarazada.Direccion, &embarazada.Gestas, &embarazada.Paras, &embarazada.Abortos, &embarazada.Cesareas, &embarazada.Emigro, &embarazada.ConsultaPregestacional, &embarazada.FechaUltimoEvento)
+		err := rows.Scan(&embarazada.Id, &embarazada.NoExpediente, &embarazada.NombreCompleto, &embarazada.Curp, &embarazada.Telefono, &embarazada.Edad, &embarazada.FechaNacimiento, &embarazada.Direccion, &embarazada.Gestas, &embarazada.Paras, &embarazada.Abortos, &embarazada.Cesareas, &embarazada.Emigro, &embarazada.ConsultaPregestacional, &embarazada.FechaUltimoEvento, &embarazada.FechaUlmaMenstruacion, &embarazada.FechaProbableParto, &embarazada.FechaConsulta, &embarazada.FechaVacunaInfluenza, &embarazada.FechaVacunaTDPrimera, &embarazada.FechaVacunaTDSegunda, &embarazada.FechaVacunaTDRefuerzo, &embarazada.FechaVacunaTDPA, &embarazada.FechaProbableUSG, &embarazada.FechaUltimoEvento)
 		if err != nil {
 			return embarazadas, err
 		}

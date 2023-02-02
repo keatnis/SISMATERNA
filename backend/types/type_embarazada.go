@@ -8,6 +8,7 @@ type Embarazada struct {
 	Direccion              string `json:"domicilioReferencia"`
 	Telefono               int64  `json:"telefono,omitempty"`
 	FechaNacimiento        string `json:"FechaNacimiento,omitempty"`
+	Edad                   string `json:"edad"`
 	Gestas                 string `json:"gestas"`
 	Paras                  string `json:"paras"`
 	Abortos                string `json:"abortos"`
