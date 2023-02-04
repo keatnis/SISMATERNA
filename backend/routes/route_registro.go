@@ -3,6 +3,7 @@ package routes
 import (
 	controller_embarazada "backendmod/controllers"
 	db "backendmod/database"
+	"backendmod/types"
 	"backendmod/utils"
 	"encoding/json"
 	"net/http"
@@ -104,6 +105,21 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 			respondWithSuccess(embarazada, w)
 		}
 	}).Methods(http.MethodGet)
+	router.HandleFunc("/agregar_embarazada", func(w http.ResponseWriter, r *http.Request) {
+		// Declare a var so we can decode json into it
+		var embarazada types.Embarazada
+		err := json.NewDecoder(r.Body).Decode(&embarazada)
+		if err != nil {
+			respondWithError(err, w)
+		} else {
+			err := controller_embarazada.InsertEmbarazada(embarazada)
+			if err != nil {
+				respondWithError(err, w)
+			} else {
+				respondWithSuccess(true, w)
+			}
+		}
+	}).Methods(http.MethodPost)
 
 	/*router.HandleFunc("/agregar_embarazada/{idMunicipio}", func(w http.ResponseWriter, r *http.Request) {
 		 idAsString:= mux.BuildVarsFunc(map[string]string)

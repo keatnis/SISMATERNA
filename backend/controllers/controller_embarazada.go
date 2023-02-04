@@ -5,7 +5,7 @@ import (
 	"backendmod/types"
 )
 
-func insertEmbarazada(c types.Embarazada) error {
+func InsertEmbarazada(c types.Embarazada) error {
 	db, err := db.GetDB()
 	if err != nil {
 		return err
@@ -13,13 +13,13 @@ func insertEmbarazada(c types.Embarazada) error {
 	//_, err = bd.Exec("INSERT INTO video_games (name, genre, year) VALUES (?, ?, ?)", embarazada.NombreCompleto)
 	//return err
 	// Preparamos para prevenir inyecciones SQL
-	sentenciaPreparada, err := db.Prepare("INSERT INTO mujer (No_Expediente, Nombre,FechaNacimiento, curp, Telefono, Domicilio_Referencia, Gestas, Paras, Abortos, Cesareas, Donde_Emigro, Consulta_RiesgoPreg, Fecha_UltimoParto) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)")
+	sentenciaPreparada, err := db.Prepare("INSERT INTO mujer (noExpediente, Nombre,FechaNacimiento, curp, Telefono, Domicilio_Referencia, Gestas, Paras, Aborto, Cesareas, emigro, Consulta_RiesgoPreg, Fecha_UltimoParto,Fecha_Ult_Mestruacion,PFP,Fecha_Consulta,Fecha_Influenza,Fecha_Td,Fecha_TdSegunda,Fecha_TdRefuerzo,Fecha_TDPA,FPP_USG,FechaEvento) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 	if err != nil {
 		return err
 	}
 	defer sentenciaPreparada.Close()
 	// Ejecutar sentencia, un valor por cada '?'
-	_, err = sentenciaPreparada.Exec(c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Curp, c.Telefono, c.Direccion, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.DondeMigro, c.ConsultaPregestacional, c.FechaUltimoEvento)
+	_, err = sentenciaPreparada.Exec(c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Curp, c.Telefono, c.Direccion, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.Emigro, c.ConsultaPregestacional, c.FechaUltimoEvento, c.FechaUlmaMenstruacion, c.FechaProbableParto, c.FechaConsulta, c.FechaVacunaTDPrimera, c.FechaVacunaTDSegunda, c.FechaVacunaTDRefuerzo, c.FechaVacunaTDPA, c.FechaVacunaInfluenza, c.FechaProbableUSG, c.FechaEvento)
 	if err != nil {
 		return err
 	}
@@ -54,7 +54,7 @@ func GetEmbarazada() ([]types.Embarazada, error) {
 		return embarazadas, err
 	}
 	// Get rows so we can iterate them
-	rows, err := bd.Query(`SELECT idMujer,Nuevo_Ingreso,Numero_Expediente, Nombre,curp,telefono,Edad, COALESCE(FechaNac, ''), domicilio_referencia, gestas, paras, abortos, cesareas, dondeEmigro, COALESCE(ConsultaPregestacional, ''), COALESCE(FechaUltimoEvento, '')  FROM mujer`)
+	rows, err := bd.Query(`SELECT idMujer, noExpediente, Nombre, curp, telefono, COALESCE(Edad,''), COALESCE(FechaNacimiento, ''), domicilio_referencia, gestas, paras, aborto, cesareas, emigro, COALESCE(Consulta_RiesgoPreg, ''), COALESCE(Fecha_UltimoParto, ''), COALESCE(Fecha_Ult_Mestruacion,''), COALESCE(PFP,''), COALESCE(Fecha_Consulta,''), COALESCE(Fecha_Influenza,''), COALESCE(Fecha_Td,''), COALESCE(Fecha_TdSegunda,''), COALESCE(Fecha_TdRefuerzo,''), COALESCE(Fecha_TDPA,''), COALESCE(FPP_USG,''), COALESCE(FechaEvento,'')  FROM mujer`)
 	if err != nil {
 		return embarazadas, err
 	}
@@ -62,7 +62,7 @@ func GetEmbarazada() ([]types.Embarazada, error) {
 	for rows.Next() {
 		// In each step, scan one row
 		var embarazada types.Embarazada
-		err := rows.Scan(&embarazada.Id, &embarazada.NoExpediente, &embarazada.NombreCompleto, &embarazada.Curp, &embarazada.Telefono, &embarazada.FechaNacimiento, &embarazada.Direccion, &embarazada.Gestas, &embarazada.Paras, &embarazada.Abortos, &embarazada.Cesareas, &embarazada.DondeMigro, &embarazada.ConsultaPregestacional, &embarazada.FechaUltimoEvento)
+		err := rows.Scan(&embarazada.Id, &embarazada.NoExpediente, &embarazada.NombreCompleto, &embarazada.Curp, &embarazada.Telefono, &embarazada.Edad, &embarazada.FechaNacimiento, &embarazada.Direccion, &embarazada.Gestas, &embarazada.Paras, &embarazada.Abortos, &embarazada.Cesareas, &embarazada.Emigro, &embarazada.ConsultaPregestacional, &embarazada.FechaUltimoEvento, &embarazada.FechaUlmaMenstruacion, &embarazada.FechaProbableParto, &embarazada.FechaConsulta, &embarazada.FechaVacunaInfluenza, &embarazada.FechaVacunaTDPrimera, &embarazada.FechaVacunaTDSegunda, &embarazada.FechaVacunaTDRefuerzo, &embarazada.FechaVacunaTDPA, &embarazada.FechaProbableUSG, &embarazada.FechaUltimoEvento)
 		if err != nil {
 			return embarazadas, err
 		}
