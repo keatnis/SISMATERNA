@@ -2,11 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Mujer from '@/components/Mujer'
 import RegistrarEmbarazada from '@/components/RegistrarEmbarazada'
-import Ajustes from '@/components/Ajustes'
 
-import Informes from '@/components/Informes'
-
-import Escritorio from '@/components/Escritorio'
 
 import Login from '@/components/Login'
 import RegistrarPuerpera from '@/components/RegistrarPuerpera'
@@ -32,21 +28,7 @@ export default new Router({
             name: 'RegistrarEmbarazada',
             component: RegistrarEmbarazada,
         },
-        {
-            path: '/ajustes',
-            name: 'Ajustes',
-            component: Ajustes,
-        },
-        {
-            path: '/informes',
-            name: 'Informes',
-            component: Informes,
-        },
-        {
-            path: '/escritorio',
-            name: 'Escritorio',
-            component: Escritorio,
-        },
+
 
         {
             path: '/Login',

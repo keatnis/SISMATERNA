@@ -1,5 +1,14 @@
-const RUTA_SERVIDOR = process.env.VUE_APP_RUTA_API;
+/*
+const fetch = require("node-fetch");
 
+fetch("https://reqres.in/api/users?page=2")
+.then((respuesta) =>{
+    return respuesta.json()
+}).then((resp)=>{
+    console.log(resp);
+})
+*/
+ const RUTA_SERVIDOR = "http://localhost:8080"
 
 const manejarRespuesta = async (respuesta) => {
     const respuestaDecodificada = await respuesta.json();
@@ -7,19 +16,18 @@ const manejarRespuesta = async (respuesta) => {
         throw new Error(JSON.stringify(respuestaDecodificada.error));
     }
     return respuestaDecodificada.data;
+    
 };
 const HttpService = {
     "post": async (ruta, datos) => {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
             credentials: 'include',
             method: "POST",
-          
             body: JSON.stringify(datos),
-            
             mode: 'no-cors',
             
         });
-        console.log(datos);
+     
         return await manejarRespuesta(respuestaRaw);
     },
     "put": async (ruta, datos) => {
@@ -32,10 +40,13 @@ const HttpService = {
     },
     "get": async (ruta) => {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
+            credentials: "include",
             mode: 'no-cors',
-            credentials: 'include',
+           
         });
-        return await manejarRespuesta(respuestaRaw);
+       
+        return await respuestaRaw.json();
+     
     },
     "delete": async (ruta) => {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
@@ -44,5 +55,7 @@ const HttpService = {
         });
         return await manejarRespuesta(respuestaRaw);
     },
-};
-export default HttpService;
+ };
+
+ export default HttpService;
+

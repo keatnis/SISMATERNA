@@ -78,7 +78,7 @@ func GetMunicipios() ([]types.Municipio, error) {
 	if err != nil {
 		return municipios, err
 	}
-	rows, err := bd.Query("SELECT * from t_municipio")
+	rows, err := bd.Query("SELECT * FROM t_municipio order by municipio asc")
 	if err != nil {
 		return municipios, err
 	}
@@ -104,7 +104,7 @@ func ObtenerLocalidades(id int64) ([]types.Localidad, error) {
 	}
 
 	defer bd.Close()
-	filas, err := bd.Query(`SELECT id_localidad,localidad FROM t_localidad WHERE id_municipio=?`, id)
+	filas, err := bd.Query(`SELECT id_localidad,localidad FROM t_localidad WHERE id_municipio=? order by localidad asc `, id)
 	if err != nil {
 		return localidades, err
 	}
@@ -119,20 +119,4 @@ func ObtenerLocalidades(id int64) ([]types.Localidad, error) {
 		localidades = append(localidades, localidad)
 	}
 	return localidades, nil
-}
-
-func GetMunicipioById(idMunicipio string) (types.Municipio, error) {
-	var idmunicipio types.Municipio
-	bd, err := db.GetDB()
-	if err != nil {
-		return idmunicipio, err
-	}
-
-	row := bd.QueryRow("SELECT id_localidad FROM t_localidad WHERE municipio=?", idMunicipio)
-	err = row.Scan(&idmunicipio.Id_municipio)
-	if err != nil {
-		return idmunicipio, err
-	}
-	// Success!
-	return idmunicipio, nil
 }

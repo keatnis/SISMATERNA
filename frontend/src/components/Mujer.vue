@@ -1,69 +1,57 @@
 <template>
   <section>
+  
+   <b-field label="Municipios"   >
+            <b-select placeholder="Seleccionar"
+                v-model="selectedOptions" :onChange="obtenerLocalidades()">
+                <option
+                    v-for="option in municipios"
+                    :value="{ id: option.id_municipio, text: option.nombreMunicipio }"
+                    :key="option.id">
+                    {{ option.nombreMunicipio }}
 
-        <b-table
-          :data="vehiculos"
-        
-          
-          hoverable
-        >
-          <b-table-column
-            searchable
-            field="descripcion"
-            label="Descripción"
-            v-slot="props"
-            sortable
-          >
-            {{ props.row.id}}
-          </b-table-column>
-          <b-table-column
-            searchable
-            field="placas"
-            label="Placas"
-            sortable
-            v-slot="props"
-          >
-            {{ props.row.nombre }}
-          </b-table-column>
-          <b-table-column
-            searchable
-            field="propietario"
-            label="Propietario"
-            sortable
-            v-slot="props"
-          >
-            {{ props.row.curp}}
-          </b-table-column>
+                                    
+                </option>
+                
+            </b-select>
+        </b-field>
+        <b-field label="Localidades"   >
+            <b-select placeholder="Seleccionar localidad"
+                v-model="selectedOptions2">
+                <option
+                    v-for="option in localidades"
+                    :value="{ id: option.id_localidad, text: option.NombreLocalidad}"
+                    :key="option.id"
+                  >
+                    {{ option.NombreLocalidad}}
+                  
+                                    
+                </option>
+                
+            </b-select>
 
-
-          <b-table-column
-            field="fechaEntrada"
-            label="Entrada"
-            v-slot="props"
-            sortable
-          >
-            {{ props.row.curp }}
-          </b-table-column>
-      
-          <template #empty>
-            <div class="has-text-centered">No hay registros</div>
-          </template>
-        </b-table>
-   <div>
-    {{vehiculos}}
-   </div>
-    
-  </section>
+        </b-field>
+        <b-field>
+       
+       
+      </b-field>
+        <p class="content"><b>selected</b>: {{ selectedOptions.id}}</p>
+    </section>
 </template>
 
 <script>
 
-import axios from "axios";
+import DialogosService from "../services/DialogosService";
+import EmbarazadaService from "../services/EmbarazadaService";
 export default {
   data() {
     return {
-      vehiculos: [],
-      columns: [
+ 
+      municipios:[],
+      localidades:[],
+      selectedOptions: [],
+      selectedOptions2:[],
+        columns: [
       {
           field: "id",
           label: "No. Progreso",
@@ -98,12 +86,35 @@ export default {
     ]
   }
 },
-   mounted() {
-    axios
-      .get("http://localhost:8080/ListaEmbarazada")
-      .then((response) => (this.vehiculos = Object.entries(response.data)));
-
+async mounted() {
+    await this.obtenerMunicipio();
+   
+   
+  
   },
+  methods: {
+    async obtenerMunicipio() {
+     
+     try {
+       this.municipios = await EmbarazadaService.obtenerMunicipios();
+     } catch (e) {
+       DialogosService.mostrarNotificacionError(
+         "No se pudo obtener la lista de municipios..."
+       );
+     } 
+     
+   },
+   async obtenerLocalidades(){
+    try{
+      this.localidades = await EmbarazadaService.obteneLocalidadesById(this.selectedOptions.id);
+
+    }catch(e){
+      DialogosService.mostrarNotificacionError("error localidades")
+    }
+   }
+   
+  },
+  
 };
 </script>
 <style>

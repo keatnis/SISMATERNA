@@ -193,7 +193,7 @@
 //labelPosition: 'on-border',
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
-import VehiculosService from "../services/VehiculosService";
+import EmbarazadaService from "../services/EmbarazadaService";
 export default {
   data: () => ({
     selected: null,
@@ -236,7 +236,7 @@ export default {
       if (this.usarFechaYHoraActual) {
         cargaUtil.fechaEntrada = Utiles.obtenerFechaYHoraActual("T");
       }
-      const respuesta = await VehiculosService.agregarVehiculo(cargaUtil);
+      const respuesta = await EmbarazadaService.agregarVehiculo(cargaUtil);
       if (respuesta) {
         DialogosService.mostrarNotificacionExito("Vehículo registrado");
         this.detalles = {

@@ -67,7 +67,7 @@
 
 
 <script>
-import VehiculosService from "../services/VehiculosService";
+import EmbarazadaService from "../services/EmbarazadaService";
 export default {
   data() {
     return {
@@ -366,7 +366,7 @@ export default {
     async obtenerVehiculos() {
       this.cargando = true;
 
-      this.vehiculos = await VehiculosService.obtenerVehiculos();
+      this.vehiculos = await EmbarazadaService.obtenerVehiculos();
       console.log(this.vehiculos);
       this.cargando = false;
     },

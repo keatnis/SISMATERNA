@@ -36,17 +36,20 @@
                 placeholder="Teléfono fijo"
               ></b-input>
             </b-field>
-            <b-field label="Municipio">
-              <b-select placeholder="Municipio" v-model="vehiculos" expanded>
+            <b-field label="Municipio"   >
+            <b-select placeholder="Seleccionar municipio"
+                v-model="municipioSeleccionado" :onChange="obtenerLocalidades()" expanded>
                 <option
-                v-for="(impresora, i) in municipios"
-                :value="impresora"
-                :key="i"
-              >
-                {{ impresora }}
-              </option>
-              </b-select>
-            </b-field>
+                    v-for="option in municipios"
+                    :value="{ id: option.id_municipio, text: option.nombreMunicipio }"
+                    :key="option.id">
+                    {{ option.nombreMunicipio }}
+
+                                    
+                </option>
+                
+            </b-select>
+        </b-field>
 
             <b-field label="Derechohabiencia">
               <b-select v-model="detalles.Derechohabiencia" expanded>
@@ -152,11 +155,20 @@
                 <option value="Ninguno">Ninguno</option>
               </b-select>
             </b-field>
-            <b-field label="Localidad">
-              <b-select placeholder="Localidad" expanded>
-                <option value="Insabi">I</option>
-              </b-select>
-            </b-field>
+            <b-field label="Localidad"  >
+            <b-select placeholder="Seleccionar localidad"
+                v-model="localidadSeleccionada" expanded>
+                <option
+                    v-for="option in localidades"
+                    :value="{ id: option.id_localidad, text: option.NombreLocalidad}"
+                    :key="option.id"
+                  >
+                    {{ option.NombreLocalidad}}                 
+                </option>
+                
+            </b-select>
+
+        </b-field>
 
             <b-field label="De tenciones"></b-field>
             <div class="field">
@@ -2079,9 +2091,7 @@
       </table>
       <b-field>
         <b-button @click="guardar()" type="is-success">Guardar</b-button>
-        <router-link :to="{ name: 'Vehiculos' }" class="button is-info ml-2">
-          Volver
-        </router-link>
+     
       </b-field>
     </b-step-item>
 
@@ -2091,7 +2101,7 @@
 <script>
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
-import VehiculosService from "../services/VehiculosService";
+import EmbarazadaService from "../services/EmbarazadaService";
 
 export default {
   data: () => ({
@@ -2099,6 +2109,9 @@ export default {
     edad: null,
     activeStep: 0,
     municipios: [],
+    localidades:[],
+    localidadSeleccionada: '',
+    municipioSeleccionado:'',
     isProfileSuccess: false,
     checkbox: false,
     mobileMode: 'minimalist',
@@ -2136,9 +2149,10 @@ export default {
     },
   },
   async mounted() {
-  
     await this.obtenerMunicipio();
- 
+   
+   
+  
   },
   methods: {
     calcularEdad() {
@@ -2157,10 +2171,11 @@ export default {
     formatearFecha(fecha) {
       return Utiles.obtenerCadenaFecha(fecha);
     },
+  
     async obtenerMunicipio() {
      
       try {
-        this.municipios = await VehiculosService.obtenerMunicipios();
+        this.municipios = await EmbarazadaService.obtenerMunicipios();
       } catch (e) {
         DialogosService.mostrarNotificacionError(
           "No se pudo obtener la lista de municipios..."
@@ -2168,6 +2183,14 @@ export default {
       } 
       
     },
+    async obtenerLocalidades(){
+    try{
+      this.localidades = await EmbarazadaService.obteneLocalidadesById(this.municipioSeleccionado.id);
+
+    }catch(e){
+      DialogosService.mostrarNotificacionError("error localidades")
+    }
+   },
    
     async guardar() {
       if (!this.detalles.nombre == null) {
@@ -2191,7 +2214,7 @@ export default {
      
       };
      
-      const respuesta = await VehiculosService.agregarVehiculo(cargaUtil);
+      const respuesta = await EmbarazadaService.agregarVehiculo(cargaUtil);
       if (respuesta) {
         DialogosService.mostrarNotificacionExito("Vehículo registrado");
         this.detalles = {
@@ -2216,5 +2239,3 @@ export default {
   },
 };
 </script>
-<style>
-</style>
