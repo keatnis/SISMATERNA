@@ -2131,7 +2131,7 @@ export default {
       noExpediente: "",
       NombreEmbarazada: "",
       curp: "",
-
+      
       Direccion: "",
       Derechohabiencia:"",
       TelefonoEmbarazada: null,
