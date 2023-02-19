@@ -17,56 +17,66 @@
             <b-input disabled="»disabled»" v-model="detalles.id" placeholder=""></b-input>
           </b-field>
           <b-field label="Nombre de puerpera" :label-position="labelPosition">
-            <b-input v-model="detalles.NombrePuerpera" placeholder="Nombre completo"></b-input>
+            <b-input v-model="detalles.NombrePuerpera" placeholder="Nombre completo" disabled="»disabled»"></b-input>
           </b-field>
 
           <b-field label=" Consulta de 7 días">
-            <b-datepicker placeholder="Fecha consulta de 7 días" icon="calendar-today" :locale="locale" editable>
+            <b-datepicker 
+            v-model="detalles.consultasiete" 
+            placeholder="Fecha consulta de 7 días" 
+            icon="calendar-today" 
+            :locale="locale" editable>
             </b-datepicker>
           </b-field>
 
 
 
           <b-field label="Consulta de 40 días">
-            <b-datepicker placeholder="Fecha consulta de 40 días" icon="calendar-today" :locale="locale" editable>
+            <b-datepicker 
+            v-model="detalles.consultacuarenta " 
+            placeholder="Fecha consulta de 40 días" 
+            icon="calendar-today" 
+            :locale="locale" editable>
             </b-datepicker>
           </b-field>
 
           <b-field label="Atención de parto">
             <b-select placeholder="¿Quién atendió el parto?" expanded>
-              <option value="Nahual">Nahual</option>
-              <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-              <option value="Mephaa">Meephaa (Tlapaneco)</option>
-              <option value="Amuzgo">Amuzgo</option>
-              <option value="Ninguno">Ninguno</option>
+              <option value="medico">Médico</option>
+              <option value="emfermera">Enfermera</option>
+              <option value="parteraTra">Partera Trad.</option>
+              <option value="parteraPro">Partera Prof.</option>
+              <option value="taps">TAPS</option>
+              <option value="familiar">Familiar </option>
+              <option value="ningunoAten">Ninguno </option>
+
             </b-select>
           </b-field>
           <b-field label="Resolución del embarazo">
             <b-select placeholder="Resolución del embarazo" expanded>
-              <option value="Nahual">Nahual</option>
-              <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-              <option value="Mephaa">Meephaa (Tlapaneco)</option>
-              <option value="Amuzgo">Amuzgo</option>
-              <option value="Ninguno">Ninguno</option>
+              <option value="vaginal">Vaginal</option>
+              <option value="cesarea ">Cesarea </option>
+              <option value="aborto">Legrado (aborto)</option>
+              <option value="óbito">Legrado (óbito)</option>
+              <option value="ningunoReso">Ninguno</option>
             </b-select>
           </b-field>
 
           <b-field label="APEO">
             <b-select placeholder="APEO" expanded>
-              <option value="Nahual">Nahual</option>
-              <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-              <option value="Mephaa">Meephaa (Tlapaneco)</option>
-              <option value="Amuzgo">Amuzgo</option>
-              <option value="Ninguno">Ninguno</option>
+              <option value="diu">DIU</option>
+              <option value="otb">OTB</option>
+              <option value="implante">Implante</option>
+              <option value="ningunoapeo">Ninguno</option>
             </b-select>
           </b-field>
           <b-field label="Consulta pregestacional"></b-field>
           <label class="radio">
-            <input type="radio" name="answer" />
+            <input type="radio" name="pregestacional" />
             Si
           </label>
           <label class="radio">
-            <input type="radio" name="answer" />
+            <input type="radio" name="pregestacional" />
             No
           </label>
           <b-field label="Derechohabiencia">
@@ -83,14 +93,22 @@
         </div>
         <div class="column is-half">
           <b-field label="CURP">
-            <b-input v-model="detalles.descripcion" placeholder="Clave Unica de Registro de Población" icon="magnify"></b-input>
+            <b-input 
+            v-model="detalles.descripcion" 
+            placeholder="Clave Unica de Registro de Población" 
+            icon="magnify">
+          </b-input>
           </b-field>
           <b-field label="Edad">
             <b-input disabled="»disabled»" v-model="detalles.Edad"></b-input>
           </b-field>
 
           <b-field label="Consulta de 28 días">
-            <b-datepicker placeholder="Fecha consulta de 28 días" icon="calendar-today" :locale="locale" editable>
+            <b-datepicker 
+            v-model="detalles.consultaveinte" 
+            placeholder="Fecha consulta de 28 días" 
+            icon="calendar-today" 
+            :locale="locale" editable>
             </b-datepicker>
           </b-field>
           <b-field label="Signos de alarma">
@@ -109,23 +127,30 @@
 
           <b-field label="Lugar del parto">
             <b-select placeholder="¿Dónde atendió el parto?" expanded>
-              <option value="Nahual">Nahual</option>
-              <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-              <option value="Mephaa">Meephaa (Tlapaneco)</option>
-              <option value="Amuzgo">Amuzgo</option>
-              <option value="Ninguno">Ninguno</option>
+              <option value="tlapa">H.G. Tlapa</option>
+              <option value="hmnig">HMNIG</option>
+              <option value="acatepec">H.C. Acatepec</option>
+              <option value="alcozauca">H.C. Alcozauca</option>
+              <option value="huamux">H.C. Huamuxtitlán</option>
+              <option value="malina">H.C. Malinaltepec</option>
+              <option value="oli">H.C. Olinalá</option>
+              <option value="xochi">H.C. H.C. Xochihuehuetlán</option>
+              <option value="zapo">H.C. Zapotitlán Tablas</option>
+              <option value="centro">Centro de Salud</option>
+              <option value="hogar">Hogar</option>
+              <option value="otro">Otro hospital…</option>
             </b-select>
           </b-field>
 
 
 
           <b-field label="No. de producto">
-            <b-select placeholder="Bo. de producto" expanded>
-              <option value="Nahual">Nahual</option>
-              <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-              <option value="Mephaa">Meephaa (Tlapaneco)</option>
-              <option value="Amuzgo">Amuzgo</option>
-              <option value="Ninguno">Ninguno</option>
+            <b-select placeholder="No. de producto" expanded>
+              <option value="unico">Único</option>
+              <option value="gemelar">Gemelar</option>
+              <option value="trillizos">Trillizos</option>
+              <option value="cuatrillizos">Cuatrillizos</option>
+              
             </b-select>
           </b-field>
 
@@ -133,76 +158,66 @@
 
           <b-field label="Puerpera aceptante">
             <b-select placeholder="Puerpera acentante" expanded>
-              <option value="Nahual">Nahual</option>
-              <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-              <option value="Mephaa">Meephaa (Tlapaneco)</option>
-              <option value="Amuzgo">Amuzgo</option>
-              <option value="Ninguno">Ninguno</option>
+              <option value="diu">DIU</option>
+              <option value="otb">OTB</option>
+              <option value="implante">Implante</option>
+              <option value="bimensual">H.I. Bimensual</option>
+              <option value="ningunoaceptante">Ninguno</option>
             </b-select>
           </b-field>
 
 
           <b-field label="Fecha de parto">
-            <b-datepicker placeholder="Fecha del evento" icon="calendar-today" :locale="locale" editable>
+            <b-datepicker 
+
+            placeholder="Fecha del evento" 
+            icon="calendar-today" 
+            :locale="locale" disabled editable>
             </b-datepicker>
           </b-field>
-          <b-field>
-            <b-switch v-model="usarFechaYHoraActual">Usar fecha y hora actual ({{ fechaYHoraActual }})</b-switch>
-          </b-field>
+         
           <b-field>
             <b-button @click="guardar()" type="is-success">Guardar</b-button>
 
           </b-field>
         </div>
 
-        <b-field label="Selecciona manualmente" v-show="!usarFechaYHoraActual">
-          <b-datetimepicker v-model="detalles.fechaEntrada" rounded placeholder="Clic aquí para seleccionar"
-            icon="calendar-today" locale="es-MX" :datetime-formatter="formatearFecha"
-            :timepicker="{ enableSeconds: false, hourFormat: '24' }" inline>
-            <template #left>
-              <b-button label="Ahora" type="is-primary" icon-left="clock" @click="detalles.fechaEntrada = new Date()" />
-
-            </template>
-
-            <template #right>
-              <b-button label="Limpiar" type="is-danger" icon-left="close" outlined
-                @click="detalles.fechaEntrada = null" />
-            </template>
-          </b-datetimepicker>
-        </b-field>
-
+        
       </div>
+
     </div>
 
-
-    <template v-if="customNavigation" #navigation="{ previous, next }">
-      <b-button outlined type="is-danger" icon-pack="fas" icon-left="backward" :disabled="previous.disabled"
-        @click.prevent="previous.action">
-        Previous
-      </b-button>
-      <b-button outlined type="is-success" icon-pack="fas" icon-right="forward" :disabled="next.disabled"
-        @click.prevent="next.action">
-        Next
-      </b-button>
-    </template>
   </b-steps>
-
-
+  
 </template>
 <script>
 //labelPosition: 'on-border',
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
-import EmbarazadaService from "../services/EmbarazadaService";
+import PuerperaService from "../services/PuerperaService";
 export default {
   data: () => ({
     selected: null,
-    fechaYHoraActual: null,
-    usarFechaYHoraActual: true,
+    edad: null,
+    activeStep: 0,
+    
+    isProfileSuccess: false,
+    checkbox: false,
+    mobileMode: 'minimalist',
+    hasNavigation: true,
+    locale: "es-MX",
+    isAnimated: true,
+    isRounded: true,
+    isStepsClickable: false,
+    prevIcon: "chevron-left",
+    nextIcon: "chevron-right",
+    showSocial: false,
+    checkboxGroup: [],
     detalles: {
-      placas: "",
-      descripcion: "",
-      fechaEntrada: null,
+      consultasiete:null,
+      consultaveinte: null,
+      consultacuarenta:null,
+      
     },
   }),
   computed: {
@@ -223,26 +238,22 @@ export default {
       return Utiles.obtenerFechaYHora(fecha);
     },
     async guardar() {
-      if (!this.usarFechaYHoraActual && !this.detalles.fechaEntrada) {
-        return DialogosService.mostrarNotificacionError(
-          "Selecciona una fecha y hora"
-        );
+      if (!this.detalles.nombre == null) {
+        return DialogosService.mostrarNotificacionError("Campos vacios");
       }
       const cargaUtil = {
-        placas: this.detalles.placas,
-        descripcion: this.detalles.descripcion,
-        fechaEntrada: Utiles.obtenerFechaYHora(this.detalles.fechaEntrada, "T"),
-      };
-      if (this.usarFechaYHoraActual) {
-        cargaUtil.fechaEntrada = Utiles.obtenerFechaYHoraActual("T");
-      }
-      const respuesta = await EmbarazadaService.agregarVehiculo(cargaUtil);
+        consultasiete: this.detalles.consultasiete,
+        consultaveinte: this.detalles.consultaveinte,
+        consultacuarenta: this.detalles.consultacuarenta,
+        };
+
+        const respuesta = await PuerperaService.agregarPuerpera(cargaUtil);
       if (respuesta) {
         DialogosService.mostrarNotificacionExito("Vehículo registrado");
         this.detalles = {
-          placas: "",
-          descripcion: "",
-          fechaEntrada: new Date(),
+          consultasiete: null,
+          consultaveinte: null,
+          consultacuarenta: null,
         };
       }
     },
