@@ -188,6 +188,7 @@
 
 
 </template>
+
 <script>
 //labelPosition: 'on-border',
 import Utiles from "../services/Utiles";

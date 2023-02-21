@@ -14,6 +14,9 @@ const VehiculosService = {
     async obteneLocalidadesById(idMunicipio) {
         return await HttpService.get(`/agregar_embarazada/${idMunicipio}`);
     },
+    async agregarPuerpera(vehiculo) {
+        return await HttpService.post("/agregar_embarazada", vehiculo);
+    },
 
 };
 export default VehiculosService;
