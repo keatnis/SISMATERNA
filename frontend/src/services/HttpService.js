@@ -15,6 +15,7 @@ const manejarRespuesta = async (respuesta) => {
     if (respuestaDecodificada.error) {
         throw new Error(JSON.stringify(respuestaDecodificada.error));
     }
+    console.log("respdecodificada ",respuestaDecodificada.data)
     return respuestaDecodificada.data;
     
 };
@@ -25,9 +26,10 @@ const HttpService = {
             method: "POST",
             body: JSON.stringify(datos),
             mode: 'no-cors',
+
             
         });
-     
+        console.log("body post",JSON.stringify(datos));
         return await manejarRespuesta(respuestaRaw);
     },
     "put": async (ruta, datos) => {

@@ -6,20 +6,23 @@ import (
 )
 
 func InsertEmbarazada(c types.Embarazada) error {
+	/* db, err := db.GetDB()
+	if err != nil {
+		return err
+	}
+	*/
 	db, err := db.GetDB()
 	if err != nil {
 		return err
 	}
+
+	defer db.Close()
+
 	//_, err = bd.Exec("INSERT INTO video_games (name, genre, year) VALUES (?, ?, ?)", embarazada.NombreCompleto)
 	//return err
 	// Preparamos para prevenir inyecciones SQL
-	sentenciaPreparada, err := db.Prepare("INSERT INTO mujer (noExpediente, Nombre,FechaNacimiento, curp, Telefono, Domicilio_Referencia, Gestas, Paras, Aborto, Cesareas, emigro, Consulta_RiesgoPreg, Fecha_UltimoParto,Fecha_Ult_Mestruacion,PFP,Fecha_Consulta,Fecha_Influenza,Fecha_Td,Fecha_TdSegunda,Fecha_TdRefuerzo,Fecha_TDPA,FPP_USG,FechaEvento) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-	if err != nil {
-		return err
-	}
-	defer sentenciaPreparada.Close()
-	// Ejecutar sentencia, un valor por cada '?'
-	_, err = sentenciaPreparada.Exec(c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Curp, c.Telefono, c.Direccion, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.Emigro, c.ConsultaPregestacional, c.FechaUltimoEvento, c.FechaUlmaMenstruacion, c.FechaProbableParto, c.FechaConsulta, c.FechaVacunaTDPrimera, c.FechaVacunaTDSegunda, c.FechaVacunaTDRefuerzo, c.FechaVacunaTDPA, c.FechaVacunaInfluenza, c.FechaProbableUSG, c.FechaEvento)
+	_, err = db.Exec("INSERT INTO mujer `curp`, `noexpediente`, `nombre`, `fechanacimiento`, `domicilio_referencia`, `localidad`, `municipio`, `telefono`, `lengua_indig`, `emigro`, `derechohabiencia`, `detenciones`, `consulta_riesgopreg`, `comorbilidades`, `gestas`, `paras`, `abortos`, `cesareas`, `fecha_ultimoparto`, `tipo_comp`, `fecha_ult_mestruacion`, `fpp`, `sdg_actual`, `fecha_consulta`, `no_consultaembarazo`, `no_consultames`, `rubeola`, `fecha_td`, `fecha_tdsegunda`, `fecha_tdrefuerzo`, `fecha_tdpa`, `fecha_influenza`, `covid`, `grupo_rh`, `ego`, `biometria_ematica`, `leucocitos`, `plaquetas`, `vdrl`, `vih`, `glucosa_estado`, `glucosa_resultado`, `caracteristicas_fetls`, `malformaciones`, `liquido_amniotico`, `placenta`, `fpp_usg`, `referencia`, `acudio_refe`, `contrareferencia`, `plan_seguridad`, `signos_alarma`, `donde_atenderaparto`, `quien_atenderaparto`, `ame`, `fechaevento`, `observaciones`, `diagnostico`)  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+		c.Curp, c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Direccion, c.Localidad, c.Municipio, c.Telefono, c.LenguaIndigena, c.Emigro, c.Derechohabiencia, c.Detenciones, c.ConsultaPregestacional, c.Comorbilidades, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.FechaUltimoEvento, c.Complicaciones, c.FechaUlmaMenstruacion, c.FechaProbableParto, c.SGA, c.FechaConsulta, c.NumConsultasEmbarazo, c.NumConsultaMes, c.Rubeola, c.FechaVacunaTDPrimera, c.FechaVacunaTDSegunda, c.FechaVacunaTDRefuerzo, c.FechaVacunaTDPA, c.FechaVacunaInfluenza, c.VacunaCOVID, c.GrupoRH, c.EGO, c.BiometriHematica, c.Leucocitos, c.Plaquetas, c.VDRL, c.VIH, c.EstadoGlucosa, c.ResultadoGlucosa, c.CaracteristicasFetls, c.Malformaciones, c.LiquidoAmiotico, c.Placenta, c.FechaProbableUSG, c.Referencia, c.AcudioReferencia, c.Contrareferencia, c.PlanSeguridad, c.SignosAlarma, c.LugarParto, c.QuienAtenderaParto, c.TransporteAME, c, c.FechaEvento, c.Observaciones, c.Diagnostico)
 	if err != nil {
 		return err
 	}

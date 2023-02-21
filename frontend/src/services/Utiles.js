@@ -2,7 +2,7 @@ const DIA_EN_MILISEGUNDOS = 1000 * 60 * 60 * 24;
 const HORA_INICIO_DE_DIA = "00:00:00";
 const HORA_FIN_DE_DIA = "23:59:59";
 const formateadorFechaYHora = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
-const formateadorFecha = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium' });
+const formateadorFecha = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium'});
 const formateadorDinero = new Intl.NumberFormat("en", { style: "currency", "currency": "MXN" });
 const Utiles = {
     formatearDinero(cantidad) {

@@ -9,7 +9,6 @@
     :icon-next="nextIcon"
     :mobile-mode="mobileMode"
   >
-
     <b-step-item step="" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
         <article class="panel is-info centered">
@@ -36,20 +35,25 @@
                 placeholder="Teléfono fijo"
               ></b-input>
             </b-field>
-            <b-field label="Municipio"   >
-            <b-select placeholder="Seleccionar municipio"
-                v-model="municipioSeleccionado" :onChange="obtenerLocalidades()" expanded>
+            <b-field label="Municipio">
+              <b-select
+                placeholder="Seleccionar municipio"
+                v-model="municipioSeleccionado"
+                :onChange="obtenerLocalidades()"
+                expanded
+              >
                 <option
-                    v-for="option in municipios"
-                    :value="{ id: option.id_municipio, text: option.nombreMunicipio }"
-                    :key="option.id">
-                    {{ option.nombreMunicipio }}
-
-                                    
+                  v-for="option in municipios"
+                  :value="{
+                    id: option.id_municipio,
+                    text: option.nombreMunicipio,
+                  }"
+                  :key="option.id"
+                >
+                  {{ option.nombreMunicipio }}
                 </option>
-                
-            </b-select>
-        </b-field>
+              </b-select>
+            </b-field>
 
             <b-field label="Derechohabiencia">
               <b-select v-model="detalles.Derechohabiencia" expanded>
@@ -61,17 +65,22 @@
                 <option value="Pemex">PEMEX</option>
                 <option value="Marina">MARINA</option>
                 <option value="Otro">Otro</option>
-                
               </b-select>
             </b-field>
 
             <b-field label="Comorbilidades">
               <section>
-                <div class="block">
-                  <b-checkbox v-model="detalles.sobrepeso" native-value="sobrepeso">
+                <div  class="container">
+                  <b-checkbox
+                    v-model="detalles.sobrepeso"
+                    native-value="sobrepeso"
+                  >
                     Sobre peso
                   </b-checkbox>
-                  <b-checkbox v-model="detalles.obesidad" native-value="Obesidad">
+                  <b-checkbox
+                    v-model="detalles.obesidad"
+                    native-value="Obesidad"
+                  >
                     Obesidad
                   </b-checkbox>
                   <b-checkbox
@@ -92,16 +101,25 @@
                   >
                     Cardiopatía
                   </b-checkbox>
-                  <b-checkbox v-model="detalles.Epilepsia" native-value="Epilepsia ">
+                  <b-checkbox
+                    v-model="detalles.Epilepsia"
+                    native-value="Epilepsia "
+                  >
                     Epilepsia
                   </b-checkbox>
-                  <b-checkbox v-model="detalles.Sifilis" native-value="Sifilis ">
+                  <b-checkbox
+                    v-model="detalles.Sifilis"
+                    native-value="Sifilis "
+                  >
                     Sifilis
                   </b-checkbox>
                   <b-checkbox v-model="detalles.vih" native-value="VIH ">
                     VIH
                   </b-checkbox>
-                  <b-checkbox v-model="detalles.hepatitis" native-value="Hepatitis">
+                  <b-checkbox
+                    v-model="detalles.hepatitis"
+                    native-value="Hepatitis"
+                  >
                     Hepatitis
                   </b-checkbox>
                   <b-checkbox v-model="detalles.ninguno" native-value="Ninguno">
@@ -117,6 +135,7 @@
             <b-field label="Gestas">
               <b-input
                 v-model="detalles.Gestas"
+                type="number"
                 placeholder="Número de gestas"
               ></b-input>
             </b-field>
@@ -138,16 +157,24 @@
             <b-field label="Fecha de nacimiento">
               <b-datepicker
                 v-model="detalles.fechaNacimiento"
-                placeholder="Fecha de nacimiento"
+                placeholder="Fecha de consulta"
                 icon="calendar-today"
                 :datetime-formatter="formatearFecha"
                 :locale="locale"
+                @input="calcularEdad()"
                 editable
               >
               </b-datepicker>
             </b-field>
+
             <b-field label="Lengua Indígena">
-              <b-select name="LenguaIndigena" id="LenguaIndigena"  onchange="actualizar()" placeholder="Lengua Indígena" expanded>
+              <b-select
+                name="LenguaIndigena"
+                id="LenguaIndigena"
+                onchange="actualizar()"
+                placeholder="Lengua Indígena"
+                expanded
+              >
                 <option value="Nahual">Nahual</option>
                 <option value="Mixteco">Tu´un Savi (Mixteco)</option>
                 <option value="Mephaa">Meephaa (Tlapaneco)</option>
@@ -155,25 +182,34 @@
                 <option value="Ninguno">Ninguno</option>
               </b-select>
             </b-field>
-            <b-field label="Localidad"  >
-            <b-select placeholder="Seleccionar localidad"
-                v-model="localidadSeleccionada" expanded>
+            <b-field label="Localidad">
+              <b-select
+                placeholder="Seleccionar localidad"
+                v-model="localidadSeleccionada"
+                expanded
+              >
                 <option
-                    v-for="option in localidades"
-                    :value="{ id: option.id_localidad, text: option.NombreLocalidad}"
-                    :key="option.id"
-                  >
-                    {{ option.NombreLocalidad}}                 
+                  v-for="option in localidades"
+                  :value="{
+                    id: option.id_localidad,
+                    text: option.NombreLocalidad,
+                  }"
+                  :key="option.id"
+                >
+                  {{ option.NombreLocalidad }}
                 </option>
-                
-            </b-select>
-
-        </b-field>
+              </b-select>
+            </b-field>
 
             <b-field label="De tenciones"></b-field>
             <div class="field">
               <div class="b-checkbox">
-                <input type="checkbox" name="Mamanormal" value="verde" id="MamaNormal"/>
+                <input
+                  type="checkbox"
+                  name="Mamanormal"
+                  value="verde"
+                  id="MamaNormal"
+                />
 
                 <label for="MamaNormal">
                   Exploración clínica de mama normal
@@ -254,7 +290,11 @@
               ></b-input>
             </b-field>
             <b-field label="Edad">
-              <b-input disabled="»disabled»" v-model="detalles.edad"></b-input>
+              <b-input
+                disabled="»disabled»"
+                v-model="detalles.edad"
+                value="this.deatalles.edad"
+              ></b-input>
             </b-field>
             <div class="control">
               <b-field label="¿Emigro?"></b-field>
@@ -290,7 +330,7 @@
             </div>
 
             <b-datepicker
-            v-model="detalles.consultaPregestacional"
+              v-model="detalles.consultaPregestacional"
               placeholder="Fecha de consulta"
               icon="calendar-today"
               :datetime-formatter="formatearFecha"
@@ -301,10 +341,10 @@
 
             <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
               <b-datepicker
-              v-model="detalles.fechaUltimoEvento"
+                v-model="detalles.fechaUltimoEvento"
                 placeholder="Fecha de ultimo evento"
                 icon="calendar-today"
-                :datetime-formatter="formatearFecha"  
+                :datetime-formatter="formatearFecha"
                 :locale="locale"
                 editable
               >
@@ -351,7 +391,7 @@
           <div class="column is-one-third">
             <b-field label="Fecha de ultima menstruación">
               <b-datepicker
-              v-model="detalles.fechaUlmaMenstruacion"
+                v-model="detalles.fechaUlmaMenstruacion"
                 placeholder="Fecha de ultima menstruación"
                 icon="calendar-today"
                 :datetime-formatter="formatearFecha"
@@ -364,7 +404,7 @@
             <div class="control">
               <b-field label="Fecha de consutal">
                 <b-datepicker
-                v-model="detalles.fechaConsulta"
+                  v-model="detalles.fechaConsulta"
                   placeholder="Fecha de consulta "
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -387,7 +427,7 @@
 
               <b-field label="Fecha de vacunación TD refuerzo">
                 <b-datepicker
-                v-model="detalles.fechaVacunaTDRefuerzo"
+                  v-model="detalles.fechaVacunaTDRefuerzo"
                   placeholder="Fecha de vacunación TD refuerzo"
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -440,7 +480,7 @@
             <div class="control">
               <b-field label="Fecha probable de parto">
                 <b-datepicker
-                v-model="detalles.fechaProbableParto"
+                  v-model="detalles.fechaProbableParto"
                   placeholder="Fecha probable de parto"
                   icon="calendar-today"
                   :locale="locale"
@@ -459,7 +499,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación TD primera">
                 <b-datepicker
-                v-model="detalles.fechaVacunaTDPrimera"
+                  v-model="detalles.fechaVacunaTDPrimera"
                   placeholder="Fecha de vacunación TD primera "
                   icon="calendar-today"
                   :locale="locale"
@@ -471,7 +511,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación TDPA">
                 <b-datepicker
-                v-model="detalles.fechaVacunaTDPA"
+                  v-model="detalles.fechaVacunaTDPA"
                   placeholder="Fecha de vacunación TDPA "
                   icon="calendar-today"
                   :locale="locale"
@@ -550,7 +590,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación TD segunda">
                 <b-datepicker
-                v-model="detalles.fechaVacunaTDSegunda"
+                  v-model="detalles.fechaVacunaTDSegunda"
                   placeholder="Fecha de vacunación TD segunda "
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -563,7 +603,7 @@
             <div class="control">
               <b-field label="Fecha de vacunación Influenza estacional">
                 <b-datepicker
-                v-model="detalles.fechaVacunaInfluenza"
+                  v-model="detalles.fechaVacunaInfluenza"
                   placeholder="Fecha de vacunación Influenza estacional "
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -675,7 +715,7 @@
             <div class="control">
               <b-field label="Fecha probable de parto por USG">
                 <b-datepicker
-                v-model="detalles.fechaProbableUSG"
+                  v-model="detalles.fechaProbableUSG"
                   placeholder="Fecha probable de parto por USG (1Er Trimestre)"
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -696,13 +736,13 @@
                 <option value="AtenderHospital">Hospital</option>
                 <option value="AtenderC.Salud">C. Salud</option>
                 <option value="AtenderHogar">Hogar</option>
-                <option value="AtenderParticular">Particula</option>
+                <option value="AtenderParticular">Particular</option>
               </b-select>
             </b-field>
             <div class="control">
               <b-field label="Fecha de evento">
                 <b-datepicker
-                v-model="detalles.fechaEvento"
+                  v-model="detalles.fechaEvento"
                   placeholder="Fecha de evento"
                   icon="calendar-today"
                   :datetime-formatter="formatearFecha"
@@ -749,1375 +789,41 @@
       :clickable="isStepsClickable"
       disabled
     >
-      <div class="column has-text-centered">
-        <h3 class="is-size-3">Triagge</h3>
-        <p>Registrar embarazada</p>
-      </div>
-      <table
-        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-      >
-        <thead>
-          <tr>
-            <th class="is-warning">
-              <abbr title="DatosGene"></abbr>DATOS GENERALES
-            </th>
-            <th class="is-warning">
-              <abbr title="BajoRiesgo"></abbr>BAJO RIESGO
-            </th>
-            <th class="is-warning">
-              <abbr title="AltoRiesgo" center></abbr>ALTO RIESGO
-            </th>
-            <th class="is-warning"><abbr title="AltoRiesgo" center></abbr></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Edad</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="EdadBajo"
-                  type="is-success"
-                  >21 a 34 años</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td>
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="EdadAlto"
-                  type="is-danger"
-                  >Menor a 17 o mayor a 35 años</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>IMC al inicio del embarazo</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ImcBajo"
-                  type="is-success"
-                  >18.5 a 24.9 P. ideal</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ImcAlto"
-                  type="is-danger"
-                  >Menor a 17 o Mayor a 30Kg/E</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Talla</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="TallaBajo"
-                  type="is-success"
-                  >Menor o igual a 145cm</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td>
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="TallaAlto"
-                  type="is-danger"
-                  >>145</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td>Esacolarida</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="EscolaridadBajo"
-                  type="is-success"
-                  >Mayor a Primaria</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td>
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="EscolaridadAlto"
-                  type="is-danger"
-                  >Nula</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Trabajar más de 36hrs/10hrs al día de pie o sentada</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="TrabajarBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="TrabajarAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Exposición a tóxicos(plomo, pesticidas, quimicos, Enf.Infecciosas)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <th class="is-warning">
-              <abbr title="Antecedentes"></abbr>ANTECEDENTES
-            </th>
-            <th class="is-warning">
-              <abbr title="BajoRiesgo"></abbr>BAJO RIESGO
-            </th>
-            <th class="is-warning">
-              <abbr title="AltoRiesgo" center></abbr>ALTO RIESGO
-            </th>
-            <th class="is-warning"><abbr title="AltoRiesgo" center></abbr></th>
-          </tr>
-          <tr>
-            <td>Aborto previos Mayo o igual a 3(LUI)</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="AbortoBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="AbortoAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Partos prematuro (Menor a 28 SDG) previos menor o igual a 1</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="PartosBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="PartosAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Muertes perinatales u Óbitos</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="MuertesBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="MuertesAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Hijos con malformaciones</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="MarlformacionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="MarlformacionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Infección de vías urinarias(IVU Refactorio o recurrente)</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >IVU baja</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Piolonefritis</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Periodo intergenésico corto</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Mayor o igual a 2 años</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Menor a 12 meses</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Paridad</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >1 a 3</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Mayor o igual a4</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Cesárea anterior</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Mayor a 1</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Parto anterior complicado (Hemorragia obstétrica, Retencion
-              placentaria, TDPP)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Sin complicaciones</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Complicado</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Preclampsia-eclampsia</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Productos previos</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Peso normal</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Menor a 2.5kg(restricción)/Mayor a
-                  4hkg(macrosomico)</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Cirugía genitourinaria(Miomectomía, conizacíon, Ectópico roto,
-              etc.)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Comorbilidades</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Ninguna</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <th class="is-warning">
-              <abbr title="DatosGene"></abbr>EMBARAZO ACTUAL
-            </th>
-            <th class="is-warning">
-              <abbr title="BajoRiesgo"></abbr>BAJO RIESGO
-            </th>
-            <th class="is-warning">
-              <abbr title="AltoRiesgo" center></abbr>ALTO RIESGO
-            </th>
-            <th class="is-warning"><abbr title="AltoRiesgo" center></abbr></th>
-          </tr>
-          <tr>
-            <td>Toxicomanias(Cocaína, tabaco, alcohol, crack, etc)</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Hepatitis B y C</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              "Rh (·} Profilaxis prenatal rutinaria con una administración de
-              300 µg (1.500 UI) de inmunoalobulina anti-O, a la 24-30 SDG, 72
-              hrs. Posterior Evento Obstétrico"
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>VIH(+)/SIFILIS(+)</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Hemoglobina en gr. 1er Trimestre del embarazo.</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >>11.5
-                </b-checkbox>
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Menor a 9
-                </b-checkbox>
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Retardo menstrual +Dolor Abdominal (Descartar Embarazo Ectópico
-              roto)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>Hiperémesis gravídica</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No presente</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Presente</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>
-              Fondo Uterino/ SDG (Normal: 7-13 cm 1er;20- 26.8 cm 2do y 30-39 cm
-              3er Trimestre) Descartar: Restricción; prematuro 6 Macrosomico;
-              polidramnlos; Embarazo Molar 6 Múltiple
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Dentro Percentil (10 - 90)
-                </b-checkbox>
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Por debajo de percentil 10 o por arriba del 90</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              "Descartar Diabetes gestacional a las 24-28 SDG (> 126 mg/dl
-              ayuno, CTG 50gr. >200 ma/dl al Azar; > 200 ma/dl 2 horas (75 ar
-              CTG)"
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Mujeres con IMC >30 al inicio del embarazo, registre una ganancia
-              de peso
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >4 A 9 Kg</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >> 9 Kg (IMC> 31.7 2DO Y > 33 3ER TRIMESTRE
-                </b-checkbox>
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Amenaza de aborto/Menor a 500 gr o ≥ 22 SDG</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Infección Urinaria o Vaginosis</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Refactorio o recurrente</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              "Amenaza Parto Prematuro (22-36.6 SDG, contracciones, dilatación
-              ≥3 cm._borramiento 90%, con o sin membranas amnióticas integras)"
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Enfermedad Hipertensiva del embarazo/ Preclamsia</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >TA 100/60 - 120/70</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >130/80 - 140 - 90
-                </b-checkbox></b-field
-              >
-            </td>
-            <td class="is-danger">
-              <b-checkbox
-                v-model="checkbox"
-                native-value="ExposicionAlto"
-                type="is-danger"
-                >160-110 MMHG
-              </b-checkbox>
-            </td>
-          </tr>
-          <tr>
-            <td>Proteinuria de Orina</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Normal</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >+ A + + +</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Datos de severidad (cefalea, nauseas. dolor en epigastrio, edema,
-              etc.)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Ausentes</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Presentes</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>Crisis Convulsivas</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Ausentes</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Presentes</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>Malformaciones Conqénitas</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Determinar posición fetal</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Cefálico</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Pélvico, Transverso u oblicuo</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Movimientos fetales activos(+ 2 horas. después 28 SDG)</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Frecuencia Cardiaca Fetal</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >120 A 160 LAT X MIN</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Menor a 100 O >160 LATIDOS X MIN</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>Implantación anómala de la Placenta</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si (Centarl al orificio cervical, marginal, acreta,
-                  etc.)</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Hemorragia transvaginal (Obstétrica)</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si (Descartar DPPNI, Placenta previa)</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>Taquicardia</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >100 a 119</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-checkbox
-                v-model="checkbox"
-                native-value="ExposicionAlto"
-                type="is-danger"
-                >Mayor o igual a 120 latidos X min</b-checkbox
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Frecuencia Respiratoria</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >11 A 20 X MINUTO</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >21 A 30</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-checkbox
-                v-model="checkbox"
-                native-value="ExposicionAlto"
-                type="is-danger"
-                >≤ 10 Ó ≥ 30 X MIN</b-checkbox
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Respuesta neurológica</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Alerta</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Voz</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Responde al dolor</b-checkbox
-                >
-              </b-field>
-            </td>
-          </tr>
-          <tr>
-            <td>Ruptura prematura de membranas</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Menor a 18 HORAS</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >≥ 18 HORAS</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Embarazo pos-termino 41 SDG sin trabajo de parto</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>Fiebre > 38 ºC</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Síntomas Respiratorios (Tos seca, cefalea, anosmia, rinorrea,
-              faringitis, etc.)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >No</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Si</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-          <tr>
-            <td>
-              Concentración de Oxígeno /Dificultad para respirar, descartar
-              Covid-19)
-            </td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >90 a 100%</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Menos de 90</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-danger"></td>
-          </tr>
-          <tr>
-            <td>Redes de apoyo</td>
-            <td class="is-success">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionBajo"
-                  type="is-success"
-                  >Presente</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning">
-              <b-field>
-                <b-checkbox
-                  v-model="checkbox"
-                  native-value="ExposicionAlto"
-                  type="is-danger"
-                  >Ausente</b-checkbox
-                >
-              </b-field>
-            </td>
-            <td class="is-warning"></td>
-          </tr>
-        </tbody>
-      </table>
+      <Triagge />
       <b-field>
-        <b-button @click="guardar()" type="is-success">Guardar</b-button>
-     
+        <b-button
+          label="Terminar registro"
+          type="is-info"
+          size="is-medium"
+          @click="confirm()"
+        />
       </b-field>
     </b-step-item>
-
-
   </b-steps>
 </template>
 <script>
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
 import EmbarazadaService from "../services/EmbarazadaService";
-
+import { DialogProgrammatic as Dialog } from "buefy";
+import triagge from "./Triagge.vue";
 export default {
+  components: {
+    Triagge: triagge,
+  },
   data: () => ({
     selected: null,
     edad: null,
     activeStep: 0,
     municipios: [],
-    localidades:[],
-    localidadSeleccionada: '',
-    municipioSeleccionado:'',
+    localidades: [],
+    localidadSeleccionada: "",
+    municipioSeleccionado: "",
+    formatearFecha: Utiles.formatearFechaSegunLocale,
+    fechaInicio: null,
     isProfileSuccess: false,
     checkbox: false,
-    mobileMode: 'minimalist',
+    mobileMode: "minimalist",
     hasNavigation: true,
     locale: "es-MX",
     isAnimated: true,
@@ -2131,9 +837,8 @@ export default {
       noExpediente: "",
       NombreEmbarazada: "",
       curp: "",
-
       Direccion: "",
-      Derechohabiencia:"",
+      Derechohabiencia: "",
       TelefonoEmbarazada: null,
       DondeMigro: "",
       fechaNacimiento: null,
@@ -2153,11 +858,8 @@ export default {
       fechaVacunaInfluenza: null,
       fechaProbableUSG: null,
       fechaEvento: null,
-      edad:"",
-
-
+      edad: "",
     },
-    
   }),
   computed: {
     selectedString() {
@@ -2166,52 +868,58 @@ export default {
   },
   async mounted() {
     await this.obtenerMunicipio();
-   
-   
-  
   },
   methods: {
     calcularEdad() {
       var hoy = new Date();
+      //    const fechaCumple = Utiles.obtenerCadenaFecha( this.detalles.fechaNacimiento );
       var cumpleanos = new Date(this.detalles.fechaNacimiento);
       var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-      var m = hoy.getMonth() - cumpleanos.getMonth();
+      var mes = hoy.getMonth() - cumpleanos.getMonth();
+      //()  var dia = cumpleanos.getDay();
 
-      if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+      if (mes < 0 || (mes === 0 && hoy.getDate() < cumpleanos.getDate())) {
         edad--;
       }
-      this.edad = edad;
-      console.log(edad);
+      // this.detalles.fechaNacimiento = cumpleanos;
+      this.detalles.edad = edad;
       return edad;
     },
-    formatearFecha(fecha) {
-      return Utiles.obtenerCadenaFecha(fecha);
+
+    confirm() {
+      Dialog.confirm({
+        title: "Guardar registro.",
+        message: "Confirmar para guardar datos a la base de datos.",
+        cancelText: "Cancelar",
+        confirmText: "Aceptar",
+        type: "is-success",
+        onConfirm: () => this.guardar(),
+      });
     },
-  
     async obtenerMunicipio() {
-     
       try {
         this.municipios = await EmbarazadaService.obtenerMunicipios();
       } catch (e) {
         DialogosService.mostrarNotificacionError(
           "No se pudo obtener la lista de municipios..."
         );
-      } 
-      
-    },
-    async obtenerLocalidades(){
-    try{
-      this.localidades = await EmbarazadaService.obteneLocalidadesById(this.municipioSeleccionado.id);
-
-    }catch(e){
-      DialogosService.mostrarNotificacionError("error localidades")
-    }
-   },
-   
-    async guardar() {
-      if (!this.detalles.nombre == null) {
-        return DialogosService.mostrarNotificacionError("Campos vacios");
       }
+    },
+    async obtenerLocalidades() {
+      try {
+        if (typeof this.municipioSeleccionado.id === "undefined") {
+          return;
+        } else {
+          this.localidades = await EmbarazadaService.obteneLocalidadesById(
+            this.municipioSeleccionado.id
+          );
+        }
+      } catch (e) {
+        DialogosService.mostrarNotificacionError("error localidades");
+      }
+    },
+
+    async guardar() {
       const cargaUtil = {
         noExpediente: this.detalles.noExpediente,
         nombre: this.detalles.NombreEmbarazada,
@@ -2220,7 +928,9 @@ export default {
         Derechohabiencia: this.detalles.Derechohabiencia,
         telefono: this.detalles.TelefonoEmbarazada,
         dondeEmigro: this.detalles.DondeMigro,
-        fechaNacimiento: this.detalles.fechaNacimiento,
+        fechaNacimiento: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaNacimiento
+        ),
         gestas: this.detalles.Gestas,
         paras: this.detalles.Paras,
         abortos: this.detalles.Abortos,
@@ -2237,13 +947,17 @@ export default {
         fechaVacunaInfluenza: this.detalles.fechaVacunaInfluenza,
         fechaProbableUSG: this.detalles.fechaProbableUSG,
         fechaEvento: this.detalles.fechaEvento,
-        edad: this.detalles.edad
-     
+        edad: this.detalles.edad,
       };
-     
-      const respuesta = await EmbarazadaService.agregarVehiculo(cargaUtil);
-      if (respuesta) {
-        DialogosService.mostrarNotificacionExito("Vehículo registrado");
+
+      const respuesta = await EmbarazadaService.insertEmbarazada(cargaUtil);
+      if (respuesta != true) {
+        console.log("respuesta save", respuesta);
+        DialogosService.mostrarError("registro con errores");
+      } else {
+        DialogosService.mostrarExitoso(
+          "Datos guardados correctament en la base de datos"
+        );
         this.detalles = {
           noExpediente: "",
           NombreEmbarazada: "",
@@ -2268,12 +982,20 @@ export default {
           fechaVacunaInfluenza: null,
           fechaProbableUSG: null,
           fechaEvento: null,
-          edad:"",
-
-          
+          edad: "",
         };
       }
     },
   },
 };
 </script>
+<style scoped>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 500px;
+  height: 200px;
+  align-content: space-between;
+}
+</style>

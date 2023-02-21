@@ -6,6 +6,7 @@ import (
 	"backendmod/types"
 	"backendmod/utils"
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -105,20 +106,36 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 			respondWithSuccess(embarazada, w)
 		}
 	}).Methods(http.MethodGet)
-	router.HandleFunc("/agregar_embarazada", func(w http.ResponseWriter, r *http.Request) {
+	/* router.HandleFunc("/agregar_embarazada", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it
 		var embarazada types.Embarazada
 		err := json.NewDecoder(r.Body).Decode(&embarazada)
 		if err != nil {
 			respondWithError(err, w)
+			return
 		} else {
 			err := controller_embarazada.InsertEmbarazada(embarazada)
 			if err != nil {
 				respondWithError(err, w)
+				return
 			} else {
-				respondWithSuccess(true, w)
+		 	respondWithSuccess(true, w)
+			return
 			}
 		}
+
+	}).Methods(http.MethodPost)
+	*/
+	router.HandleFunc("/agregar_embarazada", func(w http.ResponseWriter, r *http.Request) {
+		responderHttpConFuncion(w, r, func() (interface{}, error) {
+			var embarazada types.Embarazada
+			err := json.NewDecoder(r.Body).Decode(&embarazada)
+			if err != nil {
+				return nil, err
+			}
+			err = controller_embarazada.InsertEmbarazada(embarazada)
+			return true, err
+		})
 	}).Methods(http.MethodPost)
 
 	/*router.HandleFunc("/agregar_embarazada/{idMunicipio}", func(w http.ResponseWriter, r *http.Request) {
@@ -183,7 +200,38 @@ func respondWithError(err error, w http.ResponseWriter) {
 }
 
 func respondWithSuccess(data interface{}, w http.ResponseWriter) {
-
+	//w, r, func() (interface{}, error
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(RespuestaHttp{
+		Data:  data,
+		Error: "",
+	})
+
+}
+func responderHttpConFuncion(w http.ResponseWriter, r *http.Request, f func() (interface{}, error)) {
+	datos, err := f()
+	if err != nil {
+		responderHttpConError(err, w, r)
+		return
+	}
+	responderHttpExitoso(datos, w, r)
+}
+func responderHttpExitoso(valor interface{}, w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(RespuestaHttp{
+		Data:  valor,
+		Error: "",
+	})
+}
+func responderHttpConError(err error, w http.ResponseWriter, r *http.Request) {
+	log.Printf("Error al servir respuesta para %s: %v", r.RemoteAddr, err)
+	w.WriteHeader(500)
+	json.NewEncoder(w).Encode(RespuestaHttp{
+		Data:  nil,
+		Error: err.Error(),
+	})
+}
+
+type RespuestaHttp struct {
+	Data  interface{} `json:"data"`
+	Error string      `json:"error"`
 }
