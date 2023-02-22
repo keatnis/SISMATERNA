@@ -86,7 +86,8 @@ export default {
     ]
   }
 },
-async mounted() {
+
+  async mounted() {
     await this.obtenerMunicipio();
    
    
@@ -95,9 +96,15 @@ async mounted() {
   methods: {
     async obtenerMunicipio() {
      
-     try {
-       this.municipios = await EmbarazadaService.obtenerMunicipios();
-     } catch (e) {
+      try {
+        if (typeof this.municipioSeleccionado.id === "undefined") {
+          return;
+        } else {
+          this.localidades = await EmbarazadaService.obteneLocalidadesById(
+            this.municipioSeleccionado.id
+          );
+        }
+      } catch (e) {
        DialogosService.mostrarNotificacionError(
          "No se pudo obtener la lista de municipios..."
        );

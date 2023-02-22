@@ -67,10 +67,15 @@
                 <option value="Otro">Otro</option>
               </b-select>
             </b-field>
-
+            <b-field label="Detenciones">
+              <b-input
+                v-model="detalles.detenciones"
+                placeholder="Detenciones"
+              ></b-input>
+            </b-field>
             <b-field label="Comorbilidades">
               <section>
-                <div  class="container">
+                <div class="container">
                   <b-checkbox
                     v-model="detalles.sobrepeso"
                     native-value="sobrepeso"
@@ -157,7 +162,7 @@
             <b-field label="Fecha de nacimiento">
               <b-datepicker
                 v-model="detalles.fechaNacimiento"
-                placeholder="Fecha de consulta"
+                placeholder="Fecha de nacimiento"
                 icon="calendar-today"
                 :datetime-formatter="formatearFecha"
                 :locale="locale"
@@ -169,9 +174,7 @@
 
             <b-field label="Lengua Indígena">
               <b-select
-                name="LenguaIndigena"
-                id="LenguaIndigena"
-                onchange="actualizar()"
+                v-model="detalles.lenguaIndigena"
                 placeholder="Lengua Indígena"
                 expanded
               >
@@ -271,12 +274,14 @@
               <b-field label="Paras">
                 <b-input
                   v-model="detalles.Paras"
+                  type="number"
                   placeholder="Numero de paras"
                 ></b-input>
               </b-field>
               <b-field label="Abortos">
                 <b-input
                   v-model="detalles.Abortos"
+                  type="number"
                   placeholder="Numero de abortos"
                 ></b-input>
               </b-field>
@@ -296,21 +301,15 @@
                 value="this.deatalles.edad"
               ></b-input>
             </b-field>
-            <div class="control">
-              <b-field label="¿Emigro?"></b-field>
-              <label class="radio">
-                <input type="radio" name="Emigro" />
-                Si
-              </label>
-              <label class="radio">
-                <input type="radio" name="Emigro" />
-                No
-              </label>
-              <b-input
-                v-model="detalles.DondeMigro"
-                placeholder="¿Dónde emigró?"
-              ></b-input>
-            </div>
+            <b-field label="Emigro">
+              <b-radio v-model="detalles.emigro" :native-value="false"
+                >Si</b-radio
+              >
+              <b-radio v-model="detalles.emigro" :native-value="true"
+                >No</b-radio
+              >
+            </b-field>
+
             <b-field label="Dirección">
               <b-input
                 v-model="detalles.Direccion"
@@ -363,7 +362,11 @@
                 <input type="radio" name="Complicaciones" />
                 No
               </label>
-              <b-select placeholder="¿Qué complicaciones presento?" expanded>
+              <b-select
+                placeholder="¿Qué complicaciones presento?"
+                v-model="detalles.complicaciones"
+                expanded
+              >
                 <option value="Hemorragia ">Hemorragia</option>
                 <option value="RetencioPlacenta">Retención de placenta</option>
                 <option value="PlacentaPrevia">Placenta previa</option>
@@ -437,16 +440,15 @@
                 </b-datepicker>
               </b-field>
 
-              <b-field label="Vacuna COVID-19">
-                <label class="radio">
-                  <input type="radio" name="Covid" />
-                  Se aplico
-                </label>
-                <label class="radio">
-                  <input type="radio" name="Covid" />
-                  No se aplico
-                </label>
+              <b-field label="Vacuna COVID">
+                <b-radio v-model="detalles.vacunaCOVID" :native-value="1"
+                  >Se aplicó</b-radio
+                >
+                <b-radio v-model="detalles.vacunaCOVID" :native-value="0"
+                  >No se aplico</b-radio
+                >
               </b-field>
+
               <b-field label="Biometria ematica">
                 <b-select placeholder="Biometria" expanded>
                   <option value="HB12">HB >=12</option>
@@ -837,16 +839,15 @@ export default {
       noExpediente: "",
       NombreEmbarazada: "",
       curp: "",
-
       Direccion: "",
       Derechohabiencia: "",
       TelefonoEmbarazada: null,
-      DondeMigro: "",
+      DondeMigro: 0,
       fechaNacimiento: null,
-      Gestas: "",
-      Paras: "",
-      Abortos: "",
-      Cesareas: "",
+      Gestas: 0,
+      Paras: 0,
+      Abortos: 0,
+      Cesareas: 0,
       consultaPregestacional: null,
       fechaUltimoEvento: null,
       fechaUlmaMenstruacion: null,
@@ -860,12 +861,48 @@ export default {
       fechaProbableUSG: null,
       fechaEvento: null,
       edad: "",
+      lenguaIndigena: "",
+      emigro: false,
+      detenciones: "",
+      comorbilidades: "",
+      AsistenciaPreg: 0,
+      complicaciones: "",
+      SGA: "",
+      noConsultasEmbarazo: 0,
+      noConsultasMes: 0,
+      rubeola: 0,
+      vacunaCOVID: 0,
+      grupoRH: "",
+      ego: "",
+      BiometriaHematica: "",
+      leucocitos: "",
+      plaquetas: "",
+      vdrl: "",
+      vih: "",
+      estadoGlucosa: "",
+      resultadoGlucosa: "",
+      caracteristicasFetls: "",
+      malformaciones: "",
+      liquidoAmiotico: "",
+      placenta: "",
+      referencia: "",
+      acudio_refe: "",
+      contrareferencia: "",
+      planSeguridad: "",
+      signosAlarma: "",
+      lugarParto: "",
+      quienAtenderaParto: "",
+      transporteAME: "",
+      observaciones: "",
+      diagnostico: "",
     },
   }),
   computed: {
-    selectedString() {
+    /*
+      selectedString() {
       return this.selected ? this.selected.toDateString() : "";
     },
+    */
   },
   async mounted() {
     await this.obtenerMunicipio();
@@ -899,21 +936,26 @@ export default {
     },
     async obtenerMunicipio() {
       try {
-        this.municipios = await EmbarazadaService.obtenerMunicipios();
+      
+          this.municipios = await EmbarazadaService.obtenerMunicipios();
+       
       } catch (e) {
         DialogosService.mostrarNotificacionError(
           "No se pudo obtener la lista de municipios..."
         );
       }
     },
+
     async obtenerLocalidades() {
       try {
-        if (typeof this.municipioSeleccionado.id === "undefined") {
+        if (this.municipioSeleccionado.id === "undefined") {
           return;
         } else {
+
           this.localidades = await EmbarazadaService.obteneLocalidadesById(
             this.municipioSeleccionado.id
           );
+          return;
         }
       } catch (e) {
         DialogosService.mostrarNotificacionError("error localidades");
@@ -922,33 +964,87 @@ export default {
 
     async guardar() {
       const cargaUtil = {
+        curp: this.detalles.curp,
         noExpediente: this.detalles.noExpediente,
         nombre: this.detalles.NombreEmbarazada,
-        curp: this.detalles.curp,
-        domicilioReferencia: this.detalles.Direccion,
-        Derechohabiencia: this.detalles.Derechohabiencia,
-        telefono: this.detalles.TelefonoEmbarazada,
-        dondeEmigro: this.detalles.DondeMigro,
-        fechaNacimiento: Utiles.obtenerCadenaFecha(
+        FechaNacimiento: Utiles.obtenerCadenaFecha(
           this.detalles.fechaNacimiento
         ),
+        domicilioReferencia: this.detalles.domicilioReferencia,
+        localidad: this.detalles.localidadSeleccionada,
+        municipio: this.detalles.municipioSeleccionado,
+        telefono: this.detalles.TelefonoEmbarazada,
+        lenguaIndigena: this.detalles.lenguaIndigena,
+        emigro: 1,
+        derechohabiencia: this.detalles.Derechohabiencia,
+        detenciones: this.detalles.detenciones,
+        ConsultaPregestacional: Utiles.obtenerCadenaFecha(
+          this.detalles.consultaPregestacional
+        ),
+        comorbilidades: this.detalles.comorbilidades,
+        AsistenciaPreg: this.detalles.AsistenciaPreg,
         gestas: this.detalles.Gestas,
         paras: this.detalles.Paras,
         abortos: this.detalles.Abortos,
         cesareas: this.detalles.Cesareas,
-        consultaPregestacional: this.detalles.consultaPregestacional,
-        fechaUltimoEvento: this.detalles.fechaUltimoEvento,
-        fechaUlmaMenstruacion: this.detalles.fechaUlmaMenstruacion,
-        fechaProbableParto: this.detalles.fechaProbableParto,
-        fechaConsulta: this.detalles.fechaConsulta,
-        fechaVacunaTDPrimera: this.detalles.fechaVacunaTDPrimera,
-        fechaVacunaTDSegunda: this.detalles.fechaVacunaTDSegunda,
-        fechaVacunaTDRefuerzo: this.detalles.fechaVacunaTDRefuerzo,
-        fechaVacunaTDPA: this.detalles.fechaVacunaTDPA,
-        fechaVacunaInfluenza: this.detalles.fechaVacunaInfluenza,
-        fechaProbableUSG: this.detalles.fechaProbableUSG,
-        fechaEvento: this.detalles.fechaEvento,
-        edad: this.detalles.edad,
+        FechaUltimoEvento: Utiles.obtenerCadenaFecha(
+          this.detalles.FechaUltimoEvento
+        ),
+        complicaciones: this.detalles.complicaciones,
+        FechaUlmaMenstruacion: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaUlmaMenstruacion
+        ),
+        FechaProbableParto: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaProbableParto
+        ),
+        SGA: this.detalles.SGA,
+        FechaConsulta: Utiles.obtenerCadenaFecha(this.detalles.fechaConsulta),
+        noConsultasEmbarazo: this.detalles.noConsultasEmbarazo,
+        noConsultasMes: this.detalles.noConsultasMes,
+        rubeola: this.detalles.rubeola,
+        FechaVacunaTDPrimera: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaVacunaTDPrimera
+        ),
+        FechaVacunaTDSegunda: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaVacunaTDSegunda
+        ),
+        FechaVacunaTDRefuerzo: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaVacunaTDRefuerzo
+        ),
+        FechaVacunaTDPA: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaVacunaTDPA
+        ),
+        FechaVacunaInfluenza: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaVacunaInfluenza
+        ),
+        vacunaCOVID: this.detalles.vacunaCOVID,
+        grupoRH: this.detalles.grupoRH,
+        ego: this.detalles.ego,
+        BiometriaHematica: this.detalles.BiometriaHematica,
+        leucocitos: this.detalles.leucocitos,
+        plaquetas: this.detalles.plaquetas,
+        vdrl: this.detalles.vdrl,
+        vih: this.detalles.vih,
+        estadoGlucosa: this.detalles.estadoGlucosa,
+        resultadoGlucosa: this.detalles.resultadoGlucosa,
+        caracteristicasFetls: this.detalles.caracteristicasFetls,
+        malformaciones: this.detalles.malformaciones,
+        LiquidoAmiotico: this.detalles.liquidoAmiotico,
+        placenta: this.detalles.placenta,
+        FechaProbableUSG: Utiles.obtenerCadenaFecha(
+          this.detalles.fechaProbableUSG
+        ),
+        referencia: this.detalles.referencia,
+        acudio_refe: this.detalles.acudio_refe,
+        contrareferencia: this.detalles.contrareferencia,
+        planSeguridad: this.detalles.planSeguridad,
+        signosAlarma: this.detalles.signosAlarma,
+        lugarParto: this.detalles.lugarParto,
+        quienAtenderaParto: this.detalles.quienAtenderaParto,
+        transporteAME: this.detalles.transporteAME,
+        FechaEvento: this.detalles.fechaEvento,
+        observaciones: this.detalles.observaciones,
+        diagnostico: this.detalles.diagnostico,
       };
 
       const respuesta = await EmbarazadaService.insertEmbarazada(cargaUtil);
@@ -964,13 +1060,14 @@ export default {
           NombreEmbarazada: "",
           curp: "",
           Direccion: "",
+          Derechohabiencia: "",
           TelefonoEmbarazada: null,
+          DondeMigro: 0,
           fechaNacimiento: null,
-          Gestas: "",
-          Paras: "",
-          Abortos: "",
-          Cesareas: "",
-          DondeMigro: "",
+          Gestas: 0,
+          Paras: 0,
+          Abortos: 0,
+          Cesareas: 0,
           consultaPregestacional: null,
           fechaUltimoEvento: null,
           fechaUlmaMenstruacion: null,
@@ -984,6 +1081,40 @@ export default {
           fechaProbableUSG: null,
           fechaEvento: null,
           edad: "",
+          lenguaIndigena: "",
+          emigro: false,
+          detenciones: "",
+          comorbilidades: "",
+          AsistenciaPreg: 0,
+          complicaciones: "",
+          SGA: "",
+          noConsultasEmbarazo: 0,
+          noConsultasMes: 0,
+          rubeola: 0,
+          vacunaCOVID: 0,
+          grupoRH: "",
+          ego: "",
+          BiometriaHematica: "",
+          leucocitos: "",
+          plaquetas: "",
+          vdrl: "",
+          vih: "",
+          estadoGlucosa: "",
+          resultadoGlucosa: "",
+          caracteristicasFetls: "",
+          malformaciones: "",
+          liquidoAmiotico: "",
+          placenta: "",
+          referencia: "",
+          acudio_refe: "",
+          contrareferencia: "",
+          planSeguridad: "",
+          signosAlarma: "",
+          lugarParto: "",
+          quienAtenderaParto: "",
+          transporteAME: "",
+          observaciones: "",
+          diagnostico: "",
         };
       }
     },

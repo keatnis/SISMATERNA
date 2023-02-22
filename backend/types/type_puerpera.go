@@ -1,4 +1,4 @@
-package types
+package embarazada
 
 type Puerpera struct {
 	Consultasiete    string `json:"Consultasiete,omitempty"`

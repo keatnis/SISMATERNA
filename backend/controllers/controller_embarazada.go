@@ -2,31 +2,36 @@ package controller_embarazada
 
 import (
 	db "backendmod/database"
-	"backendmod/types"
+	embarazada "backendmod/types"
 )
 
-func InsertEmbarazada(c types.Embarazada) error {
-	/* db, err := db.GetDB()
-	if err != nil {
-		return err
-	}
-	*/
+func InsertEmbarazada(c embarazada.Embarazada) error {
 	db, err := db.GetDB()
 	if err != nil {
 		return err
 	}
 
-	defer db.Close()
-
-	//_, err = bd.Exec("INSERT INTO video_games (name, genre, year) VALUES (?, ?, ?)", embarazada.NombreCompleto)
-	//return err
-	// Preparamos para prevenir inyecciones SQL
-	_, err = db.Exec("INSERT INTO mujer `curp`, `noexpediente`, `nombre`, `fechanacimiento`, `domicilio_referencia`, `localidad`, `municipio`, `telefono`, `lengua_indig`, `emigro`, `derechohabiencia`, `detenciones`, `consulta_riesgopreg`, `comorbilidades`, `gestas`, `paras`, `abortos`, `cesareas`, `fecha_ultimoparto`, `tipo_comp`, `fecha_ult_mestruacion`, `fpp`, `sdg_actual`, `fecha_consulta`, `no_consultaembarazo`, `no_consultames`, `rubeola`, `fecha_td`, `fecha_tdsegunda`, `fecha_tdrefuerzo`, `fecha_tdpa`, `fecha_influenza`, `covid`, `grupo_rh`, `ego`, `biometria_ematica`, `leucocitos`, `plaquetas`, `vdrl`, `vih`, `glucosa_estado`, `glucosa_resultado`, `caracteristicas_fetls`, `malformaciones`, `liquido_amniotico`, `placenta`, `fpp_usg`, `referencia`, `acudio_refe`, `contrareferencia`, `plan_seguridad`, `signos_alarma`, `donde_atenderaparto`, `quien_atenderaparto`, `ame`, `fechaevento`, `observaciones`, `diagnostico`)  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-		c.Curp, c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Direccion, c.Localidad, c.Municipio, c.Telefono, c.LenguaIndigena, c.Emigro, c.Derechohabiencia, c.Detenciones, c.ConsultaPregestacional, c.Comorbilidades, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.FechaUltimoEvento, c.Complicaciones, c.FechaUlmaMenstruacion, c.FechaProbableParto, c.SGA, c.FechaConsulta, c.NumConsultasEmbarazo, c.NumConsultaMes, c.Rubeola, c.FechaVacunaTDPrimera, c.FechaVacunaTDSegunda, c.FechaVacunaTDRefuerzo, c.FechaVacunaTDPA, c.FechaVacunaInfluenza, c.VacunaCOVID, c.GrupoRH, c.EGO, c.BiometriHematica, c.Leucocitos, c.Plaquetas, c.VDRL, c.VIH, c.EstadoGlucosa, c.ResultadoGlucosa, c.CaracteristicasFetls, c.Malformaciones, c.LiquidoAmiotico, c.Placenta, c.FechaProbableUSG, c.Referencia, c.AcudioReferencia, c.Contrareferencia, c.PlanSeguridad, c.SignosAlarma, c.LugarParto, c.QuienAtenderaParto, c.TransporteAME, c, c.FechaEvento, c.Observaciones, c.Diagnostico)
+	sentenciaPreparada, err := db.Prepare("INSERT INTO mujer (curp, noexpediente, nombre, fechanacimiento, domicilio_referencia, localidad, municipio, telefono, lengua_indig, emigro, derechohabiencia, detenciones, consulta_riesgopreg, comorbilidades, asistencia_preg , gestas, paras, abortos, cesareas, fecha_ultimoparto, tipo_comp, fecha_ult_mestruacion, fpp, sdg_actual, fecha_consulta, no_consultaembarazo, no_consultames, rubeola, fecha_td, fecha_tdsegunda, fecha_tdrefuerzo, fecha_tdpa, fecha_influenza, covid, grupo_rh, ego, biometria_ematica, leucocitos, plaquetas, vdrl, vih, glucosa_estado, glucosa_resultado, caracteristicas_fetls, malformaciones, liquido_amniotico, placenta, fpp_usg, referencia, acudio_refe, contrareferencia, plan_seguridad, signos_alarma, donde_atenderaparto, quien_atenderaparto)  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 	if err != nil {
 		return err
 	}
-	return nil
+	defer sentenciaPreparada.Close()
+	// Ejecutar sentencia, un valor por cada '?'
+	_, err = sentenciaPreparada.Exec(c.Curp, c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Direccion, c.Localidad, c.Municipio, c.Telefono, c.LenguaIndigena, c.Emigro, c.Derechohabiencia, c.Detenciones, c.ConsultaPregestacional, c.Comorbilidades, c.AsistenciaPreg, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.FechaUltimoEvento, c.Complicaciones, c.FechaUlmaMenstruacion, c.FechaProbableParto, c.SGA, c.FechaConsulta, c.NumConsultasEmbarazo, c.NumConsultaMes, c.Rubeola, c.FechaVacunaTDPrimera, c.FechaVacunaTDSegunda, c.FechaVacunaTDRefuerzo, c.FechaVacunaTDPA, c.FechaVacunaInfluenza, c.VacunaCOVID, c.GrupoRH, c.EGO, c.BiometriHematica, c.Leucocitos, c.Plaquetas, c.VDRL, c.VIH, c.EstadoGlucosa, c.ResultadoGlucosa, c.CaracteristicasFetls, c.Malformaciones, c.LiquidoAmiotico, c.Placenta, c.FechaProbableUSG, c.Referencia, c.AcudioReferencia, c.Contrareferencia, c.PlanSeguridad, c.SignosAlarma, c.LugarParto, c.QuienAtenderaParto)
+	if err != nil {
+		return err
+	}
+	return err
+
+	/*
+
+		_, err = db.Exec("INSERT INTO mujer (curp, noexpediente, nombre, fechanacimiento, domicilio_referencia, localidad, municipio, telefono, lengua_indig, emigro, derechohabiencia, detenciones, consulta_riesgopreg, comorbilidades, asistencia_preg , gestas, paras, abortos, cesareas, fecha_ultimoparto, tipo_comp, fecha_ult_mestruacion, fpp, sdg_actual, fecha_consulta, no_consultaembarazo, no_consultames, rubeola, fecha_td, fecha_tdsegunda, fecha_tdrefuerzo, fecha_tdpa, fecha_influenza, covid, grupo_rh, ego, biometria_ematica, leucocitos, plaquetas, vdrl, vih, glucosa_estado, glucosa_resultado, caracteristicas_fetls, malformaciones, liquido_amniotico, placenta, fpp_usg, referencia, acudio_refe, contrareferencia, plan_seguridad, signos_alarma, donde_atenderaparto, quien_atenderaparto, ame, fechaevento, observaciones, diagnostico)  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+			c.Curp, c.NoExpediente, c.NombreCompleto, c.FechaNacimiento, c.Direccion, c.Localidad, c.Municipio, c.Telefono, c.LenguaIndigena, c.Emigro, c.Derechohabiencia, c.Detenciones, c.ConsultaPregestacional, c.Comorbilidades, c.AsistenciaPreg, c.Gestas, c.Paras, c.Abortos, c.Cesareas, c.FechaUltimoEvento, c.Complicaciones, c.FechaUlmaMenstruacion, c.FechaProbableParto, c.SGA, c.FechaConsulta, c.NumConsultasEmbarazo, c.NumConsultaMes, c.Rubeola, c.FechaVacunaTDPrimera, c.FechaVacunaTDSegunda, c.FechaVacunaTDRefuerzo, c.FechaVacunaTDPA, c.FechaVacunaInfluenza, c.VacunaCOVID, c.GrupoRH, c.EGO, c.BiometriHematica, c.Leucocitos, c.Plaquetas, c.VDRL, c.VIH, c.EstadoGlucosa, c.ResultadoGlucosa, c.CaracteristicasFetls, c.Malformaciones, c.LiquidoAmiotico, c.Placenta, c.FechaProbableUSG, c.Referencia, c.AcudioReferencia, c.Contrareferencia, c.PlanSeguridad, c.SignosAlarma, c.LugarParto, c.QuienAtenderaParto, c.TransporteAME, c, c.FechaEvento, c.Observaciones, c.Diagnostico)
+		if err != nil {
+			return err
+		}
+		return nil
+	*/
 }
 
 func deleteVideoGame(id int64) error {
@@ -40,7 +45,7 @@ func deleteVideoGame(id int64) error {
 }
 
 // It takes the ID to make the update
-func updateEmbarazada(e types.Embarazada) error {
+func updateEmbarazada(e embarazada.Embarazada) error {
 	bd, err := db.GetDB()
 	if err != nil {
 		return err
@@ -49,9 +54,9 @@ func updateEmbarazada(e types.Embarazada) error {
 		e.NombreCompleto, e.Direccion)
 	return err
 }
-func GetEmbarazada() ([]types.Embarazada, error) {
+func GetEmbarazada() ([]embarazada.Embarazada, error) {
 	//Declare an array because if there's error, we return it empty
-	embarazadas := []types.Embarazada{}
+	embarazadas := []embarazada.Embarazada{}
 	bd, err := db.GetDB()
 	if err != nil {
 		return embarazadas, err
@@ -64,7 +69,7 @@ func GetEmbarazada() ([]types.Embarazada, error) {
 	// Iterate rows...
 	for rows.Next() {
 		// In each step, scan one row
-		var embarazada types.Embarazada
+		var embarazada embarazada.Embarazada
 		err := rows.Scan(&embarazada.Id, &embarazada.NoExpediente, &embarazada.NombreCompleto, &embarazada.Curp, &embarazada.Telefono, &embarazada.Edad, &embarazada.FechaNacimiento, &embarazada.Direccion, &embarazada.Gestas, &embarazada.Paras, &embarazada.Abortos, &embarazada.Cesareas, &embarazada.Emigro, &embarazada.ConsultaPregestacional, &embarazada.FechaUltimoEvento, &embarazada.FechaUlmaMenstruacion, &embarazada.FechaProbableParto, &embarazada.FechaConsulta, &embarazada.FechaVacunaInfluenza, &embarazada.FechaVacunaTDPrimera, &embarazada.FechaVacunaTDSegunda, &embarazada.FechaVacunaTDRefuerzo, &embarazada.FechaVacunaTDPA, &embarazada.FechaProbableUSG, &embarazada.FechaUltimoEvento)
 		if err != nil {
 			return embarazadas, err
@@ -75,8 +80,8 @@ func GetEmbarazada() ([]types.Embarazada, error) {
 	return embarazadas, nil
 }
 
-func GetMunicipios() ([]types.Municipio, error) {
-	municipios := []types.Municipio{}
+func GetMunicipios() ([]embarazada.Municipio, error) {
+	municipios := []embarazada.Municipio{}
 	bd, err := db.GetDB()
 	if err != nil {
 		return municipios, err
@@ -87,7 +92,7 @@ func GetMunicipios() ([]types.Municipio, error) {
 	}
 	//iteramos las filas
 	for rows.Next() {
-		var municipio types.Municipio
+		var municipio embarazada.Municipio
 		err := rows.Scan(&municipio.Id_municipio, &municipio.NombreMunicipio)
 		if err != nil {
 			return municipios, err
@@ -98,21 +103,21 @@ func GetMunicipios() ([]types.Municipio, error) {
 
 }
 
-func ObtenerLocalidades(id int64) ([]types.Localidad, error) {
-	localidades := []types.Localidad{}
+func ObtenerLocalidades(id int64) ([]embarazada.Localidad, error) {
+	localidades := []embarazada.Localidad{}
 	bd, err := db.GetDB()
 
 	if err != nil {
 		return localidades, err
 	}
 
-	defer bd.Close()
 	filas, err := bd.Query(`SELECT id_localidad,localidad FROM t_localidad WHERE id_municipio=? order by localidad asc `, id)
 	if err != nil {
 		return localidades, err
 	}
-	defer filas.Close()
-	var localidad types.Localidad
+	defer bd.Close()
+
+	var localidad embarazada.Localidad
 	for filas.Next() {
 		err := filas.Scan(&localidad.Id_localidad, &localidad.NombreLocalidad)
 
@@ -121,5 +126,6 @@ func ObtenerLocalidades(id int64) ([]types.Localidad, error) {
 		}
 		localidades = append(localidades, localidad)
 	}
+	defer filas.Close()
 	return localidades, nil
 }

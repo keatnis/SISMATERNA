@@ -1,11 +1,11 @@
-package controller_puerpera
+package controller_embarazada
 
 import (
 	db "backendmod/database"
-	"backendmod/types"
+	ty "backendmod/types"
 )
 
-func InsertPuerpera(c types.Puerpera) error {
+func InsertPuerpera(c ty.Puerpera) error {
 	db, err := db.GetDB()
 	if err != nil {
 		return err
@@ -21,5 +21,5 @@ func InsertPuerpera(c types.Puerpera) error {
 	if err != nil {
 		return err
 	}
-	return
+	return err
 }

@@ -3,7 +3,7 @@ package routes
 import (
 	controller_embarazada "backendmod/controllers"
 	db "backendmod/database"
-	"backendmod/types"
+	emb "backendmod/types"
 	"backendmod/utils"
 	"encoding/json"
 	"log"
@@ -100,10 +100,12 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 			return
 		}
 		embarazada, err := controller_embarazada.ObtenerLocalidades(id)
+
 		if err != nil {
 			respondWithError(err, w)
 		} else {
 			respondWithSuccess(embarazada, w)
+			return
 		}
 	}).Methods(http.MethodGet)
 	/* router.HandleFunc("/agregar_embarazada", func(w http.ResponseWriter, r *http.Request) {
@@ -128,12 +130,13 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 	*/
 	router.HandleFunc("/agregar_embarazada", func(w http.ResponseWriter, r *http.Request) {
 		responderHttpConFuncion(w, r, func() (interface{}, error) {
-			var embarazada types.Embarazada
+			var embarazada emb.Embarazada
 			err := json.NewDecoder(r.Body).Decode(&embarazada)
 			if err != nil {
 				return nil, err
 			}
 			err = controller_embarazada.InsertEmbarazada(embarazada)
+
 			return true, err
 		})
 	}).Methods(http.MethodPost)

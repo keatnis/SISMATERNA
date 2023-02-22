@@ -2,7 +2,8 @@ const DIA_EN_MILISEGUNDOS = 1000 * 60 * 60 * 24;
 const HORA_INICIO_DE_DIA = "00:00:00";
 const HORA_FIN_DE_DIA = "23:59:59";
 const formateadorFechaYHora = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
-const formateadorFecha = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium'});
+const formateadorFecha = new Intl.DateTimeFormat('es-MX', { dateStyle: 'short'},{ timeZone: "UTC" });
+
 const formateadorDinero = new Intl.NumberFormat("en", { style: "currency", "currency": "MXN" });
 const Utiles = {
     formatearDinero(cantidad) {
@@ -54,9 +55,10 @@ const Utiles = {
         return cadenaFecha + separador + cadenaHora;
     },
     obtenerCadenaFecha(fecha) {
-        const mes = fecha.getMonth() + 1; // Ya que los meses los cuenta desde el 0
-        const dia = fecha.getDate();
-        const cadenaFecha = `${fecha.getFullYear()}-${this.agregarCeroSiEsNecesario(mes)}-${this.agregarCeroSiEsNecesario(dia)}`;
+        var fechaselec = new Date(fecha);
+        const mes = fechaselec.getMonth() + 1; // Ya que los meses los cuenta desde el 0
+        const dia = fechaselec.getDay()
+        const cadenaFecha = `${fechaselec.getFullYear()}-${this.agregarCeroSiEsNecesario(mes)}-${this.agregarCeroSiEsNecesario(dia)}`;
         return cadenaFecha;
     },
     agregarCeroSiEsNecesario(valor) {

@@ -15,7 +15,7 @@ const manejarRespuesta = async (respuesta) => {
     if (respuestaDecodificada.error) {
         throw new Error(JSON.stringify(respuestaDecodificada.error));
     }
-    console.log("respdecodificada ",respuestaDecodificada.data)
+   
     return respuestaDecodificada.data;
     
 };
@@ -42,13 +42,11 @@ const HttpService = {
     },
     "get": async (ruta) => {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
-            credentials: "include",
-            mode: 'no-cors',
+            credentials: 'include',
+            mode:'no-cors',
            
         });
-       
-        return await respuestaRaw.json();
-     
+        return await manejarRespuesta(respuestaRaw);
     },
     "delete": async (ruta) => {
         const respuestaRaw = await fetch(RUTA_SERVIDOR + ruta, {
