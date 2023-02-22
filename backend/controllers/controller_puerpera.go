@@ -11,7 +11,7 @@ func InsertPuerpera(c ty.Puerpera) error {
 		return err
 	}
 
-	sentenciaPreparada, err := db.Prepare("INSERT INTO puerpera (consutal_siete, consulta_veintiocho,consulta_cuarenta) VALUES(?,?,?)")
+	sentenciaPreparada, err := db.Prepare("INSERT INTO puerpera (consulta_siete, consulta_veintiocho, consulta_cuarenta) VALUES(?,?,?)")
 	if err != nil {
 		return err
 	}
