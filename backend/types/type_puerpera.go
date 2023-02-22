@@ -1,7 +1,7 @@
 package embarazada
 
 type Puerpera struct {
-	Consultasiete    string `json:"Consultasiete,omitempty"`
-	Consultaveinte   string `json:"Consultaveinte,omitempty"`
-	Consultacuarenta string `json:"Consultacuarenta,omitempty"`
+	Consultasiete    string `json:"consultasiete,omitempty"`
+	Consultaveinte   string `json:"consultaveinte,omitempty"`
+	Consultacuarenta string `json:"consultacuarenta,omitempty"`
 }

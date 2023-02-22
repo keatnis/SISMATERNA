@@ -1,52 +1,56 @@
 <template>
   <!-- <div class="columns"> -->
-  <b-steps 
-  v-model="activeStep" 
-  :animated="isAnimated" 
-  :rounded="isRounded" 
-  :has-navigation="hasNavigation"
-  :icon-prev="prevIcon" 
-  :icon-next="nextIcon" 
-  :mobile-mode="mobileMode">
-
+  <b-steps
+    v-model="activeStep"
+    :animated="isAnimated"
+    :rounded="isRounded"
+    :has-navigation="hasNavigation"
+    :icon-prev="prevIcon"
+    :icon-next="nextIcon"
+    :mobile-mode="mobileMode"
+  >
     <div class="has-text-centered">
-    
       <article class="panel is-info centered">
-        
-        <div class="panel-heading">
-          Registrar puerpera
-        </div>
+        <div class="panel-heading">Registrar puerpera</div>
       </article>
     </div>
     <div>
       <div class="columns">
-        
         <div class="column is-half">
-
-          <b-field label="No. Progreso" >
-            <b-input disabled="»disabled»" v-model="detalles.id" placeholder=""></b-input>
+          <b-field label="No. Progreso">
+            <b-input
+              disabled="»disabled»"
+              v-model="detalles.id"
+              placeholder=""
+            ></b-input>
           </b-field>
-          <b-field label="Nombre de puerpera" >
-            <b-input v-model="detalles.NombrePuerpera" placeholder="Nombre completo" disabled="»disabled»"></b-input>
+          <b-field label="Nombre de puerpera">
+            <b-input
+              v-model="detalles.NombrePuerpera"
+              placeholder="Nombre completo"
+              disabled="»disabled»"
+            ></b-input>
           </b-field>
 
           <b-field label=" Consulta de 7 días">
-            <b-datepicker 
-            v-model="detalles.consultasiete" 
-            placeholder="Fecha consulta de 7 días" 
-            icon="calendar-today" 
-            :locale="locale" editable>
+            <b-datepicker
+              v-model="detalles.consultasiete"
+              placeholder="Fecha consulta de 7 días"
+              icon="calendar-today"
+              :locale="locale"
+              editable
+            >
             </b-datepicker>
           </b-field>
 
-
-
           <b-field label="Consulta de 40 días">
-            <b-datepicker 
-            v-model="detalles.consultacuarenta " 
-            placeholder="Fecha consulta de 40 días" 
-            icon="calendar-today" 
-            :locale="locale" editable>
+            <b-datepicker
+              v-model="detalles.consultacuarenta"
+              placeholder="Fecha consulta de 40 días"
+              icon="calendar-today"
+              :locale="locale"
+              editable
+            >
             </b-datepicker>
           </b-field>
 
@@ -57,15 +61,14 @@
               <option value="parteraTra">Partera Trad.</option>
               <option value="parteraPro">Partera Prof.</option>
               <option value="taps">TAPS</option>
-              <option value="familiar">Familiar </option>
-              <option value="ningunoAten">Ninguno </option>
-
+              <option value="familiar">Familiar</option>
+              <option value="ningunoAten">Ninguno</option>
             </b-select>
           </b-field>
           <b-field label="Resolución del embarazo">
             <b-select placeholder="Resolución del embarazo" expanded>
               <option value="vaginal">Vaginal</option>
-              <option value="cesarea ">Cesarea </option>
+              <option value="cesarea ">Cesarea</option>
               <option value="aborto">Legrado (aborto)</option>
               <option value="óbito">Legrado (óbito)</option>
               <option value="ningunoReso">Ninguno</option>
@@ -73,7 +76,8 @@
           </b-field>
 
           <b-field label="APEO">
-            <b-select placeholder="APEO" expanded>
+            <b-select placeholder="APEO" 
+            v-model="detalles.APEO" expanded>
               <option value="diu">DIU</option>
               <option value="otb">OTB</option>
               <option value="implante">Implante</option>
@@ -103,22 +107,25 @@
         </div>
         <div class="column is-half">
           <b-field label="CURP">
-            <b-input 
-            v-model="detalles.descripcion" 
-            placeholder="Clave Unica de Registro de Población" 
-            icon="magnify">
-          </b-input>
+            <b-input
+              v-model="detalles.descripcion"
+              placeholder="Clave Unica de Registro de Población"
+              icon="magnify"
+            >
+            </b-input>
           </b-field>
           <b-field label="Edad">
             <b-input disabled="»disabled»" v-model="detalles.Edad"></b-input>
           </b-field>
 
           <b-field label="Consulta de 28 días">
-            <b-datepicker 
-            v-model="detalles.consultaveinte" 
-            placeholder="Fecha consulta de 28 días" 
-            icon="calendar-today" 
-            :locale="locale" editable>
+            <b-datepicker
+              v-model="detalles.consultaveinte"
+              placeholder="Fecha consulta de 28 días"
+              icon="calendar-today"
+              :locale="locale"
+              editable
+            >
             </b-datepicker>
           </b-field>
           <b-field label="Signos de alarma">
@@ -129,7 +136,9 @@
               <option value="FiebreDolor">Fiebre/Dolor Pelvico</option>
               <option value="FiebreFlujo">Fiebre/Flujo Vaginal</option>
               <option value=">DolorFlujo">Dolor Pelvico/Flujo Vaginal</option>
-              <option value="FiebreDolorFlujo">Fiebre/Dolor Pelvico/Flujo Vaginal</option>
+              <option value="FiebreDolorFlujo">
+                Fiebre/Dolor Pelvico/Flujo Vaginal
+              </option>
               <option value="Cefalea">Cefalea</option>
               <option value="NingunoSigno">Ninguno</option>
             </b-select>
@@ -152,19 +161,14 @@
             </b-select>
           </b-field>
 
-
-
           <b-field label="No. de producto">
             <b-select placeholder="No. de producto" expanded>
               <option value="unico">Único</option>
               <option value="gemelar">Gemelar</option>
               <option value="trillizos">Trillizos</option>
               <option value="cuatrillizos">Cuatrillizos</option>
-              
             </b-select>
           </b-field>
-
-
 
           <b-field label="Puerpera aceptante">
             <b-select placeholder="Puerpera acentante" expanded>
@@ -176,32 +180,26 @@
             </b-select>
           </b-field>
 
-
           <b-field label="Fecha de parto">
-            <b-datepicker 
-
-            placeholder="Fecha del evento" 
-            icon="calendar-today" 
-            :locale="locale" disabled editable>
+            <b-datepicker
+              placeholder="Fecha del evento"
+              icon="calendar-today"
+              :locale="locale"
+              disabled
+              editable
+            >
             </b-datepicker>
           </b-field>
-         
+
           <b-field>
             <b-button @click="guardar()" type="is-success">Guardar</b-button>
-
           </b-field>
         </div>
-
-        
       </div>
-
     </div>
-
   </b-steps>
-  
 </template>
 <script>
-
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
 import PuerperaService from "../services/PuerperaService";
@@ -210,10 +208,10 @@ export default {
     selected: null,
     edad: null,
     activeStep: 0,
-    
+
     isProfileSuccess: false,
     checkbox: false,
-    mobileMode: 'minimalist',
+    mobileMode: "minimalist",
     hasNavigation: true,
     locale: "es-MX",
     isAnimated: true,
@@ -224,20 +222,17 @@ export default {
     showSocial: false,
     checkboxGroup: [],
     detalles: {
-      consultasiete:null,
+      APEO:"",
+      consultasiete: null,
       consultaveinte: null,
-      consultacuarenta:null,
-      
+      consultacuarenta: null,
     },
   }),
   computed: {
-    selectedString() {
-      return this.selected ? this.selected.toDateString() : "";
-    },
+   
   },
 
   methods: {
-    
     formatearFecha(fecha) {
       return Utiles.obtenerCadenaFecha(fecha);
     },
@@ -246,12 +241,12 @@ export default {
         return DialogosService.mostrarNotificacionError("Campos vacios");
       }
       const cargaUtil = {
-        consultasiete: this.detalles.consultasiete,
-        consultaveinte: this.detalles.consultaveinte,
-        consultacuarenta: this.detalles.consultacuarenta,
-        };
+        consultasiete: Utiles.obtenerCadenaFecha(this.detalles.consultasiete),
+        consultaveinte:  Utiles.obtenerCadenaFecha(this.detalles.consultaveinte),
+        consultacuarenta:  Utiles.obtenerCadenaFecha(this.detalles.consultacuarenta),
+      };
 
-        const respuesta = await PuerperaService.agregarPuerpera(cargaUtil);
+      const respuesta = await PuerperaService.agregarPuerpera(cargaUtil);
       if (respuesta) {
         DialogosService.mostrarNotificacionExito("Vehículo registrado");
         this.detalles = {

@@ -174,6 +174,21 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 			respondWithError(err, w)
 		}
 	}).Methods(http.MethodGet)
+
+	//para PUERPERA
+
+	router.HandleFunc("/RegistrarPuerpera", func(w http.ResponseWriter, r *http.Request) {
+		responderHttpConFuncion(w, r, func() (interface{}, error) {
+			var puerpera emb.Puerpera
+			err := json.NewDecoder(r.Body).Decode(&puerpera)
+			if err != nil {
+				return nil, err
+			}
+			err = controller_embarazada.InsertPuerpera(puerpera)
+			return true, err
+		})
+	}).Methods(http.MethodPost)
+
 }
 
 // Habilitar el CORS
