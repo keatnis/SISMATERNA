@@ -1,9 +1,18 @@
 <template>
   <!-- <div class="columns"> -->
-  <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
-    :icon-prev="prevIcon" :icon-next="nextIcon" :label-position="labelPosition" :mobile-mode="mobileMode">
+  <b-steps 
+  v-model="activeStep" 
+  :animated="isAnimated" 
+  :rounded="isRounded" 
+  :has-navigation="hasNavigation"
+  :icon-prev="prevIcon" 
+  :icon-next="nextIcon" 
+  :mobile-mode="mobileMode">
+
     <div class="has-text-centered">
+    
       <article class="panel is-info centered">
+        
         <div class="panel-heading">
           Registrar puerpera
         </div>
@@ -11,12 +20,13 @@
     </div>
     <div>
       <div class="columns">
+        
         <div class="column is-half">
 
-          <b-field label="No. Progreso" :label-position="labelPosition">
+          <b-field label="No. Progreso" >
             <b-input disabled="»disabled»" v-model="detalles.id" placeholder=""></b-input>
           </b-field>
-          <b-field label="Nombre de puerpera" :label-position="labelPosition">
+          <b-field label="Nombre de puerpera" >
             <b-input v-model="detalles.NombrePuerpera" placeholder="Nombre completo" disabled="»disabled»"></b-input>
           </b-field>
 
@@ -191,7 +201,7 @@
   
 </template>
 <script>
-//labelPosition: 'on-border',
+
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
 import PuerperaService from "../services/PuerperaService";
@@ -225,20 +235,14 @@ export default {
       return this.selected ? this.selected.toDateString() : "";
     },
   },
-  mounted() {
-    this.detalles.fechaEntrada = new Date();
-    this.refrescarFechaYHoraActual();
-    setInterval(this.refrescarFechaYHoraActual, 500);
-  },
+
   methods: {
-    refrescarFechaYHoraActual() {
-      this.fechaYHoraActual = Utiles.obtenerFechaYHoraActual();
-    },
+    
     formatearFecha(fecha) {
-      return Utiles.obtenerFechaYHora(fecha);
+      return Utiles.obtenerCadenaFecha(fecha);
     },
     async guardar() {
-      if (!this.detalles.nombre == null) {
+      if (!this.detalles.consultasiete == null) {
         return DialogosService.mostrarNotificacionError("Campos vacios");
       }
       const cargaUtil = {
