@@ -25,6 +25,7 @@
 
 
 <script>
+
     export default {
         data() {
             const data = [
