@@ -138,17 +138,19 @@
               </section>
             </b-field>
             <b-field label="Gestas">
-              <b-input
+              
+              <b-numberinput
                 v-model="detalles.Gestas"
                 type="number"
+
                 placeholder="Número de gestas"
-              ></b-input>
+              ></b-numberinput>
             </b-field>
             <b-field label="Cesareas">
-              <b-input
+              <b-numberinput
                 v-model="detalles.Cesareas"
                 placeholder="Número de cesareas"
-              ></b-input>
+              ></b-numberinput>
             </b-field>
           </div>
 
@@ -272,18 +274,18 @@
               </div>
 
               <b-field label="Paras">
-                <b-input
+                <b-numberinput
                   v-model="detalles.Paras"
                   type="number"
                   placeholder="Numero de paras"
-                ></b-input>
+                ></b-numberinput>
               </b-field>
               <b-field label="Abortos">
-                <b-input
+                <b-numberinput
                   v-model="detalles.Abortos"
                   type="number"
                   placeholder="Numero de abortos"
-                ></b-input>
+                ></b-numberinput>
               </b-field>
             </div>
           </div>
