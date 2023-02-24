@@ -14,7 +14,7 @@ type Embarazada struct {
 	LenguaIndigena         string `json:"lenguaIndigena"`
 	Emigro                 int64  `json:"emigro"`
 	Derechohabiencia       string `json:"derechohabiencia"`
-	Detenciones            string `json:"detenciones"`
+	Violencia              string `json:"violencia"`
 	Comorbilidades         string `json:"comorbilidades"`
 	AsistenciaPreg         int64  `json:"AsistenciaPreg"`
 	ConsultaPregestacional string `json:"ConsultaPregestacional,omitempty"`
@@ -56,7 +56,6 @@ type Embarazada struct {
 	AcudioReferencia       string `json:"acudio_refe"`
 	Contrareferencia       string `json:"contrareferencia"`
 	PlanSeguridad          string `json:"planSeguridad"`
-	SignosAlarma           string `json:"signosAlarma"`
 	LugarParto             string `json:"lugarParto"`
 	QuienAtenderaParto     string `json:"quienAtenderaParto"`
 	TransporteAME          string `json:"transporteAME"`
