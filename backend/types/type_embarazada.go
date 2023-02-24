@@ -23,6 +23,7 @@ type Embarazada struct {
 	Abortos                int64  `json:"abortos"`
 	Cesareas               int64  `json:"cesareas"`
 	FechaUltimoEvento      string `json:"FechaUltimoEvento,omitempty"`
+	PresentoComplicaiones  int64  `json:"presentComplicaciones"`
 	Complicaciones         string `json:"complicaciones"`
 	FechaUlmaMenstruacion  string `json:"FechaUlmaMenstruacion,omitempty"`
 	FechaProbableParto     string `json:"FechaProbableParto,omitempty"`

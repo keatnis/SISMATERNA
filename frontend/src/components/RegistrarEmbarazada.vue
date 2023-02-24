@@ -298,16 +298,16 @@
             </b-field>
             <b-field label="Edad">
               <b-input
-                disabled="»disabled»"
+                disabled
                 v-model="detalles.edad"
                 value="this.deatalles.edad"
               ></b-input>
             </b-field>
             <b-field label="Emigro">
-              <b-radio v-model="detalles.emigro" :native-value="false"
+              <b-radio v-model="detalles.emigro" :native-value="1"
                 >Si</b-radio
               >
-              <b-radio v-model="detalles.emigro" :native-value="true"
+              <b-radio v-model="detalles.emigro" :native-value="0"
                 >No</b-radio
               >
             </b-field>
@@ -320,14 +320,12 @@
             </b-field>
             <div class="control">
               <b-field label="¿Asistió a consulta pregestacional?"></b-field>
-              <label class="radio">
-                <input type="radio" name="ConsultaPreg" />
-                Si
-              </label>
-              <label class="radio">
-                <input type="radio" name="ConsultaPreg" />
-                No
-              </label>
+              <b-radio v-model="detalles.AsistenciaPreg" :native-value="1"
+                >Si</b-radio
+              >
+              <b-radio v-model="detalles.AsistenciaPreg" :native-value="0"
+                >No</b-radio
+              >
             </div>
 
             <b-datepicker
@@ -356,14 +354,8 @@
               <b-field
                 label="¿Presentó complicaciones en el embarazo previo?"
               ></b-field>
-              <label class="radio">
-                <input type="radio" name="Complicaciones" />
-                Si
-              </label>
-              <label class="radio">
-                <input type="radio" name="Complicaciones" />
-                No
-              </label>
+              <b-radio v-model="detalles.presentComplicaciones" :native-value="1" >Si</b-radio>              
+              <b-radio v-model="detalles.presentComplicaciones" :native-value="0" >No</b-radio>
               <b-select
                 placeholder="¿Qué complicaciones presento?"
                 v-model="detalles.complicaciones"
@@ -452,7 +444,7 @@
               </b-field>
 
               <b-field label="Biometria ematica">
-                <b-select placeholder="Biometria" expanded>
+                <b-select v-model="detalles.BiometriaHematica" placeholder="Biometria" expanded>
                   <option value="HB12">HB >=12</option>
                   <option value="HBMAY9">HB >=9</option>
                   <option value="HBMEN9">HB Menor a 9</option>
@@ -461,7 +453,7 @@
               </b-field>
 
               <b-field label="VIH">
-                <b-select placeholder="VIH" expanded>
+                <b-select v-model="detalles.vih" placeholder="VIH" expanded>
                   <option value="ReactivoVIH">Reactivo</option>
                   <option value="NoReactivoVIH">No reactivo</option>
                   <option value="NoRealizoVIH">No se realizó</option>
@@ -494,11 +486,11 @@
               </b-field>
             </div>
             <b-field label="No. Total de consulta durante el embarazo">
-              <b-input
-                disabled="»disabled»"
-                v-model="detalles.placas"
+              <b-numberinput
+                disabled
+                v-model="detalles.noConsultasEmbarazo"
                 placeholder="No. Total de consulta durante el embarazo"
-              ></b-input>
+              ></b-numberinput>
             </b-field>
             <div class="control">
               <b-field label="Fecha de vacunación TD primera">
@@ -526,7 +518,8 @@
             </div>
 
             <b-field label="Grupo RH">
-              <b-select placeholder="Grupo RH" expanded>
+              <b-select placeholder="Grupo RH"
+              v-model="detalles.grupoRH" expanded>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -539,7 +532,8 @@
               </b-select>
             </b-field>
             <b-field label="Leucocitos">
-              <b-select placeholder="Leucocitos" expanded>
+              <b-select placeholder="Leucocitos"
+              v-model="detalles.leucocitos" expanded>
                 <option value="Normales">Normales</option>
                 <option value="DisminuidosLinfocitos">
                   Disminuidos linfocitos
@@ -554,8 +548,15 @@
               </b-select>
             </b-field>
 
+            <b-field label="Plaquetas">
+              <b-select placeholder="Plaquetas"
+              v-model="detalles.plaquetas" expanded>
+                <option value="valor1">Valor1</option>
+                </b-select>
+            </b-field>
             <b-field label="Estado tiras glucosa">
-              <b-select placeholder="Estado en el que se realizó" expanded>
+              <b-select placeholder="Estado en el que se realizó" 
+              v-model="detalles.estadoGlucosa" expanded>
                 <option value="Ayuno">Ayuno</option>
                 <option value="Posprandial1">Posprandial 1 hora</option>
                 <option value="Posprandial2">Posprandial 2 horas</option>
@@ -564,7 +565,8 @@
             </b-field>
 
             <b-field label=" Malformaciones congenitas">
-              <b-select placeholder="Malformaciones" expanded>
+              <b-select placeholder="Malformaciones" 
+              v-model="detalles.malformaciones" expanded>
                 <option value="EspinaBifida">Espina bifida</option>
                 <option value="Meningocele">Meningocele</option>
                 <option value="Mielomeningocele">Mielomeningocele</option>
@@ -577,19 +579,19 @@
           <div class="column is-one-third">
             <b-field label="Semana de gestación actual">
               <b-input
-                disabled="»disabled»"
-                v-model="detalles.semanaGestacion"
+                disabled
+                v-model="detalles.SGA"
                 placeholder="Semanan de gestación actual"
               >
               </b-input>
             </b-field>
             <b-field label="No. Total de consulta en el mes">
-              <b-input
-                disabled="»disabled»"
-                v-model="detalles.placas"
+              <b-numberinput
+                disabled
+                v-model="detalles.noConsultasMes"
                 placeholder="No. Total de consulta en el mes "
               >
-              </b-input>
+              </b-numberinput>
             </b-field>
             <div class="control">
               <b-field label="Fecha de vacunación TD segunda">
@@ -618,7 +620,8 @@
               </b-field>
             </div>
             <b-field label="EGO y/o tiras urianalisis">
-              <b-select placeholder="EGO" expanded>
+              <b-select placeholder="EGO" v-model="detalles.ego" 
+              expanded>
                 <option value="Trazas">Prot. trazas</option>
                 <option value="Mayor300">Prot. >300 mg/l</option>
                 <option value="Leucitos">leucitos >5</option>
@@ -628,7 +631,8 @@
             </b-field>
 
             <b-field label="VDRL">
-              <b-select placeholder="VDRL" expanded>
+              <b-select v-model="detalles.vdrl"
+              placeholder="VDRL" expanded>
                 <option value="ReactivoVDRL">Reactivo</option>
                 <option value="NoReactivoVDRL">No reactivo</option>
                 <option value="NoRealizo">No se realizo</option>
@@ -864,10 +868,11 @@ export default {
       fechaEvento: null,
       edad: "",
       lenguaIndigena: "",
-      emigro: false,
+      emigro: 0,
       detenciones: "",
       comorbilidades: "",
       AsistenciaPreg: 0,
+      presentComplicaciones:0,
       complicaciones: "",
       SGA: "",
       noConsultasEmbarazo: 0,
@@ -972,12 +977,12 @@ export default {
         FechaNacimiento: Utiles.obtenerCadenaFecha(
           this.detalles.fechaNacimiento
         ),
-        domicilioReferencia: this.detalles.domicilioReferencia,
-        localidad: this.detalles.localidadSeleccionada,
-        municipio: this.detalles.municipioSeleccionado,
+        domicilioReferencia: this.detalles.Direccion,
+        localidad: this.localidadSeleccionada.text,
+        municipio: this.municipioSeleccionado.text,
         telefono: this.detalles.TelefonoEmbarazada,
         lenguaIndigena: this.detalles.lenguaIndigena,
-        emigro: 1,
+        emigro: this.detalles.emigro,
         derechohabiencia: this.detalles.Derechohabiencia,
         detenciones: this.detalles.detenciones,
         ConsultaPregestacional: Utiles.obtenerCadenaFecha(
@@ -990,8 +995,9 @@ export default {
         abortos: this.detalles.Abortos,
         cesareas: this.detalles.Cesareas,
         FechaUltimoEvento: Utiles.obtenerCadenaFecha(
-          this.detalles.FechaUltimoEvento
+          this.detalles.fechaUltimoEvento
         ),
+        presentComplicaciones:this.detalles.presentComplicaciones,
         complicaciones: this.detalles.complicaciones,
         FechaUlmaMenstruacion: Utiles.obtenerCadenaFecha(
           this.detalles.fechaUlmaMenstruacion
@@ -1084,10 +1090,11 @@ export default {
           fechaEvento: null,
           edad: "",
           lenguaIndigena: "",
-          emigro: false,
+          emigro: 0,
           detenciones: "",
           comorbilidades: "",
           AsistenciaPreg: 0,
+          presentComplicaciones:0,
           complicaciones: "",
           SGA: "",
           noConsultasEmbarazo: 0,
