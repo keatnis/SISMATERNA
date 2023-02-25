@@ -1,14 +1,7 @@
 <template>
   <!-- <div class="columns"> -->
-  <b-steps
-    v-model="activeStep"
-    :animated="isAnimated"
-    :rounded="isRounded"
-    :has-navigation="hasNavigation"
-    :icon-prev="prevIcon"
-    :icon-next="nextIcon"
-    :mobile-mode="mobileMode"
-  >
+  <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
+    :icon-prev="prevIcon" :icon-next="nextIcon" :mobile-mode="mobileMode">
     <b-step-item step="" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
         <article class="panel is-info centered">
@@ -23,33 +16,19 @@
             </b-field>
 
             <b-field label="Nombre">
-              <b-input
-                v-model="detalles.NombreEmbarazada"
-                placeholder="Nombre completo de paciente"
-              ></b-input>
+              <b-input v-model="detalles.NombreEmbarazada" placeholder="Nombre completo de paciente"></b-input>
             </b-field>
 
             <b-field label="Número  teléfono">
-              <b-input
-                v-model="detalles.TelefonoEmbarazada"
-                placeholder="Teléfono fijo"
-              ></b-input>
+              <b-input v-model="detalles.TelefonoEmbarazada" placeholder="Teléfono fijo"></b-input>
             </b-field>
             <b-field label="Municipio">
-              <b-select
-                placeholder="Seleccionar municipio"
-                v-model="municipioSeleccionado"
-                :onChange="obtenerLocalidades()"
-                expanded
-              >
-                <option
-                  v-for="option in municipios"
-                  :value="{
-                    id: option.id_municipio,
-                    text: option.nombreMunicipio,
-                  }"
-                  :key="option.id"
-                >
+              <b-select placeholder="Seleccionar municipio" v-model="municipioSeleccionado"
+                :onChange="obtenerLocalidades()" expanded>
+                <option v-for="option in municipios" :value="{
+                  id: option.id_municipio,
+                  text: option.nombreMunicipio,
+                }" :key="option.id">
                   {{ option.nombreMunicipio }}
                 </option>
               </b-select>
@@ -67,65 +46,75 @@
                 <option value="Otro">Otro</option>
               </b-select>
             </b-field>
-            <b-field label="Detenciones">
-              <b-input
-                v-model="detalles.detenciones"
-                placeholder="Detenciones"
-              ></b-input>
+            <b-field label="Violencia">
+              <b-select v-model="detalles.violencia" expanded>
+                <option value="">Seleccionar</option>
+                <option value="si">Si</option>
+                <option value="no">No</option>
+              </b-select>
             </b-field>
+            
+            
+            <b-field label="Gestas">
+
+              <b-numberinput v-model="detalles.Gestas" type="number" placeholder="Número de gestas"></b-numberinput>
+            </b-field>
+            <b-field label="Cesareas">
+              <b-numberinput v-model="detalles.Cesareas" placeholder="Número de cesareas"></b-numberinput>
+            </b-field>
+
             <b-field label="Comorbilidades">
               <section>
                 <div class="container">
-                  <b-checkbox
-                    v-model="detalles.sobrepeso"
-                    native-value="sobrepeso"
-                  >
-                    Sobre peso
+                  <b-checkbox v-model="detalles.sobrepeso" native-value="sobrepeso">Sobre peso
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.obesidad"
-                    native-value="Obesidad"
-                  >
-                    Obesidad
+                  <b-checkbox v-model="detalles.obesidad" native-value="Obesidad"> Obesidad
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.diabetesMellitus"
-                    native-value="Diabetes Mellitus"
-                  >
+                  <b-checkbox v-model="detalles.diabetesMellitus" native-value="Diabetes Mellitus">
                     Diabetes Mellitus
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.hipertensionArterial"
-                    native-value="Hipertensión arterial"
-                  >
+                  <b-checkbox v-model="detalles.hipertensionArterial" native-value="Hipertensión arterial">
                     Hipertensión arterial
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.cardeopatia"
-                    native-value="Cardiopatía"
-                  >
+                  <b-checkbox v-model="detalles.cardeopatia" native-value="Cardiopatía">
                     Cardiopatía
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.Epilepsia"
-                    native-value="Epilepsia "
-                  >
+                  <b-checkbox v-model="detalles.Epilepsia" native-value="Epilepsia ">
                     Epilepsia
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.Sifilis"
-                    native-value="Sifilis "
-                  >
+                  <b-checkbox v-model="detalles.Sifilis" native-value="Sifilis ">
                     Sifilis
                   </b-checkbox>
                   <b-checkbox v-model="detalles.vih" native-value="VIH ">
                     VIH
                   </b-checkbox>
-                  <b-checkbox
-                    v-model="detalles.hepatitis"
-                    native-value="Hepatitis"
-                  >
+                  <b-checkbox v-model="detalles.hepatitis" native-value="Hepatitis">
                     Hepatitis
+                  </b-checkbox>
+
+                  <b-checkbox v-model="detalles.artritisreumatoide" native-value="Artritis reumatoide">
+                    Artritis reumatoide
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.lupus" native-value="Lupus">
+                    Lupus
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.cancer" native-value="Cancer">
+                    Cancer
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.tuberculosis" native-value="Tuberculosis">
+                    Tuberculosis
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.covid" native-value="Covid-19">
+                    Covid-19
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.infecionVU" native-value="Infección de vías urinarias">
+                    Infección de vías urinarias
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.cervicovaginitis" native-value="Cervicovaginitis">
+                    Cervicovaginitis
+                  </b-checkbox>
+                  <b-checkbox v-model="detalles.anemia" native-value="Anemia">
+                    Anemia
                   </b-checkbox>
                   <b-checkbox v-model="detalles.ninguno" native-value="Ninguno">
                     Ninguno
@@ -137,49 +126,20 @@
                 </p>
               </section>
             </b-field>
-            <b-field label="Gestas">
-              
-              <b-numberinput
-                v-model="detalles.Gestas"
-                type="number"
-
-                placeholder="Número de gestas"
-              ></b-numberinput>
-            </b-field>
-            <b-field label="Cesareas">
-              <b-numberinput
-                v-model="detalles.Cesareas"
-                placeholder="Número de cesareas"
-              ></b-numberinput>
-            </b-field>
           </div>
 
           <div class="column is-one-third">
             <b-field label="CURP">
-              <b-input
-                v-model="detalles.curp"
-                placeholder="Clave Unica de Registro de Población"
-              ></b-input>
+              <b-input v-model="detalles.curp" placeholder="Clave Unica de Registro de Población"></b-input>
             </b-field>
             <b-field label="Fecha de nacimiento">
-              <b-datepicker
-                v-model="detalles.fechaNacimiento"
-                placeholder="Fecha de nacimiento"
-                icon="calendar-today"
-                :datetime-formatter="formatearFecha"
-                :locale="locale"
-                @input="calcularEdad()"
-                editable
-              >
+              <b-datepicker v-model="detalles.fechaNacimiento" placeholder="Fecha de nacimiento" icon="calendar-today"
+                :datetime-formatter="formatearFecha" :locale="locale" @input="calcularEdad()" editable>
               </b-datepicker>
             </b-field>
 
             <b-field label="Lengua Indígena">
-              <b-select
-                v-model="detalles.lenguaIndigena"
-                placeholder="Lengua Indígena"
-                expanded
-              >
+              <b-select v-model="detalles.lenguaIndigena" placeholder="Lengua Indígena" expanded>
                 <option value="Nahual">Nahual</option>
                 <option value="Mixteco">Tu´un Savi (Mixteco)</option>
                 <option value="Mephaa">Meephaa (Tlapaneco)</option>
@@ -188,83 +148,45 @@
               </b-select>
             </b-field>
             <b-field label="Localidad">
-              <b-select
-                placeholder="Seleccionar localidad"
-                v-model="localidadSeleccionada"
-                expanded
-              >
-                <option
-                  v-for="option in localidades"
-                  :value="{
-                    id: option.id_localidad,
-                    text: option.NombreLocalidad,
-                  }"
-                  :key="option.id"
-                >
+              <b-select placeholder="Seleccionar localidad" v-model="localidadSeleccionada" expanded>
+                <option v-for="option in localidades" :value="{
+                  id: option.id_localidad,
+                  text: option.NombreLocalidad,
+                }" :key="option.id">
                   {{ option.NombreLocalidad }}
                 </option>
               </b-select>
             </b-field>
 
-            <b-field label="De tenciones"></b-field>
+            <b-field label="Detenciones"></b-field>
             <div class="field">
               <div class="b-checkbox">
-                <input
-                  type="checkbox"
-                  name="Mamanormal"
-                  value="verde"
-                  id="MamaNormal"
-                />
+                <input type="checkbox" name="Mamanormal" value="verde" id="MamaNormal" />
 
                 <label for="MamaNormal">
                   Exploración clínica de mama normal
                 </label>
               </div>
               <div class="b-checkbox">
-                <input
-                  id="MamaAlterado"
-                  class="styled"
-                  checked
-                  type="checkbox"
-                />
+                <input id="MamaAlterado" class="styled" checked type="checkbox" />
                 <label for="MamaAlterado">
                   Exploración clínica de mama alterado
                 </label>
                 <div class="b-checkbox">
-                  <input
-                    id="PapaNormal"
-                    class="styled"
-                    checked
-                    type="checkbox"
-                  />
+                  <input id="PapaNormal" class="styled" checked type="checkbox" />
                   <label for="PapaNormal"> Papanicolau normal </label>
                 </div>
                 <div class="b-checkbox">
-                  <input
-                    id="PapaLesion"
-                    class="styled"
-                    checked
-                    type="checkbox"
-                  />
+                  <input id="PapaLesion" class="styled" checked type="checkbox" />
                   <label for="PapaLesion"> Papanicolau con lesiones </label>
                 </div>
                 <div class="b-checkbox">
-                  <input
-                    id="PapaCancer"
-                    class="styled"
-                    checked
-                    type="checkbox"
-                  />
+                  <input id="PapaCancer" class="styled" checked type="checkbox" />
                   <label for="PapaCancer"> Papanicolau cancer IN SITU </label>
                 </div>
 
                 <div class="b-checkbox">
-                  <input
-                    id="PapaInvasor"
-                    class="styled"
-                    checked
-                    type="checkbox"
-                  />
+                  <input id="PapaInvasor" class="styled" checked type="checkbox" />
                   <label for="PapaInvasor"> Papanicolau invasor </label>
                 </div>
                 <div class="b-checkbox">
@@ -274,93 +196,49 @@
               </div>
 
               <b-field label="Paras">
-                <b-numberinput
-                  v-model="detalles.Paras"
-                  type="number"
-                  placeholder="Numero de paras"
-                ></b-numberinput>
+                <b-numberinput v-model="detalles.Paras" type="number" placeholder="Numero de paras"></b-numberinput>
               </b-field>
               <b-field label="Abortos">
-                <b-numberinput
-                  v-model="detalles.Abortos"
-                  type="number"
-                  placeholder="Numero de abortos"
-                ></b-numberinput>
+                <b-numberinput v-model="detalles.Abortos" type="number" placeholder="Numero de abortos"></b-numberinput>
               </b-field>
             </div>
           </div>
           <div class="column is-one-fifthr">
             <b-field label="No. Expediente clínico">
-              <b-input
-                v-model="detalles.noExpediente"
-                placeholder="No. Expediente clínico"
-              ></b-input>
+              <b-input v-model="detalles.noExpediente" placeholder="No. Expediente clínico"></b-input>
             </b-field>
             <b-field label="Edad">
-              <b-input
-                disabled
-                v-model="detalles.edad"
-                value="this.deatalles.edad"
-              ></b-input>
+              <b-input disabled v-model="detalles.edad" value="this.deatalles.edad"></b-input>
             </b-field>
             <b-field label="Emigro">
-              <b-radio v-model="detalles.emigro" :native-value="1"
-                >Si</b-radio
-              >
-              <b-radio v-model="detalles.emigro" :native-value="0"
-                >No</b-radio
-              >
+              <b-radio v-model="detalles.emigro" :native-value="1">Si</b-radio>
+              <b-radio v-model="detalles.emigro" :native-value="0">No</b-radio>
             </b-field>
 
             <b-field label="Dirección">
-              <b-input
-                v-model="detalles.Direccion"
-                placeholder="Dirección con referencia"
-              ></b-input>
+              <b-input v-model="detalles.Direccion" placeholder="Dirección con referencia"></b-input>
             </b-field>
             <div class="control">
               <b-field label="¿Asistió a consulta pregestacional?"></b-field>
-              <b-radio v-model="detalles.AsistenciaPreg" :native-value="1"
-                >Si</b-radio
-              >
-              <b-radio v-model="detalles.AsistenciaPreg" :native-value="0"
-                >No</b-radio
-              >
+              <b-radio v-model="detalles.AsistenciaPreg" :native-value="1">Si</b-radio>
+              <b-radio v-model="detalles.AsistenciaPreg" :native-value="0">No</b-radio>
             </div>
 
-            <b-datepicker
-              v-model="detalles.consultaPregestacional"
-              placeholder="Fecha de consulta"
-              icon="calendar-today"
-              :datetime-formatter="formatearFecha"
-              :locale="locale"
-              editable
-            >
+            <b-datepicker v-model="detalles.consultaPregestacional" placeholder="Fecha de consulta"
+              icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
             </b-datepicker>
 
             <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
-              <b-datepicker
-                v-model="detalles.fechaUltimoEvento"
-                placeholder="Fecha de ultimo evento"
-                icon="calendar-today"
-                :datetime-formatter="formatearFecha"
-                :locale="locale"
-                editable
-              >
+              <b-datepicker v-model="detalles.fechaUltimoEvento" placeholder="Fecha de ultimo evento"
+                icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
               </b-datepicker>
             </b-field>
 
             <div class="control">
-              <b-field
-                label="¿Presentó complicaciones en el embarazo previo?"
-              ></b-field>
-              <b-radio v-model="detalles.presentComplicaciones" :native-value="1" >Si</b-radio>              
-              <b-radio v-model="detalles.presentComplicaciones" :native-value="0" >No</b-radio>
-              <b-select
-                placeholder="¿Qué complicaciones presento?"
-                v-model="detalles.complicaciones"
-                expanded
-              >
+              <b-field label="¿Presentó complicaciones en el embarazo previo?"></b-field>
+              <b-radio v-model="detalles.presentComplicaciones" :native-value="1">Si</b-radio>
+              <b-radio v-model="detalles.presentComplicaciones" :native-value="0">No</b-radio>
+              <b-select placeholder="¿Qué complicaciones presento?" v-model="detalles.complicaciones" expanded>
                 <option value="Hemorragia ">Hemorragia</option>
                 <option value="RetencioPlacenta">Retención de placenta</option>
                 <option value="PlacentaPrevia">Placenta previa</option>
@@ -377,37 +255,20 @@
       </div>
     </b-step-item>
 
-    <b-step-item
-      step=""
-      label=""
-      :clickable="isStepsClickable"
-      :type="{ 'is-success': isProfileSuccess }"
-    >
+    <b-step-item step="" label="" :clickable="isStepsClickable" :type="{ 'is-success': isProfileSuccess }">
       <div>
         <div class="columns">
           <div class="column is-one-third">
             <b-field label="Fecha de ultima menstruación">
-              <b-datepicker
-                v-model="detalles.fechaUlmaMenstruacion"
-                placeholder="Fecha de ultima menstruación"
-                icon="calendar-today"
-                :datetime-formatter="formatearFecha"
-                :locale="locale"
-                editable
-              >
+              <b-datepicker v-model="detalles.fechaUlmaMenstruacion" placeholder="Fecha de ultima menstruación"
+                icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
               </b-datepicker>
             </b-field>
 
             <div class="control">
               <b-field label="Fecha de consutal">
-                <b-datepicker
-                  v-model="detalles.fechaConsulta"
-                  placeholder="Fecha de consulta "
-                  icon="calendar-today"
-                  :datetime-formatter="formatearFecha"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaConsulta" placeholder="Fecha de consulta " icon="calendar-today"
+                  :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
 
@@ -423,24 +284,14 @@
               </b-field>
 
               <b-field label="Fecha de vacunación TD refuerzo">
-                <b-datepicker
-                  v-model="detalles.fechaVacunaTDRefuerzo"
-                  placeholder="Fecha de vacunación TD refuerzo"
-                  icon="calendar-today"
-                  :datetime-formatter="formatearFecha"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaVacunaTDRefuerzo" placeholder="Fecha de vacunación TD refuerzo"
+                  icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
 
               <b-field label="Vacuna COVID">
-                <b-radio v-model="detalles.vacunaCOVID" :native-value="1"
-                  >Se aplicó</b-radio
-                >
-                <b-radio v-model="detalles.vacunaCOVID" :native-value="0"
-                  >No se aplico</b-radio
-                >
+                <b-radio v-model="detalles.vacunaCOVID" :native-value="1">Se aplicó</b-radio>
+                <b-radio v-model="detalles.vacunaCOVID" :native-value="0">No se aplico</b-radio>
               </b-field>
 
               <b-field label="Biometria ematica">
@@ -454,13 +305,13 @@
 
               <b-field label="VIH">
                 <b-select v-model="detalles.vih" placeholder="VIH" expanded>
-                  <option value="ReactivoVIH">Reactivo</option>
-                  <option value="NoReactivoVIH">No reactivo</option>
-                  <option value="NoRealizoVIH">No se realizó</option>
+                  <option value="Reactivo VIH">Reactivo</option>
+                  <option value="NoReactivo VIH">No reactivo</option>
+                  <option value="NoRealizo VIH">No se realizó</option>
                 </b-select>
               </b-field>
               <b-field label="Características fetales ">
-                <b-select placeholder="Características" expanded>
+                <b-select placeholder="Características" v-model="detalles.caracteristicasFetls" expanded>
                   <option value="UnicoVivo">Unico vivo</option>
                   <option value="UnicObito">Unico obito</option>
                   <option value="Molar">Molar</option>
@@ -475,51 +326,32 @@
           <div class="column is-one-third">
             <div class="control">
               <b-field label="Fecha probable de parto">
-                <b-datepicker
-                  v-model="detalles.fechaProbableParto"
-                  placeholder="Fecha probable de parto"
-                  icon="calendar-today"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaProbableParto" placeholder="Fecha probable de parto"
+                  icon="calendar-today" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
             <b-field label="No. Total de consulta durante el embarazo">
-              <b-numberinput
-                disabled
-                v-model="detalles.noConsultasEmbarazo"
-                placeholder="No. Total de consulta durante el embarazo"
-              ></b-numberinput>
+              <b-numberinput disabled v-model="detalles.noConsultasEmbarazo"
+                placeholder="No. Total de consulta durante el embarazo"></b-numberinput>
             </b-field>
             <div class="control">
               <b-field label="Fecha de vacunación TD primera">
-                <b-datepicker
-                  v-model="detalles.fechaVacunaTDPrimera"
-                  placeholder="Fecha de vacunación TD primera "
-                  icon="calendar-today"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaVacunaTDPrimera" placeholder="Fecha de vacunación TD primera "
+                  icon="calendar-today" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
             <div class="control">
               <b-field label="Fecha de vacunación TDPA">
-                <b-datepicker
-                  v-model="detalles.fechaVacunaTDPA"
-                  placeholder="Fecha de vacunación TDPA "
-                  icon="calendar-today"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaVacunaTDPA" placeholder="Fecha de vacunación TDPA "
+                  icon="calendar-today" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
 
             <b-field label="Grupo RH">
-              <b-select placeholder="Grupo RH"
-              v-model="detalles.grupoRH" expanded>
+              <b-select placeholder="Grupo RH" v-model="detalles.grupoRH" expanded>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -532,8 +364,7 @@
               </b-select>
             </b-field>
             <b-field label="Leucocitos">
-              <b-select placeholder="Leucocitos"
-              v-model="detalles.leucocitos" expanded>
+              <b-select placeholder="Leucocitos" v-model="detalles.leucocitos" expanded>
                 <option value="Normales">Normales</option>
                 <option value="DisminuidosLinfocitos">
                   Disminuidos linfocitos
@@ -549,14 +380,13 @@
             </b-field>
 
             <b-field label="Plaquetas">
-              <b-select placeholder="Plaquetas"
-              v-model="detalles.plaquetas" expanded>
-                <option value="valor1">Valor1</option>
-                </b-select>
+              <b-select placeholder="Plaquetas" v-model="detalles.plaquetas" expanded>
+                <option value="valor1">Normales</option>
+                <option value="valor1">Disminuidos</option>
+              </b-select>
             </b-field>
             <b-field label="Estado tiras glucosa">
-              <b-select placeholder="Estado en el que se realizó" 
-              v-model="detalles.estadoGlucosa" expanded>
+              <b-select placeholder="Estado en el que se realizó" v-model="detalles.estadoGlucosa" expanded>
                 <option value="Ayuno">Ayuno</option>
                 <option value="Posprandial1">Posprandial 1 hora</option>
                 <option value="Posprandial2">Posprandial 2 horas</option>
@@ -565,8 +395,7 @@
             </b-field>
 
             <b-field label=" Malformaciones congenitas">
-              <b-select placeholder="Malformaciones" 
-              v-model="detalles.malformaciones" expanded>
+              <b-select placeholder="Malformaciones" v-model="detalles.malformaciones" expanded>
                 <option value="EspinaBifida">Espina bifida</option>
                 <option value="Meningocele">Meningocele</option>
                 <option value="Mielomeningocele">Mielomeningocele</option>
@@ -578,50 +407,30 @@
           </div>
           <div class="column is-one-third">
             <b-field label="Semana de gestación actual">
-              <b-input
-                disabled
-                v-model="detalles.SGA"
-                placeholder="Semanan de gestación actual"
-              >
+              <b-input disabled v-model="detalles.SGA" placeholder="Semanan de gestación actual">
               </b-input>
             </b-field>
             <b-field label="No. Total de consulta en el mes">
-              <b-numberinput
-                disabled
-                v-model="detalles.noConsultasMes"
-                placeholder="No. Total de consulta en el mes "
-              >
+              <b-numberinput disabled v-model="detalles.noConsultasMes" placeholder="No. Total de consulta en el mes ">
               </b-numberinput>
             </b-field>
             <div class="control">
               <b-field label="Fecha de vacunación TD segunda">
-                <b-datepicker
-                  v-model="detalles.fechaVacunaTDSegunda"
-                  placeholder="Fecha de vacunación TD segunda "
-                  icon="calendar-today"
-                  :datetime-formatter="formatearFecha"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaVacunaTDSegunda" placeholder="Fecha de vacunación TD segunda "
+                  icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
             <div class="control">
               <b-field label="Fecha de vacunación Influenza estacional">
-                <b-datepicker
-                  v-model="detalles.fechaVacunaInfluenza"
-                  placeholder="Fecha de vacunación Influenza estacional "
-                  icon="calendar-today"
-                  :datetime-formatter="formatearFecha"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaVacunaInfluenza"
+                  placeholder="Fecha de vacunación Influenza estacional " icon="calendar-today"
+                  :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
             <b-field label="EGO y/o tiras urianalisis">
-              <b-select placeholder="EGO" v-model="detalles.ego" 
-              expanded>
+              <b-select placeholder="EGO" v-model="detalles.ego" expanded>
                 <option value="Trazas">Prot. trazas</option>
                 <option value="Mayor300">Prot. >300 mg/l</option>
                 <option value="Leucitos">leucitos >5</option>
@@ -631,15 +440,14 @@
             </b-field>
 
             <b-field label="VDRL">
-              <b-select v-model="detalles.vdrl"
-              placeholder="VDRL" expanded>
+              <b-select v-model="detalles.vdrl" placeholder="VDRL" expanded>
                 <option value="ReactivoVDRL">Reactivo</option>
                 <option value="NoReactivoVDRL">No reactivo</option>
                 <option value="NoRealizo">No se realizo</option>
               </b-select>
             </b-field>
             <b-field label="Resultado tiras glucosa">
-              <b-select placeholder="Resultado tiras glucosa" expanded>
+              <b-select placeholder="Resultado tiras glucosa" v-model="detalles.resultadoGlucosa" expanded>
                 <option value="Mayor60">>60 y menor a 110</option>
                 <option value="Mayor110">>=110 y menor o igual a 126</option>
                 <option value="Mayor126">>126 y menor a 160</option>
@@ -648,7 +456,7 @@
             </b-field>
 
             <b-field label="Liquido amniotico">
-              <b-select placeholder="Liquido amniotico" expanded>
+              <b-select placeholder="Liquido amniotico" v-model="detalles.liquidoAmiotico" expanded>
                 <option value="Normal">Normal</option>
                 <option value="Oligohidramnios">Oligohidramnios</option>
                 <option value="Polihidramnios">Polihidramnios</option>
@@ -660,17 +468,12 @@
       </div>
     </b-step-item>
 
-    <b-step-item
-      step=""
-      label=""
-      :clickable="isStepsClickable"
-      :type="{ 'is-success': isProfileSuccess }"
-    >
+    <b-step-item step="" label="" :clickable="isStepsClickable" :type="{ 'is-success': isProfileSuccess }">
       <div>
         <div class="columns">
           <div class="column is-one-third">
             <b-field label="Placenta">
-              <b-select placeholder="Placenta" expanded>
+              <b-select placeholder="Placenta" v-model="detalles.placenta" expanded>
                 <option value="NormalPlacen">Normal</option>
                 <option value="Previa">Previa</option>
                 <option value="AcretismoPlacentario">
@@ -681,33 +484,13 @@
             </b-field>
 
             <b-field label="¿Acudió a referencia?"></b-field>
-            <b-select placeholder="Referencias" expanded>
-              <option value="HgTlapa ">H.G. Tlapa</option>
-              <option value="Hmnig">HMNIG</option>
-              <option value="HcAcatepec">H.C. Acatepec</option>
-              <option value="HcAlcozauca">H.C. Alcozauca</option>
-              <option value="HcMalina">H.C. Malinaltepec</option>
-              <option value="HcOlinala">H.C. Olinalá</option>
-              <option value="HcTlacoapa">H.C. Tlacoapa</option>
-              <option value="HcXochi">H.C. Xochihuehuetlán</option>
-              <option value="HcZapo">H.C. Zapotitlán tablas</option>
-              <option value="CentroSalud">Centro de salud</option>
-              <option value="Hogar">HOGAR</option>
-              <option value="HcSaLuis">H.C. San sluis</option>
-              <option value="HgAyutla">H.G. Ayutla</option>
-              <option value="HgOme">H.G. Ometepec</option>
-              <option value="HgChuautla">H.G Chuautla</option>
-              <option value="OtrosHospitales">Otros hospitales</option>
-              <option value="NoAcudio">No acudió</option>
+            <b-select placeholder="Referencias" v-model="detalles.acudio_refe" expanded>
+              <option value="si ">Si</option>
+              <option value="no">No</option>
             </b-select>
 
-            <b-field
-              label="¿Se oriento en señales de peligro durante el embarazo, parto, puerperio, rn?"
-            ></b-field>
-            <b-select
-              placeholder="¿Se oriento en señales de peligro durante el embarazo?"
-              expanded
-            >
+            <b-field label="¿Se oriento en señales de peligro durante el embarazo, parto, puerperio, rn?"></b-field>
+            <b-select placeholder="¿Se oriento en señales de peligro durante el embarazo?" expanded>
               <option value="SIOriento">Si</option>
               <option value="NoOriento">No</option>
             </b-select>
@@ -722,25 +505,20 @@
           <div class="column is-one-third">
             <div class="control">
               <b-field label="Fecha probable de parto por USG">
-                <b-datepicker
-                  v-model="detalles.fechaProbableUSG"
-                  placeholder="Fecha probable de parto por USG (1Er Trimestre)"
-                  icon="calendar-today"
-                  :datetime-formatter="formatearFecha"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaProbableUSG"
+                  placeholder="Fecha probable de parto por USG (1Er Trimestre)" icon="calendar-today"
+                  :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
             <b-field label="Contrareferencia recibida">
-              <b-select placeholder="Referencia" expanded>
+              <b-select placeholder="Referencia" v-model="detalles.contrareferencia" expanded>
                 <option value="SiConrefe">Si</option>
                 <option value="NoCorefe">No</option>
               </b-select>
             </b-field>
             <b-field label="¿Donde atenderán su parto?">
-              <b-select placeholder="¿Donde atenderán su parto?" expanded>
+              <b-select placeholder="¿Donde atenderán su parto?" v-model="detalles.lugarParto" expanded>
                 <option value="AtenderHospital">Hospital</option>
                 <option value="AtenderC.Salud">C. Salud</option>
                 <option value="AtenderHogar">Hogar</option>
@@ -749,28 +527,22 @@
             </b-field>
             <div class="control">
               <b-field label="Fecha de evento">
-                <b-datepicker
-                  v-model="detalles.fechaEvento"
-                  placeholder="Fecha de evento"
-                  icon="calendar-today"
-                  :datetime-formatter="formatearFecha"
-                  :locale="locale"
-                  editable
-                >
+                <b-datepicker v-model="detalles.fechaEvento" placeholder="Fecha de evento" icon="calendar-today"
+                  :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
               </b-field>
             </div>
           </div>
           <div class="column is-one-third">
             <b-field label="Referencia">
-              <b-select placeholder="Referencia" expanded>
+              <b-select placeholder="Referencia" v-model="detalles.referencia" expanded>
                 <option value="SiRefe">Si</option>
                 <option value="NoRefe">No</option>
               </b-select>
             </b-field>
 
             <b-field label="Se le realizó el plan de seguridad">
-              <b-select placeholder="Plan de seguridad" expanded>
+              <b-select placeholder="Plan de seguridad" v-model="detalles.planSeguridad" expanded>
                 <option value="SiRefe">Si</option>
                 <option value="NoRefe">Reforzamiento</option>
                 <option value="NoRefe">No</option>
@@ -778,7 +550,7 @@
             </b-field>
 
             <b-field label="¿Quien atenderá su parto?">
-              <b-select placeholder="¿Quien atenderá su parto?" expanded>
+              <b-select placeholder="¿Quien atenderá su parto?" v-model="detalles.quienAtenderaParto" expanded>
                 <option value="AtenderMedico">Medico</option>
                 <option value="AtenderEnfra">Enfra</option>
                 <option value="AtenderParteraProfs">Partera profes.</option>
@@ -791,20 +563,10 @@
         </div>
       </div>
     </b-step-item>
-    <b-step-item
-      :step="showSocial ? '' : ''"
-      label=""
-      :clickable="isStepsClickable"
-      disabled
-    >
+    <b-step-item :step="showSocial ? '' : ''" label="" :clickable="isStepsClickable" disabled>
       <Triagge />
       <b-field>
-        <b-button
-          label="Terminar registro"
-          type="is-info"
-          size="is-medium"
-          @click="confirm()"
-        />
+        <b-button label="Terminar registro" type="is-info" size="is-medium" @click="confirm()" />
       </b-field>
     </b-step-item>
   </b-steps>
@@ -869,10 +631,10 @@ export default {
       edad: "",
       lenguaIndigena: "",
       emigro: 0,
-      detenciones: "",
+      violencia: "",
       comorbilidades: "",
       AsistenciaPreg: 0,
-      presentComplicaciones:0,
+      presentComplicaciones: 0,
       complicaciones: "",
       SGA: "",
       noConsultasEmbarazo: 0,
@@ -896,7 +658,6 @@ export default {
       acudio_refe: "",
       contrareferencia: "",
       planSeguridad: "",
-      signosAlarma: "",
       lugarParto: "",
       quienAtenderaParto: "",
       transporteAME: "",
@@ -931,6 +692,7 @@ export default {
       return edad;
     },
 
+
     confirm() {
       Dialog.confirm({
         title: "Guardar registro.",
@@ -943,9 +705,9 @@ export default {
     },
     async obtenerMunicipio() {
       try {
-      
-          this.municipios = await EmbarazadaService.obtenerMunicipios();
-       
+
+        this.municipios = await EmbarazadaService.obtenerMunicipios();
+
       } catch (e) {
         DialogosService.mostrarNotificacionError(
           "No se pudo obtener la lista de municipios..."
@@ -984,7 +746,7 @@ export default {
         lenguaIndigena: this.detalles.lenguaIndigena,
         emigro: this.detalles.emigro,
         derechohabiencia: this.detalles.Derechohabiencia,
-        detenciones: this.detalles.detenciones,
+        violencia: this.detalles.violencia,
         ConsultaPregestacional: Utiles.obtenerCadenaFecha(
           this.detalles.consultaPregestacional
         ),
@@ -997,7 +759,7 @@ export default {
         FechaUltimoEvento: Utiles.obtenerCadenaFecha(
           this.detalles.fechaUltimoEvento
         ),
-        presentComplicaciones:this.detalles.presentComplicaciones,
+        presentComplicaciones: this.detalles.presentComplicaciones,
         complicaciones: this.detalles.complicaciones,
         FechaUlmaMenstruacion: Utiles.obtenerCadenaFecha(
           this.detalles.fechaUlmaMenstruacion
@@ -1046,7 +808,6 @@ export default {
         acudio_refe: this.detalles.acudio_refe,
         contrareferencia: this.detalles.contrareferencia,
         planSeguridad: this.detalles.planSeguridad,
-        signosAlarma: this.detalles.signosAlarma,
         lugarParto: this.detalles.lugarParto,
         quienAtenderaParto: this.detalles.quienAtenderaParto,
         transporteAME: this.detalles.transporteAME,
@@ -1091,10 +852,10 @@ export default {
           edad: "",
           lenguaIndigena: "",
           emigro: 0,
-          detenciones: "",
+          violencia: "",
           comorbilidades: "",
           AsistenciaPreg: 0,
-          presentComplicaciones:0,
+          presentComplicaciones: 0,
           complicaciones: "",
           SGA: "",
           noConsultasEmbarazo: 0,
@@ -1118,7 +879,6 @@ export default {
           acudio_refe: "",
           contrareferencia: "",
           planSeguridad: "",
-          signosAlarma: "",
           lugarParto: "",
           quienAtenderaParto: "",
           transporteAME: "",
