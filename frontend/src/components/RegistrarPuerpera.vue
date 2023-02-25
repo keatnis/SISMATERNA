@@ -55,7 +55,11 @@
           </b-field>
 
           <b-field label="Atención de parto">
-            <b-select  v-model="detalles.atencionparto" placeholder="¿Quién atendió el parto?" expanded>
+            <b-select
+              v-model="detalles.atencionparto"
+              placeholder="¿Quién atendió el parto?"
+              expanded
+            >
               <option value="medico">Médico</option>
               <option value="emfermera">Enfermera</option>
               <option value="parteraTra">Partera Trad.</option>
@@ -66,7 +70,11 @@
             </b-select>
           </b-field>
           <b-field label="Resolución del embarazo">
-            <b-select  v-model="detalles.resolucion" placeholder="Resolución del embarazo" expanded>
+            <b-select
+              v-model="detalles.resolucion"
+              placeholder="Resolución del embarazo"
+              expanded
+            >
               <option value="vaginal">Vaginal</option>
               <option value="cesarea ">Cesarea</option>
               <option value="aborto">Legrado (aborto)</option>
@@ -84,14 +92,19 @@
             </b-select>
           </b-field>
           <b-field label="Consulta pregestacional"></b-field>
-          <b-radio v-model="detalles.pregestacional" :native-value="false"
-                >Si</b-radio
-              >
-              <b-radio v-model="detalles.pregestacional" :native-value="true"
-                >No</b-radio
-              >
+          <b-radio v-model="detalles.pregestacional" :native-value="1"
+            >Si</b-radio
+          >
+          <b-radio v-model="detalles.pregestacional" :native-value="0"
+            >No</b-radio
+          >
           <b-field label="Derechohabiencia">
-            <b-select placeholder="Derechohabiencia" v-model="detalles.derechohabiencia"  disabled expanded>
+            <b-select
+              placeholder="Derechohabiencia"
+              v-model="detalles.derechohabiencia"
+              disabled
+              expanded
+            >
               <option value="Insabi">INSABI</option>
               <option value="Imss">IMSS</option>
               <option value="Issste">ISSSTE</option>
@@ -126,21 +139,27 @@
             </b-datepicker>
           </b-field>
           <b-field label="Signos de alarma">
-            <b-select  v-model="detalles.signos" placeholder="Signos" expanded>
+            <b-select v-model="detalles.signos" placeholder="Signos" expanded>
               <option value="Fiebre">Fiebre</option>
               <option value="DolorPelvico">Dolor Pélvico</option>
               <option value="FlujoVaginal">Flujo Vaginal</option>
               <option value="FiebreDolor">Fiebre/Dolor Pelvico</option>
               <option value="FiebreFlujo">Fiebre/Flujo Vaginal</option>
               <option value=">DolorFlujo">Dolor Pelvico/Flujo Vaginal</option>
-              <option value="FiebreDolorFlujo"> Fiebre/Dolor Pelvico/Flujo Vaginal</option>
+              <option value="FiebreDolorFlujo">
+                Fiebre/Dolor Pelvico/Flujo Vaginal
+              </option>
               <option value="Cefalea">Cefalea</option>
               <option value="NingunoSigno">Ninguno</option>
             </b-select>
           </b-field>
 
           <b-field label="Lugar del parto">
-            <b-select  v-model="detalles.lugarparto" placeholder="¿Dónde atendió el parto?" expanded>
+            <b-select
+              v-model="detalles.lugarparto"
+              placeholder="¿Dónde atendió el parto?"
+              expanded
+            >
               <option value="tlapa">H.G. Tlapa</option>
               <option value="hmnig">HMNIG</option>
               <option value="acatepec">H.C. Acatepec</option>
@@ -157,7 +176,11 @@
           </b-field>
 
           <b-field label="No. de producto">
-            <b-select  v-model="detalles.producto" placeholder="No. de producto" expanded>
+            <b-select
+              v-model="detalles.producto"
+              placeholder="No. de producto"
+              expanded
+            >
               <option value="unico">Único</option>
               <option value="gemelar">Gemelar</option>
               <option value="trillizos">Trillizos</option>
@@ -166,7 +189,11 @@
           </b-field>
 
           <b-field label="Puerpera aceptante">
-            <b-select  v-model="detalles.aceptante" placeholder="Puerpera acentante" expanded>
+            <b-select
+              v-model="detalles.aceptante"
+              placeholder="Puerpera acentante"
+              expanded
+            >
               <option value="diu">DIU</option>
               <option value="otb">OTB</option>
               <option value="implante">Implante</option>
@@ -218,26 +245,20 @@ export default {
     showSocial: false,
     checkboxGroup: [],
     detalles: {
-      
       consultasiete: null,
       consultaveinte: null,
       consultacuarenta: null,
       signos: "",
-      atencionparto:"",
-      lugarparto:"",
-      resolucion:"",
-      producto:"",
-      apeo:"",
-      aceptante:"",
-      pregestacional: false,
-
-      
-
+      atencionparto: "",
+      lugarparto: "",
+      resolucion: "",
+      producto: "",
+      apeo: "",
+      aceptante: "",
+      pregestacional: 0,
     },
   }),
-  computed: {
-   
-  },
+  computed: {},
 
   methods: {
     formatearFecha(fecha) {
@@ -260,16 +281,18 @@ export default {
       }
       const cargaUtil = {
         consultasiete: Utiles.obtenerCadenaFecha(this.detalles.consultasiete),
-        consultaveinte:  Utiles.obtenerCadenaFecha(this.detalles.consultaveinte),
-        consultacuarenta:  Utiles.obtenerCadenaFecha(this.detalles.consultacuarenta),
-       signos: this.detalles.signos,
-       atencionparto: this.detalles.atencionparto,
-       lugarparto: this.detalles.lugarparto,
-       resolucion: this.detalles.resolucion,
-       producto: this.detalles.producto,
-       apeo: this.detalles.apeo,
-       aceptante: this.detalles.aceptante,
-       pregestacional: 1,
+        consultaveinte: Utiles.obtenerCadenaFecha(this.detalles.consultaveinte),
+        consultacuarenta: Utiles.obtenerCadenaFecha(
+          this.detalles.consultacuarenta
+        ),
+        signos: this.detalles.signos,
+        atencionparto: this.detalles.atencionparto,
+        lugarparto: this.detalles.lugarparto,
+        resolucion: this.detalles.resolucion,
+        producto: this.detalles.producto,
+        apeo: this.detalles.apeo,
+        aceptante: this.detalles.aceptante,
+        pregestacional: this.detalles.pregestacional,
       };
 
       const respuesta = await PuerperaService.insertPuerpera(cargaUtil);
@@ -285,16 +308,14 @@ export default {
           consultaveinte: null,
           consultacuarenta: null,
           signos: "",
-          atencionparto:"",
-          lugarparto:"",
-          resolucion:"",
+          atencionparto: "",
+          lugarparto: "",
+          resolucion: "",
           lenguaIndigena: "",
-          producto:"",
-          apeo:"",
+          producto: "",
+          apeo: "",
           aceptante: "",
           pregestacional: false,
-
-
         };
       }
     },

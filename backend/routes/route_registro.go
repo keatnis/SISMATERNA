@@ -4,6 +4,7 @@ import (
 	controller_embarazada "backendmod/controllers"
 	db "backendmod/database"
 	emb "backendmod/types"
+
 	"backendmod/utils"
 	"encoding/json"
 	"log"
@@ -188,6 +189,15 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 			return true, err
 		})
 	}).Methods(http.MethodPost)
+
+	router.HandleFunc("/ListaPuerpera", func(w http.ResponseWriter, r *http.Request) {
+		embarazadas, err := controller_embarazada.ObtenerPuerperas()
+		if err == nil {
+			respondWithSuccess(embarazadas, w)
+		} else {
+			respondWithError(err, w)
+		}
+	}).Methods(http.MethodGet)
 
 }
 

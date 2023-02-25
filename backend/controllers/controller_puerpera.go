@@ -23,3 +23,30 @@ func InsertPuerpera(c ty.Puerpera) error {
 	}
 	return err
 }
+func ObtenerPuerperas() ([]ty.Puerpera, error) {
+	//declarar un array si hay un error, retornamos si es el array esta vacío
+	puerperas := []ty.Puerpera{} 
+	bd, err := db.GetDB()
+
+	if err != nil {
+		return puerperas, err
+	}
+	rows, err := bd.Query(`SELECT  consulta_siete,consulta_veintiocho,consulta_cuarenta,resolucion,no_producto,puerpera_aceptante,consulta_pregestacional,lugar_parto,signos_alarma,atencion_parto FROM puerpera;`)
+	if err != nil {
+		return puerperas, err
+	}
+	defer bd.Close()
+
+	var puerpera ty.Puerpera 
+	//iteramos filas
+	for rows.Next() {
+
+		err := rows.Scan(&puerpera.Consultasiete, &puerpera.Consultaveinte, &puerpera.Consultacuarenta, &puerpera.Resolucion, &puerpera.Producto, &puerpera.Aceptante, &puerpera.Pregestacional, &puerpera.Lugarparto, &puerpera.Signos, &puerpera.Atencionparto)
+		if err != nil {
+			return puerperas, err
+		}
+		puerperas = append(puerperas, puerpera)
+	}
+	rows.Close()
+	return puerperas, nil
+}
