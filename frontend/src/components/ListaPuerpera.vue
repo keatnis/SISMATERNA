@@ -1,353 +1,140 @@
 <template>
+  <section>
+    <article class="panel is-info">
+      <p class="panel-heading">
+        Bucar puerpera:
+      </p>
+    </article>
+
+    <b-field>
+      <div class="control">
+        <b-button label="Eliminar paciente seleccionado" type="is-danger" icon-left="delete-forever" :disabled="!selected"
+          @click="selected = null" />
+      </div>
 
 
-  <article class="panel is-info">
-    <p class="panel-heading">
-      Bucar puerpera:
-    </p>
+      <b-button label="Modificar paciente seleccionado" type="is-success" icon-left="border-color" :disabled="!selected"
+        @click="selected = null" />
+    </b-field>
+
+
+    <b-field grouped group-multiline>
+      <div class="control">
+        <b-switch v-model="stickyHeaders">Encabezado fijo</b-switch>
+      </div>
+      <div class="control">
+        <b-switch v-model="dateCurp">CURP</b-switch>
+      </div>
+      <div class="control">
+        <b-switch v-model="dateNombre"> Nombre completo</b-switch>
+      </div>
 
 
 
-    <section>
-
-      <b-field>
-        <div class="control">
-          <b-button label="Eliminar paciente seleccionado" type="is-danger" icon-left="delete-forever"
-            :disabled="!selected" @click="selected = null" />
-        </div>
+    </b-field>
 
 
-        <b-button label="Modificar paciente seleccionado" type="is-success" icon-left="border-color"
-          :disabled="!selected" @click="selected = null" />
+    <b-table :data="puerperas" :columns="columns" :sticky-header="stickyHeaders"></b-table>
 
 
 
-      </b-field>
 
 
-      <b-field grouped group-multiline>
-        <div class="control">
-          <b-switch v-model="stickyHeaders">Encabezado fijo</b-switch>
-        </div>
-        <div class="control">
-          <b-switch v-model="dateCurp">CURP</b-switch>
-        </div>
-        <div class="control">
-          <b-switch v-model="dateNombre"> Nombre completo</b-switch>
-        </div>
-        <div class="control">
-          <b-switch v-model="dateSearchable">Fecha de nacimiento</b-switch>
-        </div>
-
-
-      </b-field>
-      <b-table :data="data" :columns="columns" :sticky-header="stickyHeaders"></b-table>
-      <br />
-
-    </section>
-  </article>
-
+  </section>
 </template>
 
 
 <script>
+
+import DialogosService from "../services/DialogosService";
+
+import PuerperaService from "../services/PuerperaService";
 export default {
   data() {
     return {
-      data: [
-        {
-          id: 1,
-          user: { first_name: "HortenciaGarciaMendez", last_name: "HASR191098MCHLLC07" },
-          date: "10/15/2016",
-          gender: "27 años"
-        },
-        {
-          id: 2,
-          user: { first_name: "John", last_name: "Jacobs" },
-          date: "12/12/2022 06:00:53",
-          gender: "Male"
-        },
-        {
-          id: 3,
-          user: { first_name: "Tina", last_name: "Gilbert" },
-          date: "2016/04/26 06:26:28",
-          gender: "Female"
-        },
-        {
-          id: 4,
-          user: { first_name: "Clarence", last_name: "Flores" },
-          date: "2016/04/10 10:28:46",
-          gender: "Male"
-        },
-        {
-          id: 5,
-          user: { first_name: "Anne", last_name: "Lee" },
-          date: "2016/12/06 14:38:38",
-          gender: "Female"
-        },
-        {
-          id: 6,
-          user: { first_name: "Sara", last_name: "Armstrong" },
-          date: "2016/09/23 18:50:04",
-          gender: "Female"
-        },
-        {
-          id: 7,
-          user: { first_name: "Anthony", last_name: "Webb" },
-          date: "2016/08/30 23:49:38",
-          gender: "Male"
-        },
-        {
-          id: 8,
-          user: { first_name: "Andrew", last_name: "Greene" },
-          date: "2016/11/20 14:57:47",
-          gender: "Male"
-        },
-        {
-          id: 9,
-          user: { first_name: "Russell", last_name: "White" },
-          date: "2016/07/13 09:29:49",
-          gender: "Male"
-        },
-        {
-          id: 10,
-          user: { first_name: "Lori", last_name: "Hunter" },
-          date: "2016/12/09 01:44:05",
-          gender: "Female"
-        }
-      ],
+
       stickyHeaders: true,
       dateCurp: false,
       dateNombre: false,
-      dateSearchable: false
+      dateSearchable: false,
+      embarazadas: [],
+      localidades: [],
+      selectedOptions: [],
+      puerperas: [],
+      columns: [{
+        field: "NP",
+        label: "ID",
+        width: "40",
+        numeric: true,
 
+      },
+      {
+        field: "consultasiete",
+        label: "Consulta 7",
+      },
+      {
+        field: "consultaveinte",
+        label: "Consulta 20",
+      },
+
+      {
+        field: "consultacuarenta",
+        label: "Consulta 40",
+        centered: true,
+      },
+
+      {
+        field: "signos",
+        label: "Signos",
+      },
+      {
+        field: "atencionparto",
+        label: "Atendio Parto",
+
+      },
+      {
+        field: "lugarparto",
+        label: "Lugar Parto",
+
+      },
+      {
+        field: "resolucion",
+        label: "Resolucion",
+
+      },
+      {
+        field: "producto",
+        label: "Producto",
+
+      },
+      {
+        field: "aceptante",
+        label: "Aceptance",
+
+      },
+      {
+        field: "pregestacional",
+        label: "Pregestacional"
+      }
+      ],
     };
-
   },
-  computed: {
-    columns() {
-      return [
+  async mounted() {
+    await this.ObtenerPuerperas();
+  },
+  methods: {
 
-        {
-          field: "id",
-          label: "No. Progreso",
-          width: "40",
-          numeric: true,
-          sticky: true,
-          headerClass: "is-sticky-column-one",
-          cellClass: "is-sticky-column-one",
-          centered: true,
+    async ObtenerPuerperas() {
 
-
-        },
-        {
-          field: "user.last_name",
-          label: "Curp",
-          searchable: this.dateCurp,
-          centered: true,
-          sticky: true,
-
-        },
-        {
-          field: "user.first_name",
-          label: "Nombre",
-          searchable: this.dateNombre,
-          centered: true,
-          sticky: true,
-
-
-        },
-
-        {
-          field: "date",
-          label: "Fecha de nacimiento",
-          searchable: this.dateSearchable,
-          centered: true,
-          sticky: true
-
-        },
-        {
-          field: "gender",
-          label: "Edad",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Consulta de 7 días",
-          centered: true,
-          width: "120",
-          height: "60"
-        },
-        {
-          field: "id",
-          label: "Consulta de 28 días",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Consulta de 40 días",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Signos de alarma",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Atención de parto",
-          centered: true,
-          width: "50"
-
-        },
-        {
-          field: "id",
-          label: "Lugar del parto",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Resolución del embarazo",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "No. de producto",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "APEO",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Puerpera aceptante",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Consulta pregestacional",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Fecha de parto",
-          centered: true,
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Derechohabiencia",
-          centered: true,
-          width: "50",
-          height: "60"
-        }
-      ];
-    },
-    checkableColumns() {
-      return [
-        {
-          field: "id",
-          label: "ID",
-          width: "40",
-          numeric: true,
-          sticky: false,
-        },
-        {
-          field: "user.first_name",
-          label: "Nombre",
-          searchable: this.dateNombre,
-          centered: true,
-          sticky: false
-        },
-        {
-          field: "user.last_name",
-          label: "Curp",
-          searchable: this.dateCurp,
-          centered: true,
-          sticky: false
-        },
-        {
-          field: "date",
-          label: "Date",
-          searchable: this.dateSearchable,
-          centered: true,
-          sticky: false,
-        },
-        {
-          field: "gender",
-          label: "Gender",
-          width: "50"
-        },
-        {
-          field: "id",
-          label: "Column A",
-
-        },
-        {
-          field: "id",
-          label: "Column B"
-        },
-        {
-          field: "id",
-          label: "Column C"
-        },
-        {
-          field: "id",
-          label: "Column D"
-        },
-        {
-          field: "id",
-          label: "Column E"
-        },
-        {
-          field: "id",
-          label: "Column F"
-        },
-        {
-          field: "id",
-          label: "Column G"
-        },
-        {
-          field: "id",
-          label: "Column H"
-        },
-        {
-          field: "id",
-          label: "Column I"
-        },
-        {
-          field: "id",
-          label: "Column L"
-        },
-        {
-          field: "id",
-          label: "Column M"
-        },
-        {
-          field: "id",
-          label: "Column N"
-        },
-        {
-          field: "id",
-          label: "Column O"
-        }
-      ];
-    },
-
-  }
+      try {
+        this.puerperas = await PuerperaService.obtenerPuerpera();
+      } catch {
+        DialogosService.mostrarNotificacionError("No se puede obtener la lista de puerperas");
+      }
+    }
+  },
 };
+
 </script>
 
 <style>

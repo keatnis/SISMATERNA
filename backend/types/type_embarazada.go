@@ -1,22 +1,24 @@
 package embarazada
 
 type Embarazada struct {
-	Id                     int64  `json:"id"`
-	NoExpediente           string `json:"noExpediente"`
-	NombreCompleto         string `json:"nombre"`
-	Curp                   string `json:"curp"`
-	FechaNacimiento        string `json:"FechaNacimiento,omitempty"`
-	Edad                   int64  `json:"edad"`
-	Direccion              string `json:"domicilioReferencia"`
-	Localidad              string `json:"localidad"`
-	Municipio              string `json:"municipio"`
-	Telefono               string `json:"telefono,omitempty"`
-	LenguaIndigena         string `json:"lenguaIndigena"`
-	Emigro                 int64  `json:"emigro"`
-	Derechohabiencia       string `json:"derechohabiencia"`
-	Violencia              string `json:"violencia"`
-	Comorbilidades         string `json:"comorbilidades"`
-	AsistenciaPreg         int64  `json:"AsistenciaPreg"`
+	Id               int64  `json:"id"`
+	NoExpediente     string `json:"noExpediente"`
+	NombreCompleto   string `json:"nombre"`
+	Curp             string `json:"curp"`
+	FechaNacimiento  string `json:"FechaNacimiento,omitempty"`
+	Edad             int64  `json:"edad"`
+	Direccion        string `json:"domicilioReferencia"`
+	Localidad        string `json:"localidad"`
+	Municipio        string `json:"municipio"`
+	Telefono         string `json:"telefono,omitempty"`
+	LenguaIndigena   string `json:"lenguaIndigena"`
+	Emigro           int64  `json:"emigro"`
+	Derechohabiencia string `json:"derechohabiencia"`
+	Violencia        string `json:"violencia"`
+	Comorbilidades   string `json:"comorbilidades"`
+
+	AsistenciaPreg int64 `json:"AsistenciaPreg"`
+
 	ConsultaPregestacional string `json:"ConsultaPregestacional,omitempty"`
 	Gestas                 int64  `json:"gestas"`
 	Paras                  int64  `json:"paras"`
