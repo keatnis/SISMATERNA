@@ -176,6 +176,7 @@ export default {
     showSocial: false,
     checkboxGroup: [],
     detalles: {
+      id:null,
       consultasiete: null,
       consultaveinte: null,
       consultacuarenta: null,
