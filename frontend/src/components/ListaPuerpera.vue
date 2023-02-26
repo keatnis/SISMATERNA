@@ -62,7 +62,7 @@ export default {
       selectedOptions: [],
       puerperas: [],
       columns: [{
-        field: "NP",
+        field: "id",
         label: "ID",
         width: "40",
         numeric: true,
