@@ -3,7 +3,7 @@
   <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
     :icon-prev="prevIcon" :icon-next="nextIcon" :mobile-mode="mobileMode">
     <div class="has-text-centered">
-      <article class="panel is-info centered">
+      <article class="panel  centered">
         <div class="panel-heading">Registrar puerpera</div>
       </article>
     </div>
@@ -59,8 +59,8 @@
             </b-select>
           </b-field>
           <b-field label="Consulta pregestacional"></b-field>
-          <b-radio v-model="detalles.pregestacional" :native-value="1" >Si</b-radio>
-          <b-radio v-model="detalles.pregestacional" :native-value="0" >No</b-radio>
+          <b-radio v-model="detalles.pregestacional" :native-value="1">Si</b-radio>
+          <b-radio v-model="detalles.pregestacional" :native-value="0">No</b-radio>
           <b-field label="Derechohabiencia">
             <b-select placeholder="Derechohabiencia" v-model="detalles.derechohabiencia" disabled expanded>
               <option value="INSABI">INSABI</option>
@@ -176,7 +176,7 @@ export default {
     showSocial: false,
     checkboxGroup: [],
     detalles: {
-      id:null,
+      id: null,
       consultasiete: null,
       consultaveinte: null,
       consultacuarenta: null,
@@ -233,7 +233,7 @@ export default {
         DialogosService.mostrarError("registro con errores");
       } else {
         DialogosService.mostrarExitoso(
-          "Datos guardados correctament en la base de datos"
+          "Datos guardados correctamente"
         );
         this.detalles = {
           consultasiete: null,

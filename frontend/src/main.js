@@ -3,10 +3,11 @@ import App from './App.vue'
 import '@mdi/font/css/materialdesignicons.css'
 import router from "./router"
 import Utiles from "./services/Utiles"
-
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+// Register it globally
+// main.js or any entry file.
 
 
 Vue.use(Buefy);
@@ -19,4 +20,5 @@ Vue.filter("dinero", Utiles.formatearDinero);
 new Vue({
   render: h => h(App),
   router,
+
 }).$mount('#app')

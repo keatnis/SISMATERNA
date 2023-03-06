@@ -1,6 +1,6 @@
 <template>
   <section>
-    <article class="panel is-info">
+    <article class="panel centered">
       <p class="panel-heading">
         Bucar puerpera:
       </p>
@@ -32,14 +32,7 @@
 
 
     </b-field>
-
-
-    <b-table :data="puerperas" :columns="columns" :sticky-header="stickyHeaders"></b-table>
-
-
-
-
-
+    <b-table :data="puerperas" :columns="columns" :sticky-header="stickyHeaders" id="listapuerpera"></b-table>
   </section>
 </template>
 
@@ -61,6 +54,7 @@ export default {
       localidades: [],
       selectedOptions: [],
       puerperas: [],
+
       columns: [{
         field: "id",
         label: "ID",
@@ -71,10 +65,14 @@ export default {
       {
         field: "consultasiete",
         label: "Consulta 7",
+        centered: true,
+
       },
       {
         field: "consultaveinte",
         label: "Consulta 20",
+        centered: true,
+
       },
 
       {
@@ -86,35 +84,48 @@ export default {
       {
         field: "signos",
         label: "Signos",
+        centered: true,
+
       },
       {
         field: "atencionparto",
         label: "Atendio Parto",
+        centered: true,
+
 
       },
       {
         field: "lugarparto",
         label: "Lugar Parto",
+        centered: true,
+
 
       },
       {
         field: "resolucion",
         label: "Resolucion",
+        centered: true,
+
 
       },
       {
         field: "producto",
         label: "Producto",
+        centered: true,
 
       },
       {
         field: "aceptante",
         label: "Aceptance",
+        centered: true,
+
 
       },
       {
         field: "pregestacional",
-        label: "Pregestacional"
+        label: "Pregestacional",
+        centered: true,
+
       }
       ],
     };

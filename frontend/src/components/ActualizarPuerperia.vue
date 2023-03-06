@@ -3,7 +3,7 @@
   <b-steps v-model="activeStep" :animated="isAnimated" :rounded="isRounded" :has-navigation="hasNavigation"
     :icon-prev="prevIcon" :icon-next="nextIcon" :label-position="labelPosition" :mobile-mode="mobileMode">
     <div class="has-text-centered">
-      <article class="panel is-info centered">
+      <article class="panel  centered">
         <div class="panel-heading">
           Actualizar datos de puerpera
         </div>

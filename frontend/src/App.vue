@@ -43,7 +43,7 @@
               Mostrar lista</b-navbar-item>
           </div>
         </div>
-        <b-navbar-item tag="router-link" :to="{ name: 'InformesLocalidad' }">
+        <b-navbar-item tag="router-link" :to="{ name: 'Informes' }">
           <b-icon icon="file-find" class="mr-1"></b-icon>Informes
         </b-navbar-item>
         <div class="navbar-item has-dropdown is-hoverable">

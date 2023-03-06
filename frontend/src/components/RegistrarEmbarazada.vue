@@ -4,7 +4,7 @@
     :icon-prev="prevIcon" :icon-next="nextIcon" :mobile-mode="mobileMode">
     <b-step-item step="" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
-        <article class="panel is-info centered">
+        <article class="panel centered">
           <p class="panel-heading">Registrar embarazada</p>
         </article>
       </div>
@@ -53,8 +53,8 @@
                 <option value="No">No</option>
               </b-select>
             </b-field>
-            
-            
+
+
             <b-field label="Gestas">
 
               <b-numberinput v-model="detalles.Gestas" type="number" placeholder="Número de gestas"></b-numberinput>
@@ -224,8 +224,8 @@
               <b-radio v-model="detalles.AsistenciaPreg" :native-value="0">No</b-radio>
             </div>
 
-            <b-datepicker v-model="detalles.consultaPregestacional" placeholder="Fecha de consulta"
-              icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
+            <b-datepicker v-model="detalles.consultaPregestacional" placeholder="Fecha de consulta" icon="calendar-today"
+              :datetime-formatter="formatearFecha" :locale="locale" editable>
             </b-datepicker>
 
             <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
@@ -571,6 +571,7 @@
   </b-steps>
 </template>
 <script>
+
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
 import EmbarazadaService from "../services/EmbarazadaService";
@@ -821,7 +822,7 @@ export default {
         DialogosService.mostrarError("registro con errores");
       } else {
         DialogosService.mostrarExitoso(
-          "Datos guardados correctament en la base de datos"
+          "Datos guardados correctamente"
         );
         this.detalles = {
           noExpediente: "",

@@ -5,7 +5,7 @@
 
     <b-step-item step="" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
-        <article class="panel is-info centered">
+        <article class="panel centered">
           <p class="panel-heading">
             Actualizar datos de embarazada
           </p>

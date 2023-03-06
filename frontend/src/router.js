@@ -10,10 +10,9 @@ import ActualizarEmbarazada from '@/components/ActualizarEmbarazada'
 import ActualizarPuerperia from '@/components/ActualizarPuerperia'
 import ListaPuerpera from '@/components/ListaPuerpera'
 import ListaEmbarazada from '@/components/ListaEmbarazada'
-import InformesRegional from '@/components/InformesRegional'
-import InformesMunicipio from '@/components/InformesMunicipio'
-import InformesLocalidad from '@/components/InformesLocalidad'
+import Informes from '@/components/Informes'
 import Tarjetas from '@/components/Tarjetas'
+import ListaUsuario from '@/components/ListaUsuario'
 Vue.use(Router);
 
 export default new Router({
@@ -61,24 +60,19 @@ export default new Router({
             component: ListaPuerpera,
         },
         {
-            path: '/InformesRegional',
-            name: 'InformesRegional',
-            component: InformesRegional,
-        },
-        {
-            path: '/InformesMunicipio',
-            name: 'InformesMunicipio',
-            component: InformesMunicipio,
-        },
-        {
-            path: '/InformesLocalidad',
-            name: 'InformesLocalidad',
-            component: InformesLocalidad,
+            path: '/Informes',
+            name: 'Informes',
+            component: Informes,
         },
         {
             path: '/Tarjetas',
             name: 'Tarjetas',
             component: Tarjetas,
+        },
+        {
+            path: '/ListaUsuario',
+            name: 'ListaUsuario',
+            component: ListaUsuario,
         },
     ]
 });

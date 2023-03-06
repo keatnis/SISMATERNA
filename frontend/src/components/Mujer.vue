@@ -1,11 +1,11 @@
 <template>
   <section>
-
-    <b-table
-      :data="puerperas"
-      :columns="columns"
-      :sticky-header="stickyHeaders"
-    ></b-table>
+    <article class="panel is-danger centered ">
+    <p class="panel-heading " >
+      Proximas citas:
+    </p></article>
+    
+    <b-table :data="embarazadas" :columns="columns" :sticky-header="stickyHeaders" width=700></b-table>  
    
 
 
@@ -13,88 +13,100 @@
 </template>
 
 <script>
+
 import DialogosService from "../services/DialogosService";
 
-import PuerperaService from "../services/PuerperaService";
+import EmbarazadaService from "../services/EmbarazadaService";
 export default {
   data() {
     return {
+
+      stickyHeaders: true,
+      dateCurp: false,
+      dateNombre: false,
+      dateSearchable: false,
       embarazadas: [],
-      localidades: [],
-      selectedOptions: [],
-      puerperas: [],
       columns: [
         {
-          field: "NP",
-          label: "ID",
-          width: "40",
+          field: "id",
+          label: "NP",
+          width: "25",
+          
           numeric: true,
+          
         },
         {
-          field: "consultasiete",
-          label: "Consulta 7",
-        },
-        {
-          field: "consultaveinte",
-          label: "Consulta 20",
-        },
-        {
-          field: "consultacuarenta",
-          label: "Consulta 40",
+          field: "curp",
+          label: "Curp",
           centered: true,
+          searchable: this.datecurp,
+
+        },
+       
+
+        {
+          field: "noExpediente",
+          label: "No. de expediente clinico",
+          width: "70",
+          numeric: true,
+          sticky: true,
+          
+          centered: true,
+
+         
         },
         {
-          field: "signos",
-          label: "Signos",
-        },
-      {
-        field:"atencionparto",
-        label:"Atendio Parto",
+          field: "nombre",
+          label: "Nombre de la embarazada",
+          numeric: true,
+          sticky: true,
+          
+          centered: true,
 
-      },
-      {
-        field:"lugarparto",
-        label:"Lugar Parto",
+          
+        },
+
         
-      },
-      {
-        field:"resolucion",
-        label:"Resolucion",
+        {
+          field: "telefono",
+          label: "Numero telefonico",
+          centered: true,
+
+        },
+        {
+          field: "SGA",
+          label: "SDG Actual",
+          centered: true,
+          
+        },
+        {
+          field: "FechaConsulta",
+          label: "Fecha de consulta",
+          centered: true,
+          
+        },
         
-      },
-      {
-        field:"producto",
-        label:"Producto",
-        
-      },
-      {
-        field:"aceptante",
-        label:"Aceptance",
-        
-      },
-      {
-field:"pregestacional",
-label:"Pregestacional"
-      }
       ],
     };
   },
 
   async mounted() {
-    await this.ObtenerPuerperas();
+    await this.GetEmbarazada();
   },
   methods: {
-   
-async ObtenerPuerperas(){
 
-  try{
-this.puerperas = await PuerperaService.obtenerPuerpera();
-  }catch{
-    DialogosService.mostrarNotificacionError("No se puede obtener la lista de puerperas");
-  }
-}
+    async GetEmbarazada() {
+
+      try {
+        this.embarazadas = await EmbarazadaService.GetEmbarazada();
+      } catch {
+        DialogosService.mostrarNotificacionError("No se puede obtener la lista de embarazada");
+      }
+    }
   },
 };
+
+
 </script>
 <style>
 #tabla {

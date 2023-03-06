@@ -199,6 +199,27 @@ func SetupRoutesForEmbarazada(router *mux.Router) {
 		}
 	}).Methods(http.MethodGet)
 
+	// USUARIO
+	router.HandleFunc("/Tarjetas", func(w http.ResponseWriter, r *http.Request) {
+		responderHttpConFuncion(w, r, func() (interface{}, error) {
+			var login emb.Usuario
+			err := json.NewDecoder(r.Body).Decode(&login)
+			if err != nil {
+				return nil, err
+			}
+			err = controller_embarazada.InsertUsuario(login)
+			return true, err
+		})
+	}).Methods(http.MethodPost)
+
+	router.HandleFunc("/ListaUsuario", func(w http.ResponseWriter, r *http.Request) {
+		embarazadas, err := controller_embarazada.ObtenerUsuarios()
+		if err == nil {
+			respondWithSuccess(embarazadas, w)
+		} else {
+			respondWithError(err, w)
+		}
+	}).Methods(http.MethodGet)
 }
 
 // Habilitar el CORS
