@@ -890,6 +890,8 @@ export default {
   },
 };
 </script>
+
+/*
 <style scoped>
 .container {
   display: flex;
@@ -900,3 +902,4 @@ export default {
   align-content: space-between;
 }
 </style>
+*/

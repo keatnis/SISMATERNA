@@ -6,6 +6,9 @@ const PuerperaService = {
     async obtenerPuerpera() {
         return await HttpService.get("/ListaPuerpera");
     },
+    async login(){
+        return await HttpService.post("/auth/login");
+    }
 
 };
 export default PuerperaService;
