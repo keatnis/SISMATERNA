@@ -1,6 +1,7 @@
 package embarazada
 
 type Puerpera struct {
+	Id               int64   `json:"id"`
 	Consultasiete    *string `json:"consultasiete,omitempty"`
 	Consultaveinte   *string `json:"consultaveinte,omitempty"`
 	Consultacuarenta *string `json:"consultacuarenta,omitempty"`

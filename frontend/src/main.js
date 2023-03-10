@@ -3,7 +3,6 @@ import App from './App.vue'
 import '@mdi/font/css/materialdesignicons.css'
 import router from "./router"
 import Utiles from "./services/Utiles"
-
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import store from './store'

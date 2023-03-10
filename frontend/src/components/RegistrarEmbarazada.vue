@@ -4,7 +4,7 @@
     :icon-prev="prevIcon" :icon-next="nextIcon" :mobile-mode="mobileMode">
     <b-step-item step="" label="" :clickable="isStepsClickable">
       <div class="column has-text-centered">
-        <article class="panel is-info centered">
+        <article class="panel centered">
           <p class="panel-heading">Registrar embarazada</p>
         </article>
       </div>
@@ -37,24 +37,24 @@
             <b-field label="Derechohabiencia">
               <b-select v-model="detalles.Derechohabiencia" expanded>
                 <option value="">Seleccionar</option>
-                <option value="Insabi">INSABIi</option>
-                <option value="Imss">IMSS</option>
-                <option value="Issste">ISSSTE</option>
-                <option value="Sedena">SEDENA</option>
-                <option value="Pemex">PEMEX</option>
-                <option value="Marina">MARINA</option>
+                <option value="INSABI">INSABI</option>
+                <option value="IMSS">IMSS</option>
+                <option value="ISSSTE">ISSSTE</option>
+                <option value="SEDENA">SEDENA</option>
+                <option value="PEMEX">PEMEX</option>
+                <option value="MARINA">MARINA</option>
                 <option value="Otro">Otro</option>
               </b-select>
             </b-field>
             <b-field label="Violencia">
               <b-select v-model="detalles.violencia" expanded>
                 <option value="">Seleccionar</option>
-                <option value="si">Si</option>
-                <option value="no">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
               </b-select>
             </b-field>
-            
-            
+
+
             <b-field label="Gestas">
 
               <b-numberinput v-model="detalles.Gestas" type="number" placeholder="Número de gestas"></b-numberinput>
@@ -66,7 +66,7 @@
             <b-field label="Comorbilidades">
               <section>
                 <div class="container">
-                  <b-checkbox v-model="detalles.sobrepeso" native-value="sobrepeso">Sobre peso
+                  <b-checkbox v-model="detalles.sobrepeso" native-value="Sobrepeso">Sobrepeso
                   </b-checkbox>
                   <b-checkbox v-model="detalles.obesidad" native-value="Obesidad"> Obesidad
                   </b-checkbox>
@@ -141,8 +141,8 @@
             <b-field label="Lengua Indígena">
               <b-select v-model="detalles.lenguaIndigena" placeholder="Lengua Indígena" expanded>
                 <option value="Nahual">Nahual</option>
-                <option value="Mixteco">Tu´un Savi (Mixteco)</option>
-                <option value="Mephaa">Meephaa (Tlapaneco)</option>
+                <option value="Tu´un Savi (Mixteco)">Tu´un Savi (Mixteco)</option>
+                <option value="Meephaa (Tlapaneco)">Meephaa (Tlapaneco)</option>
                 <option value="Amuzgo">Amuzgo</option>
                 <option value="Ninguno">Ninguno</option>
               </b-select>
@@ -224,8 +224,8 @@
               <b-radio v-model="detalles.AsistenciaPreg" :native-value="0">No</b-radio>
             </div>
 
-            <b-datepicker v-model="detalles.consultaPregestacional" placeholder="Fecha de consulta"
-              icon="calendar-today" :datetime-formatter="formatearFecha" :locale="locale" editable>
+            <b-datepicker v-model="detalles.consultaPregestacional" placeholder="Fecha de consulta" icon="calendar-today"
+              :datetime-formatter="formatearFecha" :locale="locale" editable>
             </b-datepicker>
 
             <b-field label="Fecha de ultimo evento( Parto, cesarea, aborto)">
@@ -240,14 +240,14 @@
               <b-radio v-model="detalles.presentComplicaciones" :native-value="0">No</b-radio>
               <b-select placeholder="¿Qué complicaciones presento?" v-model="detalles.complicaciones" expanded>
                 <option value="Hemorragia ">Hemorragia</option>
-                <option value="RetencioPlacenta">Retención de placenta</option>
-                <option value="PlacentaPrevia">Placenta previa</option>
-                <option value="DiabetesGesta">Diabetes gestacional</option>
-                <option value="Preeclampsia">Preeclampsia</option>
+                <option value="Retención de placenta<">Retención de placenta</option>
+                <option value="Placenta previa">Placenta previa</option>
+                <option value="Diabetes gestacional">Diabetes gestacional</option>
+                <option value="PreeclampsiaPreeclampsia">Preeclampsia</option>
                 <option value="Eclampsia">Eclampsia</option>
-                <option value="CovidEmbarazo">Covid + embarazo</option>
-                <option value="OtraCompli">Otra</option>
-                <option value="NingunaCompli">Ninguna</option>
+                <option value="CCovid + embarazo">Covid + embarazo</option>
+                <option value="Otra">Otra</option>
+                <option value="Ninguna">Ninguna</option>
               </b-select>
             </div>
           </div>
@@ -266,7 +266,7 @@
             </b-field>
 
             <div class="control">
-              <b-field label="Fecha de consutal">
+              <b-field label="Fecha de consulta">
                 <b-datepicker v-model="detalles.fechaConsulta" placeholder="Fecha de consulta " icon="calendar-today"
                   :datetime-formatter="formatearFecha" :locale="locale" editable>
                 </b-datepicker>
@@ -296,28 +296,28 @@
 
               <b-field label="Biometria ematica">
                 <b-select v-model="detalles.BiometriaHematica" placeholder="Biometria" expanded>
-                  <option value="HB12">HB >=12</option>
-                  <option value="HBMAY9">HB >=9</option>
-                  <option value="HBMEN9">HB Menor a 9</option>
+                  <option value="HB >=12">HB >=12</option>
+                  <option value="HB >=9">HB >=9</option>
+                  <option value="HB<9">HB Menor a 9</option>
                   <option value="Ninguno">Ninguno</option>
                 </b-select>
               </b-field>
 
               <b-field label="VIH">
                 <b-select v-model="detalles.vih" placeholder="VIH" expanded>
-                  <option value="Reactivo VIH">Reactivo</option>
-                  <option value="NoReactivo VIH">No reactivo</option>
-                  <option value="NoRealizo VIH">No se realizó</option>
+                  <option value="Reactivo">Reactivo</option>
+                  <option value="No reactivo">No reactivo</option>
+                  <option value="No se realizo VIH">No se realizó</option>
                 </b-select>
               </b-field>
               <b-field label="Características fetales ">
                 <b-select placeholder="Características" v-model="detalles.caracteristicasFetls" expanded>
-                  <option value="UnicoVivo">Unico vivo</option>
-                  <option value="UnicObito">Unico obito</option>
+                  <option value="Unico vivo">Unico vivo</option>
+                  <option value="Unico obito">Unico obito</option>
                   <option value="Molar">Molar</option>
                   <option value="Monocorial">Monocorial</option>
                   <option value="Bicorionicos">Bicorionicos</option>
-                  <option value="Gemelar1Obitado">Gmelar 1 obitado</option>
+                  <option value="Gemelar 1 obitado">Gmelar 1 obitado</option>
                 </b-select>
               </b-field>
             </div>
@@ -360,48 +360,47 @@
                 <option value="O-">O-</option>
                 <option value="AB+">AB+</option>
                 <option value="AB-">AB-</option>
-                <option value="NingunoRH">Ninguno</option>
+                <option value="Ninguno">Ninguno</option>
               </b-select>
             </b-field>
             <b-field label="Leucocitos">
               <b-select placeholder="Leucocitos" v-model="detalles.leucocitos" expanded>
                 <option value="Normales">Normales</option>
-                <option value="DisminuidosLinfocitos">
+                <option value="Disminuidos linfocitos">
                   Disminuidos linfocitos
                 </option>
-                <option value="AumentadosNeutrofilos">
+                <option value="Aumentados neutrofilos">
                   Aumentados neutrofilos
                 </option>
-                <option value="AumentadosLinfocitos">
+                <option value="Aumentados los linfocitos">
                   Aumentados los linfocitos
                 </option>
-                <option value="NingunoLEUCO">Ninguno</option>
+                <option value="Ninguno">Ninguno</option>
               </b-select>
             </b-field>
 
             <b-field label="Plaquetas">
               <b-select placeholder="Plaquetas" v-model="detalles.plaquetas" expanded>
-                <option value="valor1">Normales</option>
-                <option value="valor1">Disminuidos</option>
+                <option value="Normales">Normales</option>
+                <option value="Disminuidos">Disminuidos</option>
               </b-select>
             </b-field>
             <b-field label="Estado tiras glucosa">
               <b-select placeholder="Estado en el que se realizó" v-model="detalles.estadoGlucosa" expanded>
                 <option value="Ayuno">Ayuno</option>
-                <option value="Posprandial1">Posprandial 1 hora</option>
-                <option value="Posprandial2">Posprandial 2 horas</option>
-                <option value="NingunoLEUCO">Ninguno</option>
+                <option value="Posprandial 1 hora">Posprandial 1 hora</option>
+                <option value="Posprandial 2 horas">Posprandial 2 horas</option>
+                <option value="Ninguno">Ninguno</option>
               </b-select>
             </b-field>
 
             <b-field label=" Malformaciones congenitas">
               <b-select placeholder="Malformaciones" v-model="detalles.malformaciones" expanded>
-                <option value="EspinaBifida">Espina bifida</option>
-                <option value="Meningocele">Meningocele</option>
+                <option value="Espina bifida">Espina bifida</option>
                 <option value="Mielomeningocele">Mielomeningocele</option>
                 <option value="Anencefalia">Anencefalia</option>
-                <option value="OtrasMalform">Otras</option>
-                <option value="NingunaMalform">Ninguna</option>
+                <option value="Otras">Otras</option>
+                <option value="Ninguna">Ninguna</option>
               </b-select>
             </b-field>
           </div>
@@ -431,27 +430,27 @@
             </div>
             <b-field label="EGO y/o tiras urianalisis">
               <b-select placeholder="EGO" v-model="detalles.ego" expanded>
-                <option value="Trazas">Prot. trazas</option>
-                <option value="Mayor300">Prot. >300 mg/l</option>
-                <option value="Leucitos">leucitos >5</option>
-                <option value="Nitratos">nitratos +</option>
-                <option value="NegativoEgo">Negativo</option>
+                <option value="Prot. trazas">Prot. trazas</option>
+                <option value="Prot. >300 mg/l">Prot. >300 mg/l</option>
+                <option value="Leucitos >5">leucitos >5</option>
+                <option value="Nitratos +">nitratos +</option>
+                <option value="Negativo">Negativo</option>
               </b-select>
             </b-field>
 
             <b-field label="VDRL">
               <b-select v-model="detalles.vdrl" placeholder="VDRL" expanded>
-                <option value="ReactivoVDRL">Reactivo</option>
-                <option value="NoReactivoVDRL">No reactivo</option>
-                <option value="NoRealizo">No se realizo</option>
+                <option value="Reactivo">Reactivo</option>
+                <option value="No reactivo">No reactivo</option>
+                <option value="No se realizo">No se realizo</option>
               </b-select>
             </b-field>
             <b-field label="Resultado tiras glucosa">
               <b-select placeholder="Resultado tiras glucosa" v-model="detalles.resultadoGlucosa" expanded>
-                <option value="Mayor60">>60 y menor a 110</option>
-                <option value="Mayor110">>=110 y menor o igual a 126</option>
-                <option value="Mayor126">>126 y menor a 160</option>
-                <option value="NingunoGlucosa">Ninguno</option>
+                <option value=">60 y < 110">>60 y menor a 110</option>
+                <option value=">=110 y <=126">>=110 y menor o igual a 126</option>
+                <option value=">126 y < 160 ">>126 y menor a 160</option>
+                <option value="Ninguno">Ninguno</option>
               </b-select>
             </b-field>
 
@@ -474,9 +473,9 @@
           <div class="column is-one-third">
             <b-field label="Placenta">
               <b-select placeholder="Placenta" v-model="detalles.placenta" expanded>
-                <option value="NormalPlacen">Normal</option>
+                <option value="Normal">Normal</option>
                 <option value="Previa">Previa</option>
-                <option value="AcretismoPlacentario">
+                <option value="Acretismo placentario">
                   Acretismo placentario
                 </option>
                 <option value="Calcificada">Calcificada</option>
@@ -485,19 +484,19 @@
 
             <b-field label="¿Acudió a referencia?"></b-field>
             <b-select placeholder="Referencias" v-model="detalles.acudio_refe" expanded>
-              <option value="si ">Si</option>
-              <option value="no">No</option>
+              <option value="Si ">Si</option>
+              <option value="No">No</option>
             </b-select>
 
             <b-field label="¿Se oriento en señales de peligro durante el embarazo, parto, puerperio, rn?"></b-field>
             <b-select placeholder="¿Se oriento en señales de peligro durante el embarazo?" expanded>
-              <option value="SIOriento">Si</option>
-              <option value="NoOriento">No</option>
+              <option value="Si">Si</option>
+              <option value="No">No</option>
             </b-select>
             <b-field label="¿cuenta con transporte ame en caso de emergencia?">
               <b-select placeholder="¿Cuenta con transporte AME?" expanded>
-                <option value="SiAME">SI</option>
-                <option value="NoAME">NO</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
               </b-select>
             </b-field>
           </div>
@@ -513,16 +512,16 @@
             </div>
             <b-field label="Contrareferencia recibida">
               <b-select placeholder="Referencia" v-model="detalles.contrareferencia" expanded>
-                <option value="SiConrefe">Si</option>
-                <option value="NoCorefe">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
               </b-select>
             </b-field>
             <b-field label="¿Donde atenderán su parto?">
               <b-select placeholder="¿Donde atenderán su parto?" v-model="detalles.lugarParto" expanded>
-                <option value="AtenderHospital">Hospital</option>
-                <option value="AtenderC.Salud">C. Salud</option>
-                <option value="AtenderHogar">Hogar</option>
-                <option value="AtenderParticular">Particular</option>
+                <option value="Hospital">Hospital</option>
+                <option value="C.Salud">C. Salud</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Particular">Particular</option>
               </b-select>
             </b-field>
             <div class="control">
@@ -536,27 +535,27 @@
           <div class="column is-one-third">
             <b-field label="Referencia">
               <b-select placeholder="Referencia" v-model="detalles.referencia" expanded>
-                <option value="SiRefe">Si</option>
-                <option value="NoRefe">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
               </b-select>
             </b-field>
 
             <b-field label="Se le realizó el plan de seguridad">
               <b-select placeholder="Plan de seguridad" v-model="detalles.planSeguridad" expanded>
-                <option value="SiRefe">Si</option>
-                <option value="NoRefe">Reforzamiento</option>
-                <option value="NoRefe">No</option>
+                <option value="Si">Si</option>
+                <option value="Reforzamiento">Reforzamiento</option>
+                <option value="No">No</option>
               </b-select>
             </b-field>
 
             <b-field label="¿Quien atenderá su parto?">
               <b-select placeholder="¿Quien atenderá su parto?" v-model="detalles.quienAtenderaParto" expanded>
-                <option value="AtenderMedico">Medico</option>
-                <option value="AtenderEnfra">Enfra</option>
-                <option value="AtenderParteraProfs">Partera profes.</option>
-                <option value="AtenderParteraTradc">Partera tradic.</option>
-                <option value="AtenderFamiliar">Familiar</option>
-                <option value="AtenderOtro">Otro</option>
+                <option value="Medico">Medico</option>
+                <option value="Enfra">Enfra</option>
+                <option value="Partera profs.">Partera profes.</option>
+                <option value="Partera tradc">Partera tradic.</option>
+                <option value="Familiar">Familiar</option>
+                <option value="Otro">Otro</option>
               </b-select>
             </b-field>
           </div>
@@ -572,6 +571,7 @@
   </b-steps>
 </template>
 <script>
+
 import Utiles from "../services/Utiles";
 import DialogosService from "../services/DialogosService";
 import EmbarazadaService from "../services/EmbarazadaService";
@@ -822,7 +822,7 @@ export default {
         DialogosService.mostrarError("registro con errores");
       } else {
         DialogosService.mostrarExitoso(
-          "Datos guardados correctament en la base de datos"
+          "Datos guardados correctamente"
         );
         this.detalles = {
           noExpediente: "",

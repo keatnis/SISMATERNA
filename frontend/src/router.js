@@ -16,6 +16,15 @@ import InformesLocalidad from "@/components/InformesLocalidad";
 import Tarjetas from "@/components/Tarjetas";
 
 
+import Login from '@/components/Login'
+import RegistrarPuerpera from '@/components/RegistrarPuerpera'
+import ActualizarEmbarazada from '@/components/ActualizarEmbarazada'
+import ActualizarPuerperia from '@/components/ActualizarPuerperia'
+import ListaPuerpera from '@/components/ListaPuerpera'
+import ListaEmbarazada from '@/components/ListaEmbarazada'
+import Informes from '@/components/Informes'
+import Tarjetas from '@/components/Tarjetas'
+import ListaUsuario from '@/components/ListaUsuario'
 Vue.use(Router);
 const routes = [
   {

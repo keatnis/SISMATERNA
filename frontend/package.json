@@ -17,7 +17,8 @@
     "cors": "^2.8.5",
     "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
-    "vue": "^2.6.11",
+    "vee-validate": "^4.7.4",
+    "vue": "^2.7.1",
     "vue-router": "^3.5.1"
   },
   "devDependencies": {

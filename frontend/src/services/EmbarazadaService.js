@@ -4,8 +4,8 @@ const VehiculosService = {
         console.log("frontend",embarazada);
         return await HttpService.post("/agregar_embarazada", embarazada);
     },
-    async obtenerEmbarazadas() {
-        return await HttpService.get("/ListaEmbarazada");
+    async GetEmbarazada() {
+        return await HttpService.get("/Lista_embarazada");
     },
     async obtenerMunicipios(){
         return await HttpService.get("/agregar_embarazada");
