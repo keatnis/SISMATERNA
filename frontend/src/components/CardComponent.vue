@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header v-if="title" class="card-header">
-      <p class="card-header-title">
+      <p class="card-header-title" font-size="40px">
         <b-icon v-if="icon" :icon="icon" custom-size="default" />
         {{ title }}
       </p>
@@ -28,6 +28,7 @@ export default {
     title: {
       type: String,
       default: null,
+         
     },
     icon: {
       type: String,
@@ -46,3 +47,5 @@ export default {
   },
 };
 </script>
+<style >
+

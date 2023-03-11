@@ -10,20 +10,12 @@ import ActualizarEmbarazada from "@/components/ActualizarEmbarazada";
 import ActualizarPuerperia from "@/components/ActualizarPuerperia";
 import ListaPuerpera from "@/components/ListaPuerpera";
 import ListaEmbarazada from "@/components/ListaEmbarazada";
-import InformesRegional from "@/components/InformesRegional";
-import InformesMunicipio from "@/components/InformesMunicipio";
-import InformesLocalidad from "@/components/InformesLocalidad";
+
 import Tarjetas from "@/components/Tarjetas";
 
 
-import Login from '@/components/Login'
-import RegistrarPuerpera from '@/components/RegistrarPuerpera'
-import ActualizarEmbarazada from '@/components/ActualizarEmbarazada'
-import ActualizarPuerperia from '@/components/ActualizarPuerperia'
-import ListaPuerpera from '@/components/ListaPuerpera'
-import ListaEmbarazada from '@/components/ListaEmbarazada'
-import Informes from '@/components/Informes'
-import Tarjetas from '@/components/Tarjetas'
+import Login from '@/components/Mujer'
+
 import ListaUsuario from '@/components/ListaUsuario'
 Vue.use(Router);
 const routes = [
@@ -69,6 +61,11 @@ const routes = [
     component: RegistrarEmbarazada,
   },
   {
+    path: "/Login2",
+    name: "Lgin",
+    component: Login,
+  },
+  {
     path: "/AddUser",
     name: "AddUser",
     component: CreateUsers,
@@ -99,25 +96,16 @@ const routes = [
     name: "ListaPuerpera",
     component: ListaPuerpera,
   },
-  {
-    path: "/InformesRegional",
-    name: "InformesRegional",
-    component: InformesRegional,
-  },
-  {
-    path: "/InformesMunicipio",
-    name: "InformesMunicipio",
-    component: InformesMunicipio,
-  },
-  {
-    path: "/InformesLocalidad",
-    name: "InformesLocalidad",
-    component: InformesLocalidad,
-  },
+
   {
     path: "/Tarjetas",
     name: "Tarjetas",
     component: Tarjetas,
+  },
+  {
+    path: "/ListUsers",
+    name: "USers",
+    component: ListaUsuario,
   },
 ];
 const router = new Router({

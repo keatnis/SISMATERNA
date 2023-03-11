@@ -7,7 +7,6 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import store from './store'
 
-
 Vue.use(Buefy);
 Vue.config.productionTip = false
 
@@ -38,4 +37,5 @@ new Vue({
   render: h => h(App),
   router,
   store,
+
 }).$mount('#app')

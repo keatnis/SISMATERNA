@@ -57,8 +57,13 @@
             </a>
             <hr class="navbar-divider" />
             <a class="navbar-item">
+              <router-link
+              to="/ListUSers"
+              class="navbar-item"
+              exact-active-class="is-active"
+            >
               <b-icon icon="logout" custom-size="default" />
-              <span>Log Out</span>
+              </router-link>
             </a>
           </div>
         </nav-bar-menu>
@@ -87,7 +92,7 @@
             <hr class="navbar-divider" />
             <a class="navbar-item">
               <b-icon icon="logout" custom-size="default" />
-              <span>Log Out</span>
+              <span>Salir</span>
             </a>
           </div>
         </nav-bar-menu>
